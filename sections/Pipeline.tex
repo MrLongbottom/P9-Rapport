@@ -18,3 +18,17 @@ When training the LDA model, we concatenate the Headline and Body for simplicity
 The preprocessing phase is described further in detail in \todo[inline]{ref til preprocessing}.
 This phase applies some processes to simplify the dataset and remove redundant noise from the data. 
 After the preprocessing phase, we are left with 130.000 articles.
+
+\subsection{LDA}
+We apply the \acrfull{LDA} to the dataset in order to generate topic clusters based on the content of the articles. 
+We detail the investigation and selection of hyper parameters in \todo{ref til LDA section}. 
+After the model has been trained, we use the topic distributions as clusters in the next phase.
+
+\subsection{Clustering PageRank}
+In this phase, we apply a clustering random walk to the articles and the clusters given in the \gls{LDA} phase, and this phase yields a prioritized list of articles based on the query provided.
+
+
+\subsection{Query Processing}
+
+
+
