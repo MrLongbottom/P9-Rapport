@@ -1,0 +1,114 @@
+% This file demonstrates how to use the IEEEConf LaTeX2e macro package,
+% to prepare a manuscript for proceedings on CD of the conference
+% FedCSIS
+%
+\documentclass[a4paper,10pt]{IEEEtran}
+%\documentclass[a4paper]{IEEEconf}
+
+
+
+% Usepackages
+\input{setup/preamble.tex}
+
+% Macros
+\input{setup/macros.tex}
+
+% Glossaries
+\input{setup/acronyms.tex}
+
+%
+%
+\title{Title}
+%
+%
+\author{
+\IEEEauthorblockN{Dennis Højbjerg Rose, Peter Langballe Erichsen, and Rasmus Engesgaard Christensen}\\
+\IEEEauthorblockA{Department of Computer Science, Aalborg University,\\Selma Lagerløfs Vej 300, 9220 Aalborg Øst, Denmark\\Email: \{drose16, perich16, rech16\}@student.aau.dk}}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+% \usepackage{showframe}
+\begin{document}
+\maketitle              % typeset the title of the contribution
+
+% - Abstract (5-20 lines)
+\begin{abstract}
+	\input{sections/Abstract.tex}
+\end{abstract}
+\glsresetall
+%\input{sections/Simba.tex}
+%  Keywords
+%\input{sections/Keywords.tex}
+%
+%\glsresetall
+%
+%% - Introduction (7.5 \%) 
+\input{sections/introduction.tex}
+%
+%% - Related works (7.5 \%))
+\input{sections/related_works.tex}
+%
+%% - Preliminaries/"Experiment" (20 \%)
+%%		- Data
+%%		- Setup
+%%		- Analysis
+%\input{sections/Dataset.tex}
+%%\input{sections/Pipeline.tex}
+%
+\input{sections/method/method.tex}
+
+%\input{sections/Dataset.tex}
+%%\input{sections/Pipeline.tex}
+\input{sections/Experiment.tex}
+%% - Body(50 \%)
+%%	- Results 
+%
+%%	- Discussion
+%%		- Main results
+%%		- Other results
+%%		- Error sources
+\input{sections/Discussion.tex}
+%
+%
+%% - Conclusion (5 \%)
+%%	- (Possible) Future work
+\input{sections/conclusion}
+\input{sections/futureWork}
+%
+%\input{sections/Acknowledgements}
+
+% - References (10 \%)
+% 	- Acknowledgments
+%	- Bibliography
+\bibliography{paper}
+
+
+%Appendixes, if needed, appear before the acknowledgment.
+%\input{sections/Appendix.tex}
+
+% Examples of tables and figure
+%\input{examples.tex}
+
+%\section{Unused Sections}
+%\input{unusedSections/KnowledgeGraph.tex}
+\end{document}

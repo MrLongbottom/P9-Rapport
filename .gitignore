@@ -1,5 +1,6 @@
 ## Core latex/pdflatex auxiliary files:
 *.aux
+*.pdf
 *.lof
 *.log
 *.lot
@@ -11,6 +12,7 @@
 *.cb
 *.cb2
 .*.lb
+!images/*.pdf
 
 ## Intermediate documents:
 *.dvi
@@ -149,6 +151,7 @@ acs-*.bib
 *.idx
 *.ilg
 *.ind
+*.ist
 
 # minitoc
 *.maf
@@ -271,6 +274,9 @@ TSWLatexianTemp*
 
 # standalone packages
 *.sta
+
+# generated if using elsarticle.cls
+*.spl
 
 # Makeindex log files
 *.lpz

@@ -1,0 +1,70 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%Article stuff
+%%%%%%%%%%%%%%%%%%%%%%%%
+% This package serves to balance the column lengths on the last page of the document.
+% please, insert \balance command in the left column of the last page
+\usepackage{balance}
+\usepackage{supertabular}
+\usepackage{paralist}
+
+%% to enable \thank command
+\IEEEoverridecommandlockouts 
+%% The usage of the following packages is recommended
+%% to insert graphics
+\usepackage[dvips]{graphicx}
+% to typeset algorithms
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+% to typeset code fragments
+\usepackage{listings}
+% to make an accent \k be available
+\usepackage[T1]{fontenc}
+% provides various features to facilitate writing math formulas and to improve the typographical quality of their output.
+\usepackage[cmex10]{amsmath}
+\interdisplaylinepenalty=2500
+% por urls typesetting and breaking
+\usepackage{url}
+% for vertical merging table cells
+\usepackage{multirow}
+\usepackage{siunitx}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%Mixed packages
+%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage[textsize=scriptsize,disable]{todonotes}
+\usepackage{glossaries}
+\usepackage[numbers]{natbib}
+\usepackage{subcaption}
+\bibliographystyle{plainnat}
+\usepackage{amssymb}
+\let\labelindent\relax %Needed before enumitem to avoid error with IEEE template
+\usepackage{enumitem}
+% Encoding %
+\usepackage[utf8]{inputenc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%Figures
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+% Tables %
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usepackage{booktabs} % for professional tables
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%Defines
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Autoref
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Section}
+\def\subsubsectionautorefname{Section}
+\def\figureautorefname{Fig.}
