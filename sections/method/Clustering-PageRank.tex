@@ -1,0 +1,54 @@
+\section{Clustering Random Walk}
+To perform Random Walk on a document set, such as Nordjyske, we need a similarity measure between each document.
+This similarity measure is calculated from the topic distributions from the LDA topic model.
+These distributions can be arranged in a matrix $\theta$ which is described later.
+
+In \cite{ClusterPageRank}, they describe ``Cluster-based Conditional Markov Random Walk Model (ClusterCMRW)'' which is new version of the Random Walk model. They improve upon this model by incorporating information from clusters. 
+They find these by employing three different clustering algorithms.
+They create a new transition probability matrix by incorporating the previously mentioned information.
+
+They describe three similarity levels between:
+\begin{itemize}
+    \item Sentence to Sentence - $f(i \rightarrow j)$
+    \item Sentence to Topic Cluster - $\omega(v_i, clus(v_i))$
+    \item Topic Cluster to Document Set - $\pi(clus(v_i))$
+\end{itemize}
+where $v_i$ is the given sentence and $clus(v_i)$ is the cluster that $v_i$ belongs to.
+
+We want to use this method to incorporate the information given by the topic distributions within a ClusterCMRW. 
+To make this model, we first create three similarity functions in order to incorporate cluster level information into a new adjacency matrix.
+\begin{itemize}
+    \item Document to Document - $d2d(d_1, d_2)$
+    \item Document to Topic Cluster - $d2t(d,t)$
+    \item Topic Cluster to Document Set - $t2D(t, D)$
+\end{itemize}
+
+\noindent
+Where $d$ is a document, $t$ is a topic and $D$ is the whole document set.
+These similarity functions are described in detail in \autoref{sec:similarity}.
+Formally, the adjacency matrix is calculated with the following function.
+$$ f(d_1 \rightarrow d_2 | clus(d_1), clus(d_2)) $$
+which is evaluated to be 
+
+\begin{align*}
+&f(d_1 \rightarrow d_2 | clus(d_1), clus(d_2)) = \\
+&d2d(d_1, d_2) \cdot (\lambda \cdot t2D(clus(d_1))) \cdot d2t(d_1, clus(d_1)) \\ 
+&+ (1-\lambda) \cdot t2D(clus(d_2)) \cdot d2t(d_2, clus(d_2))
+\end{align*}
+where $\lambda$ is a weight between $[0,1]$ that controls the relative contribution of the two clusters.
+
+
+\section{Similarity Measures}\label{sec:similarity}
+\subsection{Similarity between two documents}
+The matrix $\theta$ describes the topic distribution for each document $d \in M$, where $\theta_d$ is the topic distribution for document $d$, and is a $K$-dimensional vector that sums to 1.
+The similarity between two documents $x$ and $y$ is:
+$$ d2d(d_1, d_2) = \sum_{1}^{K} min(\theta_{d_1,k}, \theta_{d_2,k})$$
+where $K$ is the number of topics.
+
+\subsection{Similarity between documents and topics}
+The similarity between documents and topics are described by the probability distribution that the word have
+$$ d2t(d,t) = \theta_{d,t}$$
+
+\subsection{Similarity measure between topic clusters and whole document set}
+The similarity between a topic $t$ and the document set $D$ is:
+$$ t2D(t, D) = \frac{\sum_{d}^{M} \theta_{d,t}}{M} $$
