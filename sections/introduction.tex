@@ -1,19 +1,25 @@
 \section{Introduction}
 %% Argue briefly for the relevance of the studied area/problem — start from general and end with your concrete problem.
+A general challenge for search engines, no matter the environment, is how to acquire relevant search results from a given corpus.
+While some search engines use simple algorithms, such as finding all articles including a given search term and sorting by date, this may not always give useful results.
+Because of this we want to explore ways to improve search results while using information already available from a corpus.
 
-%Generating relevant results for searches
+A way to improve searches could be by labeling documents in a corpus and using these labels to get results.
+A popular way to label documents is topic modeling.
+Topic modeling gives each document in a corpus a distribution of topics, which can then be used for different applications.
+More specifically, we look into \gls{lda} since it is currently the most used topic model, and is applicable for many situations\cite{lda}.
 
-%Nordjyske and their method
+Topic modeling does not by itself help with how to rank documents in a search, which is why an additional part is necessary.
+We have chosen to explore a popular way to rank documents, which is by using PageRank.
+PageRank is an algorithm originally meant for ranking web pages in search engine results by their importance, but it can easily be extended to other types of data, such as news articles.
+A more specific implementation of PageRank is a cluster-based PageRank\cite{ClusterPageRank}.
+This method uses the similarities between documents, clusters, and a corpus as an extension to regular PageRank.
+We believe this can help find further connections between documents by clustering them using the topics given by \gls{lda}.
 
-%Topic modelling as a popular method for "classifying" docs
-
-%More specifically into LDA as a popular method
-
-%How to rank results for searches after LDA (PageRank)
-
-%Shortly mention clustering PageRank
-
-%This is chosen as the way to get relevant results for searches
+Our goal is thus to improve news article search by using a combination of topic modeling and PageRank.
+For our experiments we use the Nordjyske database of news articles as our dataset.
+The idea is to use topic modeling to apply topics to documents, and cluster the documents with similar topics.
+Then the cluster-based PageRank, which takes these clusters into account, is used in order to find relevant documents given a search query.
 
 \input{sections/introduction/contributions}
 
