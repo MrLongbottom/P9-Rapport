@@ -5,7 +5,7 @@ These distributions can be arranged in a matrix $\theta$ which is described late
 
 In \cite{ClusterPageRank}, they describe the \gls{Cluster-CMRW} which is new version of the Random Walk model. 
 They improve upon this model by incorporating information from clusters. 
-They find these by employing three different clustering algorithms.
+The clusters are found by employing three different clustering algorithms.
 They create a new transition probability matrix where the cluster information is added by combining three similarity functions based on the information levels present in the data.
 They describe three similarity levels between:
 \begin{itemize}
@@ -27,7 +27,8 @@ We first create three similarity functions to incorporate topic cluster level in
 Where $d$ is a document, $t$ is a topic and $D$ is the whole document set.
 Notice that a document $d$ can contain multiple topics, as opposed to normal clustering where each element is generally assumed to only be part of one cluster.
 These similarity functions are described in detail in \autoref{sec:similarity}.
-To create the matrix, they linearly combine the different similarity functions, in which we intend to do the same.
+
+To create the adjacency matrix, \cite{ClusterPageRank} linearly combine the different similarity functions, in which we intend to do the same.
 Formally, the adjacency matrix is calculated with the following function.
 $$ f(d_1 \rightarrow d_2 | clus(d_1), clus(d_2)) $$
 which is evaluated to 
