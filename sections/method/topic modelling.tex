@@ -3,3 +3,5 @@ The objective of topic modelling is to infer topics (collections of words) in a 
 The result consists of a topic-word distribution matrix $\varphi$, which for each topic gives a distribution of words belonging to said topic, and a document-topic distribution matrix $\theta$ which for each document gives a distribution of topics which the document belongs to.
 
 \subsubsection{\acrlong{LDA}}\label{subsec:lda}
+\gls{LDA} works under the assumption that documents were generated from a specific generative process, and then tries to reverse engineer this process\todo{cite lda wiki}. It assumes that documents are random mixtures of latent topics, and that each topics is a distribution over words.
+Document-topic distributions and topic-word distributions are both drawn from dirichlet distributions using the symmetric parameters $\alpha$ and $beta$ respectively.\todo{cite lda wiki}
