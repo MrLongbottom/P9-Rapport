@@ -1,11 +1,11 @@
 \section{Pipeline}
 
 \input{figures/pipeline_figure.tex}
-The pipeline of our framework is divided into five different phases which are displayed in \autoref{fig:pipeline}.
+The pipeline of our framework is divided into five phases which are displayed in \autoref{fig:pipeline}.
 
 \subsection{Article dataset}
-We have an dataset consisting of articles from the media group Nordjyske, whose primary focus is maintaining a variety of local newspapers within the North Jutland region of Denmark. 
-The data is from 2017-2019, where a total of ~270.000 articles have been extracted from their database.
+We have an data set consisting of articles from the media group Nordjyske. Their primary focus is to maintain a variety of local newspapers within the North Jutland region of Denmark. 
+The data ranges from 2017-2019, where a total of ~270.000 articles have been extracted from their database.
 
 \subsection{Preprocessing}
 The articles are on the format:
@@ -16,16 +16,17 @@ The articles are on the format:
 \end{itemize}
 When training the LDA model, we concatenate the Headline and Body for simplicity.
 The preprocessing phase is described further in detail in \todo[inline]{ref til preprocessing}.
-This phase applies some processes to simplify the dataset and remove redundant noise from the data. 
+This phase applies some processes to simplify the dataset and remove redundant information. 
 After the preprocessing phase, we are left with 130.000 articles.
 
 \subsection{LDA}
-We apply the \acrfull{LDA} to the dataset in order to generate topic clusters based on the content of the articles. 
-We detail the investigation and selection of hyper parameters in \todo{ref til LDA section}. 
-After the model has been trained, we use the topic distributions as clusters in the next phase.
+We apply the \acrfull{LDA} to the dataset to generate topic clusters based on the content of the articles. 
+We describe the investigation and selection of hyper parameters in \todo{ref til LDA section}. 
+After the model has been trained, we use the topic distributions as topic clusters in a clustering random walk.
 
 \subsection{Clustering PageRank}
-In this phase, we apply a clustering random walk to the articles and the clusters given in the \gls{LDA} phase, and this phase yields a prioritized list of articles based on the query provided.
+In this phase, we apply a clustering random walk\todo{cite clusteirng pagerank} to the articles and clusters given in the \gls{LDA} phase.
+The algorithm yields a prioritized list of articles based on the query provided.
 
 
 \subsection{Query Processing}
