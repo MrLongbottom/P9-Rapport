@@ -9,7 +9,7 @@ They find these by employing three different clustering algorithms.
 They create a new transition probability matrix where the cluster information is added by combining three similarity functions based on the information levels present in the data.
 They describe three similarity levels between:
 \begin{itemize}
-    \item Sentence to Sentence - $f(i \rightarrow j)$
+    \item Sentence to Sentence - $f(v_i \rightarrow v_j)$
     \item Sentence to Topic Cluster - $\omega(v_i, clus(v_i))$
     \item Topic Cluster to Document Set - $\pi(clus(v_i))$
 \end{itemize}
@@ -20,11 +20,12 @@ We first create three similarity functions to incorporate topic cluster level in
 \begin{itemize}
     \item Document to Document - $d2d(d_1, d_2)$
     \item Document to Topic Cluster - $d2t(d,t)$
-    \item Topic Cluster to Document Set - $t2D(t, D)$
+    \item Topic Cluster to Document Set - $t2D(t)$
 \end{itemize}
 
 \noindent
 Where $d$ is a document, $t$ is a topic and $D$ is the whole document set.
+Notice that a document $d$ can contain multiple topics, as opposed to normal clustering where each element is generally assumed to only be part of one cluster.
 These similarity functions are described in detail in \autoref{sec:similarity}.
 To create the matrix, they linearly combine the different similarity functions, in which we intend to do the same.
 Formally, the adjacency matrix is calculated with the following function.
@@ -41,15 +42,14 @@ where $\lambda$ is a weight between $[0,1]$ that controls the relative contribut
 
 \section{Similarity Measures}\label{sec:similarity}
 \subsection{Similarity between two documents}
-The matrix $\theta$ describes the topic distribution for each document $d \in M$, where $\theta_d$ is the topic distribution for document $d$, and is a $K$-dimensional vector that sums to 1.
-The similarity between two documents $x$ and $y$ is:
+The matrix $\theta$ describes the topic distribution for each document $d \in M$, where $\theta_d$ is the topic distribution for document $d$, and is a $K$-dimensional vector that sums to 1, where $K$ is the number of topics.
+The similarity between two documents $d_1$ and $d_2$ as:
 $$ d2d(d_1, d_2) = \sum_{1}^{K} min(\theta_{d_1,k}, \theta_{d_2,k})$$
-where $K$ is the number of topics.
 
 \subsection{Similarity between documents and topics}
-The similarity between documents and topics are described by the probability distribution that the word have
+We define the similarity between documents as the document-topic probability distribution between them.
 $$ d2t(d,t) = \theta_{d,t}$$
 
 \subsection{Similarity measure between topic clusters and whole document set}
-The similarity between a topic $t$ and the document set $D$ is:
+We define the similarity between a topic $t$ and the document set $D$ as:
 $$ t2D(t, D) = \frac{\sum_{d}^{M} \theta_{d,t}}{M} $$
