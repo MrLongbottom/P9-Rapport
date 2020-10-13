@@ -1,1 +1,27 @@
 \section{Related Work}\label{sec:related-works}
+In this section, we investigate existing literature concerning \gls{lda} and similar topic models, as well as relevant work related to random walk.
+
+\citet{lda} describes a generative statistical model, which is heavily used within topic modelling. 
+The intuition behind the \gls{lda} topic model is that a document has an underlying distribution of topics of which it consists. 
+This intuition is set up by ... \todo[inline]{Ved ikke umiddelbart hvor sætningen vil hen.}
+
+There also exists a large amount of extensions to \gls{lda}.
+\citet{blei2012topicmodels} describes some of the most significant extensions that are made from relaxing the assumptions of \gls{lda}.
+Some extensions mentioned are: the dynamic topic model\cite{blei2006dynamic} which assumes that topics change over time, and thus respects the order of the documents, and the correlated topic model\cite{blei2007correlated} and pachinko allocation model\cite{li2006pachinko} which each allow correlations to exist between topics.
+
+\citet{ClusterPageRank} present an improved method for doing summarization of documents using a new random walk model called ClusterCMRV. 
+This random walk model has a modified transition probability based on the similarity between sentence-topic similarity and topic-document similarity.
+Using this model, they are able to perform better in the majority of Rouge-n results compared to the original random walk model.
+
+\citet{Tang2008} successfully combine the two research fields of Topic Modeling and Random Walk search. Though their focus is mainly on mapping author and venue relations as part of their topic model, their methods for combining these two fields are still novel and generally applicable.
+
+While our method in some ways will be similar to the work of \citeauthor{Tang2008}, our method will have the significant change of working with a cluster-based PageRank on topic clusters, inspired by \cite{ClusterPageRank}.
+This will be detailed further in the following sections.
+
+%Articles, we might want in our related works section:
+%\begin{itemize}
+%	\item \cite{lda} (written)
+%	\item \cite{ClusterPageRank} (written)
+%	\item \cite{Tang2008} (written)
+%	\item \cite{jelodar2019latent}
+%\end{itemize}
