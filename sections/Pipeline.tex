@@ -29,6 +29,8 @@ In this phase, we apply a clustering random walk to the articles and the cluster
 
 
 \subsection{Query Processing}
-
+The query given to the search algorithm is stemmed and turned into a list of words. 
+This list of words are then queried against LDA and to check which cluster each word belongs to.
+Lastly it is transformed into a personalization vector to use within the Clustering PageRank.
 
 
