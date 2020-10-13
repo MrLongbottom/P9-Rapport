@@ -8,7 +8,7 @@ We have an data set consisting of articles from the media group Nordjyske. Their
 The data ranges from 2017-2019, where a total of ~270.000 articles have been extracted from their database.
 
 \subsection{Preprocessing}
-The articles are on the format:
+The extracted articles use the format:
 \begin{itemize}
 	\item Id
 	\item Headline
@@ -17,12 +17,13 @@ The articles are on the format:
 When training the LDA model, we concatenate the Headline and Body for simplicity.
 The preprocessing phase is described further in detail in \todo[inline]{ref til preprocessing}.
 This phase applies some processes to simplify the dataset and remove redundant information. 
-After the preprocessing phase, we are left with 130.000 articles.
+After the preprocessing phase, we are left with ~130.000 articles.
 
 \subsection{LDA}
 We apply the \acrfull{LDA} to the dataset to generate topic clusters based on the content of the articles. 
 We describe the investigation and selection of hyper parameters in \todo{ref til LDA section}. 
-After the model has been trained, we use the topic distributions as topic clusters in a clustering random walk.
+After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\varphi$.
+$\theta$ will be used as clusters in the next phase.
 
 \subsection{Clustering PageRank}
 In this phase, we apply a clustering random walk\todo{cite clusteirng pagerank} to the articles and clusters given in the \gls{LDA} phase.
