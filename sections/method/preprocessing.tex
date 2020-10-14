@@ -30,7 +30,7 @@ Words that are not contained within either database are removed.
 \paragraph{Stemming}
 Words are reduced to their stems using \texttt{nltk.stem.snowball.DanishStemmer}. 
 This is done to combine word declensions, which reduced the number of words without removing too much information.
-Words which stem are stopwords are also removed at this time.
+Words that are stemmed into stopwords are also removed at this time.
 
 \paragraph{Construct files}
 Construct and save scikit-learn.CountVectorizer as a sparse matrix \texttt{.npz} file, and word2vec, doc2vec, doc2word as \texttt{.csv} files.
