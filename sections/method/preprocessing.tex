@@ -39,7 +39,7 @@ Construct and save scikit-learn.CountVectorizer as a sparse matrix \texttt{.npz}
 \subsection{Post-LDA preprocessing}
 After LDA has made a topic model, documents which have no accociated topic, and topics which have none accociated documents would be removed.
 Topics that occur in almost every document are also considered too general, and would also be removed.
-This initially has some implementation challenges, as it would require removing topics and documents from generated files and from the LDA model, in order to be able to use the right topic/document IDs in the future.
+Initially, this presented some implementation challenges, as it required removing topics and documents from files generated earlier in the process and from the LDA model, to be able to use the right topic/document IDs in the future.
 
 \subsection{Query Preprocessing}
 One of the challenges of preprocessing queries is that they usually contain very few words, meaning that there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
