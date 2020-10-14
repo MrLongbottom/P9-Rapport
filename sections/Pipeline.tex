@@ -4,10 +4,10 @@
 The pipeline of our framework is divided into five phases which are displayed in \autoref{fig:pipeline}.
 
 \subsection{Article dataset}
-We have an data set consisting of articles from the media group Nordjyske. Their primary focus is to maintain a variety of local newspapers within the North Jutland region of Denmark. 
-The data ranges from 2017-2019, where a total of ~270.000 articles have been extracted from their database.
+We have a dataset consisting of articles from the media group Nordjyske. Their primary focus is to maintain a variety of local newspapers within the North Jutland region of Denmark. 
+The data ranges from 2017-2019, where a total of $\sim$270.000 articles have been extracted from their database.
 
-\subsection{Preprocessing}
+\subsection{Preprocessing Phase}
 The extracted articles use the format:
 \begin{itemize}
 	\item Id
@@ -15,9 +15,9 @@ The extracted articles use the format:
 	\item Body
 \end{itemize}
 When training the LDA model, we concatenate the Headline and Body for simplicity.
-The preprocessing phase is described further in detail in \todo[inline]{ref til preprocessing}.
-This phase applies some processes to simplify the dataset and remove redundant information. 
-After the preprocessing phase, we are left with ~130.000 articles.
+The preprocessing phase is described in further detail in \todo[inline]{ref til preprocessing}.
+This phase applies different \gls{NLP} methods to simplify the dataset and remove redundant information.
+After the preprocessing phase, we are left with $\sim$130.000 articles.
 
 \subsection{LDA}
 We apply the \acrfull{LDA} to the dataset to generate topic clusters based on the content of the articles. 
@@ -25,14 +25,13 @@ We describe the investigation and selection of hyper parameters in \todo{ref til
 After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\varphi$.
 $\theta$ will be used as clusters in the next phase.
 
-\subsection{Clustering PageRank}
-In this phase, we apply a clustering random walk\todo{cite clusteirng pagerank} to the articles and clusters given in the \gls{LDA} phase.
+\subsection{Cluster-based PageRank}
+In this phase, we apply cluster-based random walk\todo{cite clusteirng pagerank} to the articles and clusters given in the \gls{LDA} phase.
 The algorithm yields a prioritized list of articles based on the query provided.
 
 
-\subsection{Query Processing}
+\subsection{Query Preprocessing}
 The query given to the search algorithm is stemmed and turned into a list of words. 
-This list of words are then queried against LDA and to check which cluster each word belongs to.
-Lastly it is transformed into a personalization vector to use within the Clustering PageRank.
-
+This list of words are then queried against LDA to check which cluster each word belongs to.
+Lastly it is transformed into a personalization vector to use within the cluster-based PageRank.
 
