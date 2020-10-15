@@ -10,11 +10,11 @@ The data ranges from 2017-2019, where a total of $\sim$270.000 articles have bee
 \subsection{Preprocessing Phase}
 The extracted articles use the format:
 \begin{itemize}
-	\item Id
-	\item Headline
-	\item Body
+	\item id
+	\item headline
+	\item body
 \end{itemize}
-When training the LDA model, we concatenate the Headline and Body for simplicity.
+When training the LDA model, we concatenate the \emph{headline} and \emph{body} for simplicity.
 The preprocessing phase is described in further detail in \todo[inline]{ref til preprocessing}.
 This phase applies different \gls{NLP} methods to simplify the dataset and remove redundant information.
 After the preprocessing phase, we are left with $\sim$130.000 articles.
@@ -34,4 +34,3 @@ The algorithm yields a prioritized list of articles based on the query provided.
 The query given to the search algorithm is stemmed and turned into a list of words. 
 This list of words are then queried against LDA to check which cluster each word belongs to.
 Lastly it is transformed into a personalization vector to use within the cluster-based PageRank.
-
