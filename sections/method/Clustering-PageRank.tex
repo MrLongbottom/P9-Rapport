@@ -1,5 +1,6 @@
 \section{Cluster-based Random Walk}
-To perform random walk on a document set, such as Nordjyske, we need a similarity measure between each document.
+To perform random walk on a document set, such as Nordjyske, probabilities of jumping between documents is needed to perform each step.
+We have chosen to use a similarity measure between each document as these probabilities.
 This is calculated by using the document-topic distributions from the \gls{LDA}.
 These distributions can be arranged in a matrix $\theta$, which is described later.
 
@@ -43,7 +44,7 @@ where $\lambda$ is a weight between $[0,1]$ that controls the relative contribut
 
 \section{Similarity Measures}\label{sec:similarity}
 \subsection{Similarity between two documents}
-The matrix $\theta$ describes the topic distribution for each document $d \in M$, where $\theta_d$ is the topic distribution for document $d$, and is a $K$-dimensional vector that sums to 1, where $K$ is the number of topics.
+The matrix $\theta$ describes the topic distribution for each document $d \in M$, where $\theta_d$ is the topic distribution for document $d$, and is a $K$-dimensional vector that sums to 1, where $K$ is the number of topics. \todo[inline]{Tjek at M er defineret når LDA afsnittet merges.}
 The similarity between two documents $d_1$ and $d_2$ is defined as:
 $$ d2d(d_1, d_2) = \sum_{1}^{K} min(\theta_{d_1,k}, \theta_{d_2,k})$$
 
