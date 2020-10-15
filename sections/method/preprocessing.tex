@@ -1,10 +1,10 @@
 \subsection{Preprocessing}\label{subsec:prepro}
 
 Our preprocessing consists of several steps, each of which will be described in more detail.
-
+The steps are:
 \begin{enumerate}
 	\item Article Extraction
-	\item Initial Document filtering
+	\item Initial Document Filtering
 	\item Stopwords and Word Frequency
 	\item Word Databases / POS Tagging
 	\item Stemming
@@ -13,10 +13,10 @@ Our preprocessing consists of several steps, each of which will be described in 
 \end{enumerate}
 
 \paragraph{Article Extraction}
-Documents are loaded from \texttt{.xml} files, and their title and body contents extracted and converted into \texttt{.json} format.
+Documents are loaded from \texttt{xml} files, and their title and body contents extracted and converted into \texttt{json} format.
 
 \paragraph{Initial Document Filtering}
-Duplicate documents are removed. Documents containing fewer than 20 words are also removed.
+Duplicate documents and documents containing fewer than 20 words are removed.
 
 \paragraph{Stopwords and Word Frequency Filtering}
 Stopwords are removed, using \emph{nltk.corpus.stopwords}. 
@@ -29,20 +29,21 @@ Words that are not contained within either database are removed.
 
 \paragraph{Stemming}
 Words are reduced to their stems using \texttt{nltk.stem.snowball.DanishStemmer}. 
-This is done to combine word declensions, which reduced the number of words without removing too much information.
+This is done to combine word declensions, which reduces the number of words without removing too much information.
 Words that are stemmed into stopwords are also removed at this time.
 
-\paragraph{Construct files}
-Construct and save scikit-learn.CountVectorizer as a sparse matrix \texttt{.npz} file, and word2vec, doc2vec, doc2word as \texttt{.csv} files.
+\paragraph{Construct Files}
+Construct and save scikit-learn.CountVectorizer as a sparse matrix \texttt{npz} file, and word2vec, doc2vec, doc2word as \texttt{csv} files.
 
 
-\subsection{Post-LDA preprocessing}
-After LDA has made a topic model, documents which have no accociated topic, and topics which have none accociated documents would be removed.
+\subsection{Post-LDA Preprocessing}
+After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.
 Topics that occur in almost every document are also considered too general, and would also be removed.
 Initially, this presented some implementation challenges, as it required removing topics and documents from files generated earlier in the process and from the LDA model, to be able to use the right topic/document IDs in the future.
 
 \subsection{Query Preprocessing}
-One of the challenges of preprocessing queries is that they usually contain very few words, meaning that there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
+One of the challenges of preprocessing queries is that they usually contain very few words.
+Therefore, there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
 
 Our method converts each word in the query into a topic distribution, making the query have the same format as a document. 
 This enables us to compare the query to other documents, and therefore do a random walk based on the query.
