@@ -13,7 +13,7 @@ The steps are:
 \end{enumerate}
 
 \paragraph{Article Extraction}
-Documents are loaded from \texttt{xml} files, and their id, title, and body contents extracted and converted into \texttt{json} format.
+Documents are loaded from \texttt{xml} files, and their ID, title, and body contents extracted and converted into \texttt{json} format.
 
 \paragraph{Initial Document Filtering}
 Duplicate documents and documents containing fewer than 20 words are removed.
@@ -38,13 +38,13 @@ Construct and save scikit-learn.CountVectorizer as a sparse matrix \texttt{npz} 
 
 \subsection{Post-LDA Preprocessing}
 After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.
-Topics that occur in almost every document are also considered too general, and would also be removed.
+Topics that occur in almost every document are also considered too general, and would also be removed. \todo[inline]{Tjek senere at Post-LDA preprocesseringen bliver brugt i pipelinen.}
 Initially, this presented some implementation challenges, as it required removing topics and documents from files generated earlier in the process and from the LDA model, to be able to use the right topic/document IDs in the future.
 
 \subsection{Query Preprocessing}
 One of the challenges of preprocessing queries is that they usually contain very few words.
 Therefore, there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
 
-Our method converts each word in the query into a topic distribution, making the query have the same format as a document. 
+Our method converts each word in the query into a topic distribution, making the query have the same format as a document. \todo[inline]{Detaljer specifikt hvordan denne distribution laves, når det er færdigimplementeret.}
 This enables us to compare the query to other documents, and therefore do a random walk based on the query.
 The danger of this method is that a query only containing a couple of words, will likely have a very skewed topic distribution.
