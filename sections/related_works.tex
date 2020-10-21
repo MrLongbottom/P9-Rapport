@@ -10,7 +10,7 @@ There also exists a large amount of extensions to \gls{lda}.
 Some extensions mentioned are: the dynamic topic model\cite{blei2006dynamic} which assumes that topics change over time, and thus respects the order of the documents, and the correlated topic model\cite{blei2007correlated} and pachinko allocation model\cite{li2006pachinko} which each allow correlations to exist between topics.
 
 \citet{ClusterPageRank} present an improved method for doing summarization of documents using a new random walk model called ClusterCMRV. 
-This random walk model has a modified transition probability based on sentence-topic similarity and topic-document similarity.\todo[inline]{Vi skal overveje om brugen af "topic" her kan forvirre, da de topics der kommer fra cluster artiklen er anderledes fra lda topics.}
+This random walk model has a modified transition probability based on sentence-cluster similarity and cluster-document similarity.
 Using this model, they create summaries of documents, where they perform better in the majority of ROUGE-N results compared to the original random walk model.
 
 \citet{Tang2008} successfully combine the two research fields of Topic Modeling and Random Walk search. Though their focus is mainly on mapping author and venue relations as part of their topic model, their methods for combining these two fields are still novel and generally applicable.
