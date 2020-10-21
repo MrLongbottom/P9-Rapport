@@ -1,7 +1,7 @@
 \section{Cluster-based Random Walk}
 To perform random walk on a document set, such as Nordjyske, probabilities of jumping between documents is needed to perform each step.
 We have chosen to use a similarity measure between each document as these probabilities.
-This is calculated by using the document-topic distributions from the \gls{LDA}.
+This is calculated by using the document-topic distributions from the \gls{lda}.
 These distributions can be arranged in a matrix $\theta$, which is described later.
 
 In \cite{ClusterPageRank}, they describe the \gls{Cluster-CMRW} which is a new version of the random walk model. 
@@ -19,7 +19,7 @@ where $v_i$ is the given sentence and $clus(v_i)$ is the cluster that $v_i$ belo
 We want to use this method to incorporate the information given by the topic distributions within a \gls{Cluster-CMRW}. 
 We first create three similarity functions to incorporate topic cluster level information into a new adjacency matrix.
 \begin{itemize}
-    \item Document to Document - $d2d(d_1 $\rightarrow$ d_2)$
+    \item Document to Document - $d2d(d_1 \rightarrow d_2)$
     \item Document to Topic Cluster - $d2t(d,t)$
     \item Topic Cluster to Document Set - $t2D(t)$
 \end{itemize}
