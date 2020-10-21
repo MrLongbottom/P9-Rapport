@@ -15,18 +15,18 @@ The extracted articles use the format:
 	\item body
 \end{itemize}
 When training the LDA model, we concatenate the \emph{headline} and \emph{body} for simplicity.
-The preprocessing phase is described in further detail in \todo[inline]{ref til preprocessing}.
+The preprocessing phase is described in further detail in \autoref{subsec:prepro}.
 This phase applies different \gls{NLP} methods to simplify the dataset and remove redundant information.
 After the preprocessing phase, we are left with $\sim$130.000 articles.
 
 \subsection{LDA}
 We apply the \acrfull{lda} to the dataset to generate topic clusters based on the content of the articles. 
-We describe the investigation and selection of hyper parameters in \todo{ref til LDA section}. 
+We describe the investigation and selection of hyper parameters in \autoref{subsec:lda}. 
 After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\beta$.
 $\theta$ will be used as clusters in the next phase.
 
 \subsection{Cluster-based PageRank}
-In this phase, we apply cluster-based random walk\todo{cite clusteirng pagerank} to the articles and clusters given in the \gls{lda} phase.
+In this phase, we apply cluster-based random walk, described in \autoref{sec:cluster_pagerank}, to the articles and clusters given in the \gls{lda} phase.
 The algorithm yields a prioritized list of articles based on the query provided.
 
 
