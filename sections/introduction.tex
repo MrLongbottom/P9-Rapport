@@ -23,6 +23,8 @@ We have chosen to explore a popular way to rank documents, which is by using Pag
 PageRank is an algorithm originally used for ranking web pages in search engines, but it can easily be extended to other types of data, such as news articles.
 A more specific implementation of PageRank is a cluster-based PageRank\cite{ClusterPageRank}.
 This method uses similarities between sentences, clusters, and a corpus, to create better summaries of texts.
+It utilizes these three similarity functions, to introduce new information between sentences in a document and combines these into one score for a sentence.
+
 We want to investigate whether the cluster level information of topics can be combined into a PageRank to rank documents based on their topics.
 Topics yield important information in \cite{ClusterPageRank} between sentences and we believe that this concept can be applied to articles by clustering according to topics given by \gls{lda}.
 
