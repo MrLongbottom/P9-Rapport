@@ -10,10 +10,10 @@ After finishing this phase, we are left with $\sim$130.000 articles, which will 
 
 \subsection*{Step 2: LDA}
 We train an \acrfull{lda} on the data set to generate topic clusters based on the content of the articles. 
+
 We describe the investigation and selection of hyper parameters in \autoref{subsec:lda}. 
 After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\beta$.
 $\theta$ will be used as clusters in the next phase.
-
 
 \subsection*{Step 3: Query Preprocessing}
 A search query, consisting of words, is stemmed and turned into a list of words.
@@ -28,4 +28,4 @@ The final product is a prioritized list of articles based on the search query.
 
 
 %\input{figures/pipeline_figure.tex}
-%The pipeline of our framework is divided into five phases which are displayed in \autoref{fig:pipeline}. 
+%The pipeline of our framework is divided into five phases which are displayed in \autoref{fig:pipeline}.
