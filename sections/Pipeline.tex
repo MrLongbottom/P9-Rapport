@@ -1,7 +1,7 @@
 \section{Pipeline}
 
 \input{figures/pipeline_figure.tex}
-The pipeline of our framework is divided into five phases which are displayed in \autoref{fig:pipeline}.
+The pipeline of our framework is divided into five phases which are displayed in \autoref{fig:pipeline}. \vejleder[inline]{???? how does that go together???	confusing structure }
 
 \subsection{Article dataset}
 We have a dataset consisting of articles from the media group Nordjyske. Their primary focus is to maintain a variety of local newspapers within the North Jutland region of Denmark. 
@@ -14,9 +14,9 @@ The extracted articles use the format:
 	\item headline
 	\item body
 \end{itemize}
-When training the LDA model, we concatenate the \emph{headline} and \emph{body} for simplicity.
+When training the LDA model, we concatenate the \emph{headline} and \emph{body} for simplicity. \vejleder[inline]{this sentence needs to be moved to another section, it does not match the subsection}
 The preprocessing phase is described in further detail in \autoref{subsec:prepro}.
-This phase applies different \gls{NLP} methods to simplify the dataset and remove redundant information.
+This phase applies different \gls{NLP} methods \vejleder[inline]{DETAILS!} to simplify the dataset and remove redundant information.
 After the preprocessing phase, we are left with $\sim$130.000 articles.
 
 \subsection{LDA}
@@ -31,6 +31,6 @@ The algorithm yields a prioritized list of articles based on the query provided.
 
 
 \subsection{Query Preprocessing}
-The query given to the search algorithm is stemmed and turned into a list of words. 
+The query \vejleder[inline]{basics missing I assume we’re talking about keywords} given to the search algorithm is stemmed and turned into a list of words. 
 This list of words are then queried against LDA to check which cluster each word belongs to.
 Lastly it is transformed into a personalization vector to use within the cluster-based PageRank.
