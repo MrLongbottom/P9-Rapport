@@ -1,5 +1,5 @@
 \section{Cluster-based Random Walk}\label{sec:cluster_pagerank}
-To perform random walk on a document set, such as Nordjyske, probabilities of jumping between documents is needed to perform each step.
+To perform random walk on a document set, such as Nordjyske, probabilities of jumping between documents is needed to perform each step. \vejleder[inline]{say why this is usefull}.
 We have chosen to use a similarity measure between each document as these probabilities.
 This is calculated by using the document-topic distributions from the \gls{lda}.
 These distributions can be arranged in a matrix $\theta$, which is described later.
@@ -23,6 +23,7 @@ We first create three similarity functions to incorporate topic cluster level in
     \item Document to Topic Cluster - $d2t(d,t)$
     \item Topic Cluster to Document Set - $t2D(t)$
 \end{itemize}
+\vejleder[inline]{details}
 \todo[inline]{Overvej at være konsistente i brugen af t/topics og clusters, for at forbedre forståeligheden af den længere ligning på 37+ pt.. Hvordan det præcis skal gøres er ikke bestemt. Det kan muligvis indebære at der gøres så der ikke springes mellem topics og topic clusters igennem afsnittet.}
 
 \noindent
@@ -43,8 +44,8 @@ which is evaluated to
 where $\lambda$ is a weight between $[0,1]$ that controls the relative contribution of the two clusters.
 
 
-\section{Similarity Measures}\label{sec:similarity}
-\subsection{Similarity between two documents}
+\section{Similarity Measures}\label{sec:similarity} \vejleder[inline]{how about comparison against basics - tf-idf}
+\subsection{Similarity between two documents}\vejleder[inline]{too many subsections with very little text}
 The matrix $\theta$ describes the topic distribution for each document $d \in M$, where $\theta_d$ is the topic distribution for document $d$, and is a $K$-dimensional vector that sums to 1, where $K$ is the number of topics. \todo[inline]{Tjek at M er defineret når LDA afsnittet merges.}
 The similarity between two documents $d_1$ and $d_2$ is defined as:
 $$ d2d(d_1, d_2) = \sum_{1}^{K} min(\theta_{d_1,k}, \theta_{d_2,k})$$

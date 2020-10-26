@@ -1,7 +1,8 @@
-\subsection{Preprocessing}\label{subsec:prepro}
+\subsection{Preprocessing}\label{subsec:prepro} \vejleder[inline]{Thus is starting all over confusing}
 
 Our preprocessing consists of several steps, each of which will be described in more detail.
 The steps are:
+\vejleder[inline]{give examples of each of the preprocessing steps}
 \begin{enumerate}
 	\item Article Extraction
 	\item Initial Document Filtering
@@ -16,14 +17,14 @@ The steps are:
 Documents are loaded from \texttt{xml} files, and their ID, title, and body contents extracted and converted into \texttt{json} format.
 
 \paragraph{Initial Document Filtering}
-Duplicate documents and documents containing fewer than 20 words are removed.
+Duplicate documents and documents containing fewer than 20 words are removed.\vejleder[inline]{why? and why 20?}
 
 \paragraph{Stopwords and Word Frequency Filtering}
 Stopwords are removed, using \emph{nltk.corpus.stopwords}. 
-Words are removed if they appear fewer than 25 times in the document set or if they are used in over 25\% of the documents.
+Words are removed if they appear fewer than 25 times in the document set or if they are used in over 25\% of the documents.\vejleder[inline]{why 25 and 20\%}
 
 \paragraph{Words Database Filtering / POS-Tagging}
-Words are checked against the two word databases: Wiktionary and DanNet. 
+Words are checked against the two word databases: Wiktionary and DanNet\vejleder[inline]{ref}. 
 The databases contain only: nouns, adjectives, verbs, adverbs, and proper nouns. 
 Words that are not contained within either database are removed.
 
@@ -33,9 +34,9 @@ This is done to combine word declensions, which reduces the number of words with
 Words that are stemmed into stopwords are also removed at this time.
 
 \paragraph{Construct Files}
-Construct and save scikit-learn.CountVectorizer as a sparse matrix \texttt{npz} file, and word2vec, doc2vec, doc2word as \texttt{csv} files.
+Construct and save scikit-learn.CountVectorizer as a sparse matrix \texttt{npz} file, and word2vec, doc2vec, doc2word as \texttt{csv} files.\vejleder[inline]{what is the structure of the csv files and why do we create them?}
 
-
+\todo[inline]{steps missing}
 \subsection{Post-LDA Preprocessing}
 After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.
 Topics that occur in almost every document are also considered too general, and would also be removed. \todo[inline]{Tjek senere at Post-LDA preprocesseringen bliver brugt i pipelinen.}
@@ -46,5 +47,5 @@ One of the challenges of preprocessing queries is that they usually contain very
 Therefore, there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
 
 Our method converts each word in the query into a topic distribution, making the query have the same format as a document. \todo[inline]{Detaljer specifikt hvordan denne distribution laves, når det er færdigimplementeret.}
-This enables us to compare the query to other documents, and therefore do a random walk based on the query.
+This enables us to compare the query to other documents, and therefore do a random walk based on the query \vejleder[inline]{say why this is usefull}.
 The danger of this method is that a query only containing a couple of words, will likely have a very skewed topic distribution.
