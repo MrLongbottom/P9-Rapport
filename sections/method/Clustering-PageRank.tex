@@ -26,8 +26,6 @@ We first create three similarity functions to incorporate topic cluster level in
     \item Document to Topic Cluster - $\omega(d_i,vlus(d_i))$
     \item Topic Cluster to Document Set - $\pi(clus(d_i))$
 \end{itemize}
-\todo{details}
-
 
 \noindent
 Where $d$ is a document, $clus(d_i)$ is a topic cluster of document $d_i$.
@@ -60,4 +58,5 @@ which is evaluated to
 &f(d_i, d_j) \cdot (\lambda \cdot \pi(clus(d_i))) \cdot \omega(d_i, clus(d_i)) \\ 
 &+ (1-\lambda) \cdot \pi(clus(d_j)) \cdot \omega(d_j, clus(d_j))
 \end{align*}
+
 where $\lambda$ is a weight between $[0,1]$ that controls the relative contribution of the two clusters.

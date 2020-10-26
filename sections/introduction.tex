@@ -1,23 +1,23 @@
 \section{Introduction} 
-\todo[inline]{should be twice as long as it is now}
+\vejleder[inline]{should be twice as long as it is now}
 %% Argue briefly for the relevance of the studied area/problem — start from general and end with your concrete problem.
 A general challenge for search engines, no matter the environment, is how to acquire relevant search results from a given corpus.
 While some search engines use simple algorithms, such as finding all articles including a given search term and sorting by date, this may not always give useful results.
 Therefore we want to explore ways to improve search results while using information already available from a corpus.
-\todo[inline]{jumping between labels and search}
+\vejleder[inline]{jumping between labels and search}
 Labeling documents in a corpus and using these labels to get relevant results could improve queries.
-A popular way to label documents is through the use of topic modeling. \todo[inline]{Overvej om der er et bedre ord en "label", da det måske kan være misvisende.}
+A popular way to label documents is through the use of topic modeling. \vejleder[inline]{Overvej om der er et bedre ord en "label", da det måske kan være misvisende.}
 Topic modeling gives each document in a corpus a distribution of topics, which can be used for different applications.
 More specifically, we look into \gls{lda} since it is currently the most used topic model, and is applicable for many situations\cite{lda}.
-\todo[inline]{explain what topic modelling is and what it actually does}
+\vejleder[inline]{explain what topic modelling is and what it actually does}
 Topic modeling does not rank documents in a search, which is why an additional part is necessary.
-\todo[inline]{add two sentences to explain everything}
-We have chosen to explore a popular way to rank documents, which is by using PageRank.\todo[inline]{add half a sentence explaining the principle}
+\vejleder[inline]{add two sentences to explain everything}
+We have chosen to explore a popular way to rank documents, which is by using PageRank.\vejleder[inline]{add half a sentence explaining the principle}
 PageRank is an algorithm originally used for ranking web pages in search engines, but it can easily be extended to other types of data, such as news articles.
 A more specific implementation of PageRank is a cluster-based PageRank\cite{ClusterPageRank}.
 This method uses similarities between sentences, clusters, and a corpus, to create better summaries of texts.
-\todo[inline]{more! you’re mixing tanning and summaries here connection missing: pagerank does ranking.}
-We believe the information propagation \todo[inline]{briefly explain information propagation} used in \cite{ClusterPageRank} between sentences can be applied to articles by clustering according to topics given by \gls{lda}.
+\vejleder[inline]{more! you’re mixing tanning and summaries here connection missing: pagerank does ranking.}
+We believe the information propagation \vejleder[inline]{briefly explain information propagation} used in \cite{ClusterPageRank} between sentences can be applied to articles by clustering according to topics given by \gls{lda}.
 
 Our goal is thus to improve news article search by using a combination of \gls{lda} and PageRank.
 For our experiments we use the Nordjyske database of news articles as our dataset.
