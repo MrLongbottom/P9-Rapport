@@ -1,4 +1,4 @@
-\subsection{Topic Modeling}\label{subsec:topicModelling}
+\section{Topic Modeling}\label{sec:topicModelling}
 The objective of topic modeling is to infer topics (collections of words) in a document set.
 The result consists of a topic-word distribution matrix $\beta$, which for each topic gives a distribution of words belonging to said topic, and a document-topic distribution matrix $\theta$ which for each document gives a distribution of topics to which the document belongs to.
 
@@ -11,11 +11,10 @@ The generative process has two Dirichlet distributions $Dir(\alpha)$ for the doc
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.3\textwidth]{figures/Smoothed_LDA.png}
+	\includegraphics[width=0.5\textwidth]{figures/Smoothed_LDA.jpg}
 	\caption{Plate notation for \gls{lda}. Boxes symbolize repeated processes, shaded elements are observed information. Image is from \url{https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation}}
 	\label{fig:lda}
 \end{figure}
-\todo{change figure to Blei version}
 From these Dirichlet distributions, we can sample two multinomial distributions: document-topic $\theta$ and topic-word $\beta$.
 These Dirichlet distributions are tuned with the hyperparameters $\alpha$ and $\eta$, which adjust the entropy of the sampled distributions.
 An $\alpha$ value near 1 causes each document to be distributed over almost all topics, while an $\alpha$ value near 0 causes each document to be distributed over only a few topics.
