@@ -3,7 +3,7 @@ We construct a graph over our documents, where edges between documents $d_i$ and
 
 This allows us to use PageRank on the graph to search for similar documents.
 On top of this, we can add a personalization vector, to guide the search in a specific direction.
-We can then base this personalization vector on a search query to find documents similar to the query.
+We can base this personalization vector on a search query to find documents similar to the query.
 
 To construct the adjacency matrix for the graph, we apply a similarity function on each pair of document-topic distributions $\theta_{d_i}, \theta_{d_j}$, from our topic model.
 
@@ -31,7 +31,7 @@ We want to use this method to incorporate the information given by the topic dis
 We first create three similarity functions to incorporate topic cluster level information into a new adjacency matrix.
 \begin{itemize}
     \item Document to Document - $f(d_i \rightarrow d_j)$
-    \item Document to Topic Cluster - $\omega(d_i,vlus(d_i))$
+    \item Document to Topic Cluster - $\omega(d_i,clus(d_i))$
     \item Topic Cluster to Document Set - $\pi(clus(d_i))$
 \end{itemize}
 
@@ -39,16 +39,16 @@ We first create three similarity functions to incorporate topic cluster level in
 Where $d$ is a document, $clus(d_i)$ is a topic cluster of document $d_i$.
 Notice that a document $d$ can contain multiple topics, as opposed to normal clustering where each element is generally assumed to only be part of one cluster.
 
-\subsection*{Document to Document similarity}
+\subsection*{Document to Document Similarity}
 As in \autoref{sec:pagerank} we use Jensen-Shannon distance as our base for document-to-document similarity:
 $$ f(d_i \rightarrow d_j) = 1 - \text{jenson-shannon-distance}(d_i, d_j)$$ 
 
-\subsection*{Document to Topic Cluster similarity}
+\subsection*{Document to Topic Cluster Similarity}
 We define the similarity between a document and a topic cluster as the document-topic probability distribution between them.
 $$ \omega(d_i,clus(d_i)) = \theta_{d_i,clus(d_i)}$$
 where $\theta$ is the document-topic distribution matrix.
 
-\subsection*{Topic Cluster to Document Set similarity}
+\subsection*{Topic Cluster to Document Set Similarity}
 We define the similarity between a topic $t$ and the whole document set as:
 $$ \pi(clus(d_i)) = \frac{\sum_{d}^{M} \theta_{clus(d_i)}}{M} $$
 where $M$ is the number of documents in the document set.
