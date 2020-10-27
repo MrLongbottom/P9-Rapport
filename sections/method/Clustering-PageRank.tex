@@ -1,11 +1,19 @@
-\section{Cluster-based Random Walk}\label{sec:cluster_pagerank}
-To perform random walk on a document set, such as Nordjyske, probabilities of jumping between documents is needed to perform each step. 
-When performing a random walk, we get the articles that most important based on the information that the probabilities are based on. 
-If it was based on word frequency, a random walk would return an ordered list of articles, where the ordering is based on the frequency of a given word.
- 
-We have chosen to use a similarity measure between each document as these probabilities.
-This is calculated by using the document-topic distributions from the \gls{lda}.
-These distributions can be arranged in a matrix $\theta$, which is described later.
+\section{PageRank}\label{sec:pagerank}
+We construct a graph over our documents, where edges between documents $d_i$ and $d_j$ are based on the similarity between them $sim(d_i, d_j)$.
+
+This allows us to use PageRank on the graph to search for similar documents.
+On top of this, we can add a personalization vector, to guide the search in a specific direction.
+We can then base this personalization vector on a search query to find documents similar to the query.
+
+To construct the adjacency matrix for the graph, we apply a similarity function on each pair of document-topic distributions $\theta_{d_i}, \theta_{d_j}$, from our topic model.
+
+We use Jenson-Shannon distance as our similarity function, which is a measure of the distance between probability distributions\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
+It is calculated using the square root of the Jenson-Shannon divergence between two probability distributions and gives a score from 0 to 1.
+However since Jenson-Shannon calculates difference rather than similarity, a low value means more similarity, making our similarity function:
+$$sim(d_1, d_2) = 1 - JS(\theta_{d_1}, \theta_{d_2}$$
+
+
+\subsection{Clustering PageRank}
 
 In \cite{ClusterPageRank}, they describe the \gls{Cluster-CMRW} which is a new version of the random walk model. 
 They improve upon this model by incorporating information from clusters. 
@@ -32,9 +40,7 @@ Where $d$ is a document, $clus(d_i)$ is a topic cluster of document $d_i$.
 Notice that a document $d$ can contain multiple topics, as opposed to normal clustering where each element is generally assumed to only be part of one cluster.
 
 \subsection*{Document to Document similarity}
-We define the similarity of two articles as the distance between their distribution, which is calculated using square root of Jensen-Shannon divergence, which is often called Jensen-Shannon distance\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
-This metric gives a score between 0-1 based on the distance between two distributions, where a low distance is equal to more similar.
-So our similarity function is:
+As in \autoref{sec:pagerank} we use Jensen-Shannon distance as our base for document-to-document similarity:
 $$ f(d_i \rightarrow d_j) = 1 - \text{jenson-shannon-distance}(d_i, d_j)$$ 
 
 \subsection*{Document to Topic Cluster similarity}
