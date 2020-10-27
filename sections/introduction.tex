@@ -2,31 +2,31 @@
 \todo[inline]{should be twice as long as it is now}
 %% Argue briefly for the relevance of the studied area/problem — start from general and end with your concrete problem.
 
-Many news articles are produced every day and the need for searching the news is becoming more prominent and difficult task.
+Many news articles are produced every day and the need for searching the news is becoming a more prominent and difficult task.
 A general challenge for search engines, no matter the environment, is how to acquire relevant search results from a given corpus. 
-While some engines use simple algorithms, such as finding all articles including a given search term and sorting by date, this may not always give useful results.
+While some engines use simple algorithms, such as finding all articles that include a given search term and sorting by date, this may not always give useful results.
 Ranking articles can be done multiple ways, where PageRank is commonly used\cite{google_pagerank2006}.
 PageRank\cite{pagerank_1999} is a ranking algorithm, which is based on the random walk process.
-The principle is to let a number of surfers walk nodes in a graph, where each surfer takes one step in each iteration.
-After some steps the number of surfers in one node is the ranking of that given node.
-The edges in the graph can be based on many interactions, such as hyperlinks, similarities, genre, etc.
-Therefore we want to explore ways to improve search results while using information already available from a corpus.
+The principle is to let a number of surfers walk between nodes in a graph, where each surfer takes one step in each iteration.
+After an appropriate number of steps, the number of surfers on each node will be the ranking of the given node, where more surfers give a higher rank.
+The edges in the graph can be based on many interactions, such as hyperlinks, similarities, genres, etc.
+In this paper, we want to explore ways to improve search results while using information already available from a corpus.
 Documents in a corpus can contain relevant information, which could yield improvements for search engines.
 A popular way to extract this information is through the use of topic modeling.
 Topic modeling is method within machine learning and \gls{NLP} which builds a model, that can find abstract topics with a corpus of text.
-A topic model assigns a distribution of topics for each document in a corpus, which can be used for different applications.
+A topic model assigns a distribution of topics to each document in a corpus, which can be used for different applications.
 More specifically, we look into \gls{lda} since it is currently the most used topic model, and is applicable for many situations\cite{lda}.
-\gls{lda} uses Dirichlet distributions to calculate the probability of a word belonging to a given topic and document containing a given topic.
+\gls{lda} uses Dirichlet distributions to calculate the probability of a word belonging to a given topic and a document containing a given topic.
 Topic modeling does not rank documents, which is why an additional part is necessary if we want to search the documents.
 Can topic information be used to improve search engines, is what we intend to investigate.
 We have chosen to explore a popular way to rank documents, which is by using PageRank.
 PageRank is an algorithm originally used for ranking web pages in search engines, but it can easily be extended to other types of data, such as news articles.
 A more specific implementation of PageRank is a cluster-based PageRank\cite{ClusterPageRank}.
 This method uses similarities between sentences, clusters, and a corpus, to create better summaries of texts.
-It utilizes these three similarity functions, to introduce new information between sentences in a document and combines these into one score for a sentence.
+It utilizes these three similarity functions to introduce new information between sentences in a document and combines these into one score for a sentence.
 
 We want to investigate whether the cluster level information of topics can be combined into a PageRank to rank documents based on their topics.
-Topics yield important information in \cite{ClusterPageRank} between sentences and we believe that this concept can be applied to articles by clustering according to topics given by \gls{lda}.
+Topic themes yield important information between sentences in \cite{ClusterPageRank} and we believe that this concept can be applied to articles by clustering according to topics given by \gls{lda}.
 
 Our goal is thus to improve news article search by using a combination of \gls{lda} and PageRank.
 For our experiments we use the Nordjyske database of news articles as our dataset.
