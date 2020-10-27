@@ -15,13 +15,13 @@ The extracted articles use the format:
 	\item body
 \end{itemize}
 When training the LDA model, we concatenate the \emph{headline} and \emph{body} for simplicity. \vejleder[inline]{this sentence needs to be moved to another section, it does not match the subsection}
-The preprocessing phase is described in further detail in \autoref{subsec:prepro}.
+The preprocessing phase is described in further detail in \autoref{sec:prepro}.
 This phase applies different \gls{NLP} methods \vejleder[inline]{DETAILS!} to simplify the dataset and remove redundant information.
 After the preprocessing phase, we are left with $\sim$130.000 articles.
 
 \subsection{LDA}
 We apply the \acrfull{lda} to the dataset to generate topic clusters based on the content of the articles. 
-We describe the investigation and selection of hyper parameters in \autoref{subsec:lda}. 
+We describe the investigation and selection of hyper parameters in \autoref{sec:lda}. 
 After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\beta$.
 $\theta$ will be used as clusters in the next phase.
 
