@@ -1,14 +1,14 @@
 \section{PageRank}\label{sec:pagerank}
-We construct a graph over our documents, where edges between documents $d_1$ and $d_2$ are based on the similarity between them $sim(d_1, d_2)$.
+We construct a graph over our documents, where edges between documents $d_i$ and $d_j$ are based on the similarity between them $sim(d_i, d_j)$.
 
 This allows us to use PageRank on the graph to search for similar documents.
-On top of this we can add a personalizaton vector, to guide the search in a specific direction.
-We can then base this personalization vector on a search query in order to find documents similar to the query.
+On top of this, we can add a personalization vector, to guide the search in a specific direction.
+We can then base this personalization vector on a search query to find documents similar to the query.
 
-To contruct the adjacency matrix for the graph, we apply a similarity function on each pair of document-topic distributions $\theta_{d1}, \theta_{d2}$, from our topic model.
+To construct the adjacency matrix for the graph, we apply a similarity function on each pair of document-topic distributions $\theta_{d_i}, \theta_{d_j}$, from our topic model.
 
-We use Jenson-Shannon difference as our similarity function, which is a measure of difference between probability distributions\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
-It is calcuated using the sqaure root of the Jenson-Shannon divergence between two probability distributions, and gives a score form 0 to 1.
+We use Jenson-Shannon distance as our similarity function, which is a measure of the distance between probability distributions\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
+It is calculated using the square root of the Jenson-Shannon divergence between two probability distributions and gives a score from 0 to 1.
 However since Jenson-Shannon calculates difference rather than similarity, a low value means more similarity, making our similarity function:
 $$sim(d1, d2) = 1 - JS(\theta_{d1}, \theta_{d2}$$
 
