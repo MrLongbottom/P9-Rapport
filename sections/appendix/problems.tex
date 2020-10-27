@@ -1,0 +1,30 @@
+\subsection{Encountered Problems}
+
+\subsubsection{Too many low values}
+The document-topic distributions seem to have too low entropy and a lot of very low values.
+This causes each topic to have an average of $\sim$7000 docs in their distribution, however with very low entropy, meaning that some of these distributions are very insignificant, but add space and calculation time to our sparse representations.
+To fix this we try tuning a minimum threshold for a topic to be counted in the document-topic distributions, which can be set as a hyper-parameter for \emph{gensim.ldamodel.get\_document\_topics()}.
+After setting up a minimum percent of 2.5\% for a entry to be included in the document distribution, the amount of documents per topic fell to ~4800, removing more than 5 entries per document for a total of $\sim$350.000 entries deleted. This has overall made the matrices a lot more sparse, but we will still have to evaluate whether changing K is better.
+
+\subsubsection{Empty Topics}
+There are also a significant number of topics, which had words, but no assigned docs. These should be detected and cut away, though their existence points towards a lower $K$ might be needed.
+
+\subsubsection{Too Common Topics}
+On the opposite end we also have some topics which are so universal that almost all documents are included in this topic. This might be a sign that pre-processing is not working well enough, or it might once again point at the needed for a better K. Alternatively, too general topics could be manually pruned after the LDA model has been run.
+
+\subsubsection{Adjacency Matrix Construction}
+Our adjacency matrix is based on whether documents share some topics in their topic distributions. This lead us to the problem of D\*D\*T insertion operations into a sparse matrix with what was originally ~50.000 documents. (unknown)
+We did a lot of prepossessing, which reduced this number eventually all the way down to ~30.000 documents, but it was too insignificant to solve anything. (~140 days)
+However our similarity function is symmetric, so we cut the time in half by only constructing half of the adjacency matrix. (~69 days)
+We then changed our algorithm to only consider documents that shared topics to the original documents, decreasing our time to D\*T\_d\*D\_t, where both of the new variables are reduced compared to the originals. (~48 days)
+We also made the calculation multithreaded in order to reduce compution time (~2,4 days)
+Lastly we changed to construct our matrix using the \emph{lil\_matrix} format, which has faster insertions.
+
+
+The function get\_document\_topics might be needing the whole corpus since whenever we give it the query it returns the same two topics. These two topics are probably the two most general topics within the model which might spell trouble since we don't know how to remove these from the model.
+
+\subsubsection{Dirichlets produce Non-Zero values}
+We use distributions produced by dirichlets to construct our adjacency matrix and to convert queries into topic distributions. However as part of how lda is designed it never has 0 values in its distribution values, only extremely low numbers. This is not optimal for constructing an adjacency matrix, as it would result in a fully connected graph.
+Adjusting $\alpha$ and $\eta$ will make the low values lower, and the high values higher, but the problem never disappears from this.
+We have therefore introduced thresholds. These thresholds reduce all values lower than the threshold to zero in the document-topic matrix and topic-word matrix.
+The new problem introduced by introducing thresholds, is that the exact values of the thresholds are now added as extra hyper-parameters for our solution.
