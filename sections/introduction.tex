@@ -13,12 +13,12 @@ The edges in the graph can be based on many interactions, such as hyperlinks, si
 In this paper, we want to explore ways to improve search results while using information already available from a corpus.
 Documents in a corpus can contain relevant information, which could yield improvements for search engines.
 A popular way to extract this information is through the use of topic modeling.
-Topic modeling is method within machine learning and \gls{NLP} which builds a model, that can find abstract topics with a corpus of text.
+Topic modeling is a method within machine learning and \gls{NLP} which builds a model that can find abstract topics within a corpus of text documents.
 A topic model assigns a distribution of topics to each document in a corpus, which can be used for different applications.
 More specifically, we look into \gls{lda} since it is currently the most used topic model, and is applicable for many situations\cite{lda}.
 \gls{lda} uses Dirichlet distributions to calculate the probability of a word belonging to a given topic and a document containing a given topic.
 Topic modeling does not rank documents, which is why an additional part is necessary if we want to search the documents.
-Can topic information be used to improve search engines, is what we intend to investigate.
+We intend to investigate whether topic information can be used to improve search engines.
 We have chosen to explore a popular way to rank documents, which is by using PageRank.
 PageRank is an algorithm originally used for ranking web pages in search engines, but it can easily be extended to other types of data, such as news articles.
 A more specific implementation of PageRank is a cluster-based PageRank\cite{ClusterPageRank}.
