@@ -2,7 +2,7 @@
 
 \subsubsection{Too many low values}
 The document-topic distributions seem to have too low entropy and a lot of very low values.
-This causes each topic to have an average of $\sim$7000 docs in their distribution, however with very low entropy, meaning that some of these distributions are very insignificant, but add space and calculation time to our sparse representations.
+This causes each topic to have an average of $\sim$7000 docs in their distribution, however with very low entropy, meaning that some of these distributions are very insignificant, but still add space and time complexity to our sparse representations.
 To fix this we try tuning a minimum threshold for a topic to be counted in the document-topic distributions, which can be set as a hyper-parameter for \emph{gensim.ldamodel.get\_document\_topics()}.
 After setting up a minimum percent of 2.5\% for an entry to be included in the document distribution, the number of documents per topic fell to ~4800, removing more than 5 entries per document for a total of $\sim$350.000 entries deleted. 
 This has overall made the matrices a lot more sparse, but we will still have to evaluate whether changing K is better.
