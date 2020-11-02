@@ -13,12 +13,12 @@ These should be detected and removed, though their existence points towards a lo
 
 \subsubsection{Too Common Topics}
 On the opposite end, we also have some topics which are so universal that almost all documents are included in this topic. 
-This might be a sign that pre-processing is not working well enough, or it might once again point at the needed for a better K.
+This might be a sign that the preprocessing is not working well enough, or it might once again point at the need for a better K.
 Alternatively, too general topics could be manually pruned after the LDA model has been run.
 
 \subsubsection{Adjacency Matrix Construction}
 Our adjacency matrix is based on whether documents share some topics in their topic distributions. 
-This leads us to the problem of D\*D\*T insertion operations into a sparse matrix with what was originally ~50.000 documents. (unknown)
+This leads us to the problem of $D*D*T$ insertion operations into a sparse matrix with what was originally ~50.000 documents. (unknown)
 We did a lot of prepossessing, which reduced this number eventually all the way down to ~30.000 documents, but it was too insignificant to solve anything. (~140 days)
 However our similarity function is symmetric, so we cut the time in half by only constructing half of the adjacency matrix. (~69 days)
 We then changed our algorithm to only consider documents that shared topics to the original documents, decreasing our time to D\*T\_d\*D\_t, where both of the new variables are reduced compared to the originals. (~48 days)
