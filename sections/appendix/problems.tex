@@ -39,24 +39,24 @@ These thresholds reduce all values lower than the threshold to zero in the docum
 The new problem introduced by introducing thresholds is that the exact values of the thresholds are now added as extra hyper-parameters for our solution.
 
 \subsubsection{Unable to revert the \gls{lda} generative process}
-In the generative process of lda, a document $d$ is assumed to have a certain underlying topic-distribution $\theta_d$ and a word $w$ is assumed to have a certain underlying word-distribution $\varphi_w$.
+In the generative process of LDA, a document $d$ is assumed to have a certain underlying topic-distribution $\theta_d$ and a word $w$ is assumed to have a certain underlying word-distribution $\varphi_w$.
 Words are generated in the document by choosing a topic from the document based on the topic-distribution of the document and then choosing a word based on the word-distribution of that topic.
 
 Our initial idea for query handling was to revert this process.
-For each word in a query, we would convert a word into a topic-distribution, and then convert that topic-distribution into a document distribution.
-This would be done using the same tables that were used to create the words $\theta$ and $\varphi$, but by accessing columns rather than rows, which also meant that the array of numbers we received had to be converted into distributions, as only the rows of these matrices were guareentied to sum to 1.
+For each word in a query, we would convert a word into a topic-distribution and then convert that topic-distribution into a document distribution.
+This would be done using the same tables that were used to create the words $\theta$ and $\varphi$, but by accessing columns rather than rows, which also meant that the array of numbers we received had to be converted into distributions, as only the rows of these matrices were guaranteed to sum to 1.
 
-To test this initial query handling we generated some queries by taking the 4 highest ranking words in the document using tf-idf. Using this query we would then see if our algorithm could find the document again only using the words in the query.
+To test this initial query handling we generated some queries by taking the 4 highest-ranking words in the document using tf-idf. Using this query we would then see if our algorithm could find the document again only using the words in the query.
 
-Our hope was that each word would only be a significant part of a few topics, and that each topic was only a significant part of a few document.
+We hoped that each word would only be a significant part of a few topics and that each topic was only a significant part of a few documents.
 If the topic-distribution only contained a few high values, one or more of which would be among the topics belonging to the original document (which is a stand-in for a relevant document in this case).
 The original document would then hopefully be a significant part of these topics, leading us back to the document.
 
 This reverse engineering process formed the base of our query handling, where we converted a query of words into a personalization vector (containing a value between 0 and 1 for each document).
 
-However when we tested this process, we found that the distributions were far too evenly distributed between their values to get much meaning out of them.
+However, when we tested this process, we found that the distributions were far too evenly distributed between their values to get much meaning out of them.
 To remedy this, we made the distributions contain fewer values by converting all values under a given threshold to 0 and then normalizing the values.
-While this resulted in more decisive distributions, the end results was very bad, often ranking the original document very low.
-Futhermore significantly under half the words would even have a single matching topic with the original document, despite usually having more topics in their distribution that the document's distribution.
+While this resulted in more decisive distributions, the results were very bad, often ranking the original document very low.
+Furthermore significantly under half the words would even have a single matching topic with the original document, despite usually having more topics in their distribution than the document's distribution.
  
-In the end we decided that reverse engineering the lda process, was not an effective strategy, and went on to try getting more context to our queries using 'query extension'.
+In the end, we decided that reverse-engineering the LDA process, was not an effective strategy, and went on to try getting more context to our queries using 'query extension'.
