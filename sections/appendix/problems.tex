@@ -22,7 +22,7 @@ This leads us to the problem of $D*D*T$ insertion operations into a sparse matri
 We did a lot of prepossessing, which reduced this number eventually all the way down to ~30.000 documents, but it was too insignificant to solve anything. (~140 days)
 However our similarity function is symmetric, so we cut the time in half by only constructing half of the adjacency matrix. (~69 days)
 We then changed our algorithm to only consider documents that shared topics to the original documents, decreasing our time to D\*T\_d\*D\_t, where both of the new variables are reduced compared to the originals. (~48 days)
-We also made the calculation multithreaded in order to reduce compution time (~2,4 days)
+We also made the calculation multithreaded in order to reduce computation time. (~2,4 days)
 Lastly, we changed to construct our matrix using the \emph{lil\_matrix} format, which has faster insertions.
 
 
@@ -30,7 +30,7 @@ The function get\_document\_topics might be needing the whole corpus since whene
 These two topics are probably the two most general topics within the model which might spell trouble since we don't know how to remove these from the model.
 
 \subsubsection{Dirichlets produce Non-Zero values}
-We use distributions produced by the Dirichlet's to construct our adjacency matrix and to convert queries into topic distributions. 
+We use distributions produced by the Dirichlets to construct our adjacency matrix and to convert queries into topic distributions. 
 However as part of how LDA is designed it never has 0 values in its distribution values, only extremely low numbers.
 This is not optimal for constructing an adjacency matrix, as it would result in a fully connected graph.
 Adjusting $\alpha$ and $\eta$ will make the low values lower, and the high values higher, but the problem never disappears from this.
