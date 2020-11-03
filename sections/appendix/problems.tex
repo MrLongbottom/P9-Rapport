@@ -49,8 +49,7 @@ This would be done using the same tables that were used to create the words $\th
 To test this initial query handling we generated some queries by taking the 4 highest-ranking words in the document using tf-idf. Using this query we would then see if our algorithm could find the document again only using the words in the query.
 
 We hoped that each word would only be a significant part of a few topics and that each topic was only a significant part of a few documents.
-If the topic-distribution only contained a few high values, one or more of which would be among the topics belonging to the original document (which is a stand-in for a relevant document in this case).
-The original document would then hopefully be a significant part of these topics, leading us back to the document.
+If the topic-distribution only contained a few high values, one or more of which would be among the topics belonging to the original document, then we might be able to find the original document, based on the query.
 
 This reverse engineering process formed the base of our query handling, where we converted a query of words into a personalization vector (containing a value between 0 and 1 for each document).
 
