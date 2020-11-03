@@ -39,7 +39,7 @@ These thresholds reduce all values lower than the threshold to zero in the docum
 The new problem introduced by introducing thresholds is that the exact values of the thresholds are now added as extra hyper-parameters for our solution.
 
 \subsubsection{Unable to reverse engineer the \gls{lda} generative process}
-In the generative process of LDA, a document $d$ is assumed to have a certain underlying topic-distribution $\theta_d$ and a word $w$ is assumed to have a certain underlying word-distribution $\varphi_w$.
+In the generative process of \gls{lda}, a document $d$ is assumed to have a certain underlying topic-distribution $\theta_d$ and a topic $k$ is assumed to have a certain underlying word-distribution $\beta_k$.
 Words are generated in the document by choosing a topic from the document based on the topic-distribution of the document and then choosing a word based on the word-distribution of that topic.
 
 Our initial idea for query handling was to revert this process.
