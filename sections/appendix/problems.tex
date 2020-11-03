@@ -53,7 +53,7 @@ If the topic-distribution only contained a few high values, one or more of which
 
 This reverse engineering process formed the base of our query handling, where we converted a query of words into a personalization vector (containing a value between 0 and 1 for each document).
 
-However, when we tested this process, we found that the distributions were far too evenly distributed between their values to get much meaning out of them.
+However, when we tested this process, we found that the distributions were far too evenly valued to get much meaning out of them.
 To remedy this, we made the distributions contain fewer values by converting all values under a given threshold to 0 and then normalizing the values.
 While this resulted in more decisive distributions, the results were very bad, often ranking the original document very low.
 Furthermore, significantly under half the words from the query would have even a single matching topic with the original document, despite usually having more topics in their distribution than the document's distribution.
