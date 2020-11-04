@@ -3,22 +3,23 @@
 
 \subsubsection{Adjacency Matrix Construction}
 Our adjacency matrix is based on whether documents share some topics in their topic distributions. 
-This leads us to the problem of $D*D*T$ insertion operations into a sparse matrix with what was originally ~50.000 documents. We never tested how long this would end up taking, but it was definitly infeasable.
+This leads us to the problem of $D*D*T$ insertion operations into a sparse matrix with what was originally ~50.000 documents. We never tested how long this would end up taking, but it was definitely infeasible.
 We did a lot of preprocessing, which reduced this number eventually all the way down to ~30.000 documents, but it was too insignificant to solve anything. Calculation time was now estimated to be ~140 days.
 However our similarity function is symmetric, so we cut the time in half by only constructing half of the adjacency matrix. Calculation time was now estimated to be ~69 days.
-We then changed our algorithm to only consider documents that shared topics to the original documents, decreasing our time to D\*T\_d\*D\_t, where both of the new variables are reduced compared to the originals. This reduced to calculation time to be estimated as ~48 days.
+We then changed our algorithm to only consider documents that shared topics to the original documents, decreasing our time to $D*T_d*D_t$, where both of the new variables are reduced compared to the originals. This reduced the calculation time to be estimated as ~48 days.
 We also made the calculation multithreaded in order to reduce computation time. Estimated calculation time is reduced to ~2,4 days using 8 threads.
 Lastly, we changed to construct our matrix using the \emph{lil\_matrix} format, which has faster insertions. This last change made the construction much more manageable.
 
 
+\todo[inline]{Nedenstående problem skal uddybes, hvis det beholdes. Skal også have sit eget afsnit separat fra Adjacency Matrix Construction}
 The function get\_document\_topics might be needing the whole corpus since whenever we give it the query it returns the same two topics. 
 These two topics are probably the two most general topics within the model which might spell trouble since we don't know how to remove these from the model.
 
-\subsubsection{Dirichlets only produce non-zero values}
-We use document-topic and topic-word distributions produced by the Dirichlets to construct our adjacency matrix and to convert queries into topic distributions. 
+\subsubsection{Dirichlet distributions only produce non-zero values}
+We use document-topic and topic-word distributions produced by the Dirichlet distributions to construct our adjacency matrix and to convert queries into topic distributions. 
 However as part of how \gls{lda} is designed it has no zeros in its $\theta$ and $\beta$ values, only extremely low numbers.
 This is not optimal for constructing an adjacency matrix, as it would result in a fully connected graph.
-Adjusting $\alpha$ and $\eta$ will make the low values lower, and the high values higher, but this does not make the problem disappears.
+Adjusting $\alpha$ and $\eta$ will make the low values lower, and the high values higher, but this does not make the problem disappear.
 We have therefore introduced thresholds.
 These thresholds reduce all values lower than the threshold to zero in the document-topic matrix and topic-word matrix.
 The new problem introduced by introducing thresholds is that the exact values of the thresholds are now added as extra hyper-parameters for our solution.
