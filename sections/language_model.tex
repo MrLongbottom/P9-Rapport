@@ -1,0 +1,14 @@
+\section{Language model}
+In \cite{yang2009topic}, they describe various combinations of \gls{lda} and other models. 
+The language model they describe is similar to a query likelihood model, which generates a probability of how likely a given document $d$ produces a given query $q$.
+To calculate this probability, they need to find the likelihood for each word in the query by using function 
+
+$$ P(w|d) = \frac{N_d}{N_d + \lambda} \cdot \frac{tf(w,d)}{N_d} + (1 - \frac{N_d}{N_d + \lambda}) \cdot \frac{tf(w,D)}{N_D} $$
+where $N_d$ is the number of word tokens in $d$ and $tf(w,d)$ is the word frequency of $w$ in $d$. $\lambda$ is a Dirichlet smoothing factor and is set to the average document length.
+When $D$ is used, it is referring the document collection.
+We multiply the word probabilities together in order to get the probability for $q$.
+
+$$ P(q|d) = \prod_{w \in q} P(w|d) $$
+ 
+The \gls{lda} model gets poor retrieval performance when it not used in combination with another model.
+This is the reason to combine \gls{lda} with the language model check whether or not $q$ and $d$ are contextually similar.
