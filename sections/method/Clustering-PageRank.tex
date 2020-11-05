@@ -10,7 +10,7 @@ To construct the adjacency matrix for the graph, we apply a similarity function 
 We use Jenson-Shannon distance as our similarity function, which is a measure of the distance between probability distributions\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
 It is calculated using the square root of the Jenson-Shannon divergence between two probability distributions and gives a score from 0 to 1.
 However since Jenson-Shannon calculates difference rather than similarity, a low value means more similarity, making our similarity function:
-$$sim(d_1, d_2) = 1 - JS(\theta_{d_1}, \theta_{d_2}$$
+$$sim(d_1, d_2) = 1 - JS(\theta_{d_1}, \theta_{d_2})$$
 
 
 \subsection{Clustering PageRank}
@@ -41,7 +41,7 @@ Notice that a document $d$ can contain multiple topics, as opposed to normal clu
 
 \subsection*{Document to Document Similarity}
 As in \autoref{sec:pagerank} we use Jensen-Shannon distance as our base for document-to-document similarity:
-$$ f(d_i \rightarrow d_j) = 1 - \text{jenson-shannon-distance}(d_i, d_j)$$ 
+$$ f(d_i \rightarrow d_j) = 1 - JS(d_i, d_j)$$ 
 
 \subsection*{Document to Topic Cluster Similarity}
 We define the similarity between a document and a topic cluster as the document-topic probability distribution between them.
@@ -50,8 +50,8 @@ where $\theta$ is the document-topic distribution matrix.
 
 \subsection*{Topic Cluster to Document Set Similarity}
 We define the similarity between a topic $t$ and the whole document set as:
-$$ \pi(clus(d_i)) = \frac{\sum_{d}^{M} \theta_{clus(d_i)}}{M} $$
-where $M$ is the number of documents in the document set.
+$$ \pi(clus(d_i)) = \frac{\sum_{d}^{D} \theta_{clus(d_i)}}{D} $$
+where $D$ is the number of documents in the document set.
 
 
 To create the adjacency matrix, \cite{ClusterPageRank} linearly combine the different similarity functions, in which we intend to do the same.
