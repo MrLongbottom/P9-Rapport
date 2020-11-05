@@ -7,7 +7,7 @@ To calculate this probability, they need to find the likelihood for each word in
 $$ P(w|d) = \frac{N_d}{N_d + \lambda} \cdot \frac{tf(w,d)}{N_d} + (1 - \frac{N_d}{N_d + \lambda}) \cdot \frac{tf(w,D)}{N_D} $$
 where $N_d$ is the number of word tokens in $d$ and $tf(w,d)$ is the word frequency of $w$ in $d$. $\lambda$ is a Dirichlet smoothing factor and is set to the average document length.
 When $D$ is used, it is referring to the document corpus.
-We multiply the word probabilities together in order to get the probability for $q$.
+We take the product of the word probabilities to get the probability for $q$.
 
 $$ P(q|d) = \prod_{w \in q} P(w|d) $$
  
