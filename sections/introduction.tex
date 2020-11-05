@@ -19,8 +19,8 @@ More specifically, we look into \gls{lda} since it is currently the most used to
 \gls{lda} uses Dirichlet distributions to calculate the probability of a word belonging to a given topic and a document containing a given topic.
 Topic modeling does not rank documents, which is why an additional part is necessary if we want to search the documents.
 We intend to investigate whether topic information can be used to improve search engines.
-We have chosen to explore a popular way to rank documents, which is by using PageRank.
-PageRank is an algorithm originally used for ranking web pages in search engines, but it can easily be extended to other types of data, such as news articles.
+We have chosen to explore using PageRank along with topic information, since it is a popular way to rank documents.
+PageRank was originally used for ranking web pages in search engines, but it can easily be extended to other types of data, such as news articles.
 A more specific implementation of PageRank is a cluster-based PageRank\cite{ClusterPageRank}.
 This method uses similarities between sentences, clusters, and a corpus, to create better summaries of texts.
 It utilizes these three similarity functions to introduce new information between sentences in a document and combines these into one score for a sentence.
