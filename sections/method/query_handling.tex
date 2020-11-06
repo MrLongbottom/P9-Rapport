@@ -13,6 +13,26 @@ We will describe each step in the following sections.
 
 
 \subsection{Query Expansion}
+This step is not necessary, but can be useful to influence the searching process. 
+\citet{yang2009topic} describes a common information retrieval method, called query expansion.
+We expand the query based on the neighboring words in a given query.
+Specifically, for each word, we count the frequency of each word appearing before and after the given word.
+We then add top $m$ most frequent words to the query.
+An example of this could be the query: 
+\begin{quote}
+	Query = "Football"
+\end{quote}
+The most frequent words could be:
+\begin{itemize}
+	\item Coach - 15
+	\item Match - 10
+	\item Ball - 5
+\end{itemize}
+An resulting expanded query with a $m$ = 2 could be:
+\begin{quote}
+	Query = "Football Coach Match"
+\end{quote}
+
 
 
 \subsection{Query Handling}
