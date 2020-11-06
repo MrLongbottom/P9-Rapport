@@ -1,8 +1,19 @@
-\section{Cluster-based Random Walk}\label{sec:cluster_pagerank}
-To perform random walk on a document set, such as Nordjyske, probabilities of jumping between documents is needed to perform each step. \vejleder[inline]{say why this is usefull}.
-We have chosen to use a similarity measure between each document as these probabilities.
-This is calculated by using the document-topic distributions from the \gls{lda}.
-These distributions can be arranged in a matrix $\theta$, which is described later.
+\section{PageRank}\label{sec:pagerank}
+We construct a graph over our documents, where edges between documents $d_i$ and $d_j$ are based on the similarity between them $sim(d_i, d_j)$.
+
+This allows us to use PageRank on the graph to search for similar documents.
+On top of this, we can add a personalization vector, to guide the search in a specific direction.
+We can base this personalization vector on a search query to find documents similar to the query.
+
+To construct the adjacency matrix for the graph, we apply a similarity function on each pair of document-topic distributions $\theta_{d_i}, \theta_{d_j}$, from our topic model.
+
+We use Jenson-Shannon distance as our similarity function, which is a measure of the distance between probability distributions\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
+It is calculated using the square root of the Jenson-Shannon divergence between two probability distributions and gives a score from 0 to 1.
+However since Jenson-Shannon calculates difference rather than similarity, a low value means more similarity, making our similarity function:
+$$sim(d_1, d_2) = 1 - JS(\theta_{d_1}, \theta_{d_2})$$
+
+
+\subsection{Clustering PageRank}
 
 In \cite{ClusterPageRank}, they describe the \gls{Cluster-CMRW} which is a new version of the random walk model. 
 They improve upon this model by incorporating information from clusters. 
@@ -19,41 +30,39 @@ where $v_i$ is the given sentence and $clus(v_i)$ is the cluster that $v_i$ belo
 We want to use this method to incorporate the information given by the topic distributions within a \gls{Cluster-CMRW}. 
 We first create three similarity functions to incorporate topic cluster level information into a new adjacency matrix.
 \begin{itemize}
-    \item Document to Document - $d2d(d_1 \rightarrow d_2)$
-    \item Document to Topic Cluster - $d2t(d,t)$
-    \item Topic Cluster to Document Set - $t2D(t)$
+    \item Document to Document - $f(d_i \rightarrow d_j)$
+    \item Document to Topic Cluster - $\omega(d_i,clus(d_i))$
+    \item Topic Cluster to Document Set - $\pi(clus(d_i))$
 \end{itemize}
-\vejleder[inline]{details}
-\todo[inline]{Overvej at være konsistente i brugen af t/topics og clusters, for at forbedre forståeligheden af den længere ligning på 37+ pt.. Hvordan det præcis skal gøres er ikke bestemt. Det kan muligvis indebære at der gøres så der ikke springes mellem topics og topic clusters igennem afsnittet.}
 
 \noindent
-Where $d$ is a document, $t$ is a topic.
+Where $d$ is a document, $clus(d_i)$ is a topic cluster of document $d_i$.
 Notice that a document $d$ can contain multiple topics, as opposed to normal clustering where each element is generally assumed to only be part of one cluster.
-These similarity functions are described in detail in \autoref{sec:similarity}.
+
+\subsection*{Document to Document Similarity}
+As in \autoref{sec:pagerank} we use Jensen-Shannon distance as our base for document-to-document similarity:
+$$ f(d_i \rightarrow d_j) = 1 - JS(d_i, d_j)$$ 
+
+\subsection*{Document to Topic Cluster Similarity}
+We define the similarity between a document and a topic cluster as the document-topic probability distribution between them.
+$$ \omega(d_i,clus(d_i)) = \theta_{d_i,clus(d_i)}$$
+where $\theta$ is the document-topic distribution matrix.
+
+\subsection*{Topic Cluster to Document Set Similarity}
+We define the similarity between a topic $t$ and the whole document set as:
+$$ \pi(clus(d_i)) = \frac{\sum_{d}^{D} \theta_{clus(d_i)}}{D} $$
+where $D$ is the number of documents in the document set.
+
 
 To create the adjacency matrix, \cite{ClusterPageRank} linearly combine the different similarity functions, in which we intend to do the same.
 Formally, the adjacency matrix is calculated with the following function.
-$$ f(d_1 \rightarrow d_2 | clus(d_1), clus(d_2)) $$
+$$ f(d_i \rightarrow d_j | clus(d_i), clus(d_j)) $$
 which is evaluated to 
 
 \begin{align*}
-&f(d_1 \rightarrow d_2 | clus(d_1), clus(d_2)) = \\
-&d2d(d_1, d_2) \cdot (\lambda \cdot t2D(clus(d_1))) \cdot d2t(d_1, clus(d_1)) \\ 
-&+ (1-\lambda) \cdot t2D(clus(d_2)) \cdot d2t(d_2, clus(d_2))
+&f(d_i \rightarrow d_j | clus(d_i), clus(d_j)) = \\
+&f(d_i, d_j) \cdot (\lambda \cdot \pi(clus(d_i))) \cdot \omega(d_i, clus(d_i)) \\ 
+&+ (1-\lambda) \cdot \pi(clus(d_j)) \cdot \omega(d_j, clus(d_j))
 \end{align*}
+
 where $\lambda$ is a weight between $[0,1]$ that controls the relative contribution of the two clusters.
-
-
-\section{Similarity Measures}\label{sec:similarity} \vejleder[inline]{how about comparison against basics - tf-idf}
-\subsection{Similarity between two documents}\vejleder[inline]{too many subsections with very little text}
-The matrix $\theta$ describes the topic distribution for each document $d \in M$, where $\theta_d$ is the topic distribution for document $d$, and is a $K$-dimensional vector that sums to 1, where $K$ is the number of topics. \todo[inline]{Tjek at M er defineret når LDA afsnittet merges.}
-The similarity between two documents $d_1$ and $d_2$ is defined as:
-$$ d2d(d_1, d_2) = \sum_{1}^{K} min(\theta_{d_1,k}, \theta_{d_2,k})$$
-
-\subsection{Similarity between documents and topic clusters}
-We define the similarity between a document and a topic cluster as the document-topic probability distribution between them.
-$$ d2t(d,t) = \theta_{d,t}$$
-
-\subsection{Similarity measure between topic clusters and the whole document set}
-We define the similarity between a topic $t$ and the document set $D$ as:
-$$ t2D(t, D) = \frac{\sum_{d}^{M} \theta_{d,t}}{M} $$
