@@ -13,7 +13,7 @@ We will describe each step in the following sections.
 
 \subsection{Query Expansion}
 This step is not necessary, but can be useful to influence the searching process. 
-\citet{yang2009topic} describes a common information retrieval method, called query expansion.
+\citet{yang2009topic} describes a query expansion method, called window query expansion.
 We expand the query based on the neighboring words in a given query.
 Specifically, for each word, we count the frequency of each word appearing before and after the given word.
 We then add top $m$ most frequent words to the query.
