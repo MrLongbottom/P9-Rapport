@@ -25,5 +25,5 @@ If it is known, we use the $\beta$ distribution given by the model for the given
 If it is not known, we let the model predict the topic distribution for the given word.
 We take the average of these distributions and calculate the Jenson-Shannon distance between this distribution and all other document-topic distributions to figure out which articles are the most similar to the given query.
 The final vector has the length of the number of documents and has a value from zero to one in all cells, which describes how similar a query is to the given documents based on the topics.
-We then use the resulting vector as our bias for a cluster-based random walk, when searching/ranking articles.
+We then use the resulting vector as our personalization vector for a cluster-based random walk, when searching/ranking articles.
  
