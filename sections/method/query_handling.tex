@@ -8,11 +8,30 @@ We have identified three steps when working with a search query:
 
 We will describe each step in the following sections.
 
-
 \subsection{Query Generation}
 
 
 \subsection{Query Expansion}
+Query expansion is a method which adds more words to a given query to add more context to the search process.
+\citet{yang2009topic} describes a query expansion method, called window query expansion.
+Queries are expanded based on the neighboring words in the document set.
+Specifically, for each word in the query, we count the frequency of each word appearing before and after the given word in the corpus.
+We then add top $m$ most frequent words to the query.
+An example of this could be the query: 
+\begin{quote}
+	Query = "Football"
+\end{quote}
+As an example the most frequent words before and after "Football" in our document set could be:
+\begin{itemize}
+	\item Coach - 15
+	\item Match - 10
+	\item Ball - 5
+\end{itemize}
+A resulting expanded query with an $m$ = 2 would then be:
+\begin{quote}
+	Query = "Football Coach Match"
+\end{quote}
+
 
 
 \subsection{Query Handling}
