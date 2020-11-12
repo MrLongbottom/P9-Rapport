@@ -16,28 +16,45 @@ Our preprocessing consists of several steps, each of which will be described in 
 \paragraph{Article Extraction}
 As decribed in \autoref{sec:dataset}, documents are loaded as \texttt{xml} files from the database, and their ID, title, and body contents extracted and converted into \texttt{json} format.
 \todo[inline]{make running example}
+63266
+Tricktyve fik fingre i dankort HOBRO: Frække tricktyve har atter slået til i en af Hobros dagligvareforretninger. Denne gang gik det ud over en 87-årig mand, som under indkøbsturen i Superbrugsen i Adelgade blev frastjålet sit Visa-Dankort med tilhørende pin-kode. Inden kortet blev spærret, nåede tyvene at hæve 2000 kr. i en Jutlander Bank-automat i Hobro og yderligere et beløb i en billetautomat på Århus-kanten. 
 
 \paragraph{Initial Document Filtering}
 The database contain many duplicate documents with the same content but different file names, we therefore start by removing all duplicates.
 We also remove documents containing fewer than 25 words. These documents are assumed to contain too little information to be usefull. This also has the added benefit of removing ads, or similar small sections that are present in newspapers, but aren't really articles.
-\todo[inline]{make running example}
+\todo[inline]{make running example, also mention only keeping words consisting of only normal letters}
+32201
+'Legedag for børnene Frivillighuset i Pandrup holdt for femte gang Legedag, så alle børn kan fortælle om en god ferieoplevelse. Side 12-13'
+
+tricktyve fik fingre i dankort hobro frække tricktyve har atter slået til i en af hobros dagligvareforretninger denne gang gik det ud over en årig mand som under indkøbsturen i superbrugsen i adelgade blev frastjålet sit visa dankort med tilhørende pin kode inden kortet blev spærret nåede tyvene at hæve kr i en jutlander bank automat i hobro og yderligere et beløb i en billetautomat på århus kanten
 
 \paragraph{Stopword and Word Frequency Filtering}
 Stopwords are removed, using \emph{nltk.corpus.stopwords}.
 Words are removed if they appear fewer than 25 times in the document set or if they are used in over 25\% of the documents.
 \todo{find article to ref to constants}
 \todo[inline]{make running example}
+190133 words
+16406 words
+'fik fingre dankort hobro atter slået hobros gang gik årig mand superbrugsen adelgade dankort tilhørende kode inden kortet spærret nåede tyvene hæve kr jutlander bank hobro yderligere beløb århus kanten'
 
 \paragraph{Words Database Filtering / POS-Tagging}
 Words are checked against the two word databases: Wiktionary\footnote{https://github.com/fnielsen/awesome-danish (specifically Danish resources: https://people.compute.dtu.dk/faan/ps/Nielsen2016Danish.pdf)} and DanNet\cite{Pedersen2009DanNetTC}. 
 The databases contain only: nouns, adjectives, verbs, adverbs, and proper nouns. 
 Words that are not contained within either database are removed.
 \todo[inline]{make running example}
+14537 words
+'fik fingre dankort hobro atter slået hobros gang gik årig mand superbrugsen adelgade dankort tilhørende kode inden kortet spærret nåede tyvene hæve kr jutlander bank hobro yderligere beløb århus kanten'
 
 \paragraph{Stemming}
 Words are reduced to their stems using \texttt{nltk.stem.snowball.DanishStemmer}. 
 This is done to combine word declensions, which reduces the number of words without removing too much information.
 \todo[inline]{make running example}
+9934
+LEM
+'fingre dankort hobro atter årig adelgade dankort kode inden hæve bank hobro århus få slå hobro gange gang mande mand superbrugs tilhøre korte kort spærre tyv krone jutlande yderligere yderlig beløbe beløb kante kant'
+STEM
+8691
+'fik dankort hobro slået gang gik årig mand dankort pin kr bank hobro beløb århus fingr att hobro superbrugs adelgad tilhør kod kort spær tyv hæv jutland yder kant'
 
 \paragraph{Repeat Document Filtering}
 After having removed words we once again remove documents that do not meet the minimum requirement of 25 words.
@@ -48,7 +65,7 @@ We therefore remove stopwords once again.
 
 
 \paragraph{Construct Files}
-Construct and save scikit-learn.CountVectorizer as a sparse matrix \texttt{npz} file, and word2vec, doc2vec, doc2word as \texttt{csv} files.\vejleder[inline]{what is the structure of the csv files and why do we create them?}
+Construct and save \texttt{scikit-learn.CountVectorizer} as a \texttt{sparse.csr\_matrix} \texttt{npz} file, and word2vec, doc2vec, doc2word as \texttt{csv} files.\vejleder[inline]{what is the structure of the csv files and why do we create them?}
 \todo[inline]{make running example}
 
 \subsection{Post-LDA Preprocessing}
