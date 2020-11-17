@@ -20,11 +20,13 @@ $\theta$ in the next phase.
 A search query, consisting of words, is stemmed and turned into a list of words.
 For each word, we generate a topic distribution based on $\beta$ or prediction of the model.
 We use this distribution, as a personalization vector for some of our models.
+The output of this step is a list of search queries.
 
 
 \subsection*{Step 4: Evaluation of models}
-In this phase, we evaluate different combination of models using the evaluation metric described in \todo{ref evaluation metric section}. 
+In this phase, we evaluate different combination of models using the evaluation metric described in \todo{ref evaluation metric section}.
+The evaluation is done by testing the search queries against the different models. 
 The combinations and results can be seen in section \todo{ref combination section } and \todo{ref result section }, respectively.
 
-%\input{figures/pipeline_figure.tex}
-%The pipeline of our framework is divided into five phases which are displayed in \autoref{fig:pipeline}.
+
+\input{figures/pipeline_figure.tex}
