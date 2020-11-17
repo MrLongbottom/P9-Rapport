@@ -43,9 +43,9 @@ As described in \autoref{sec:dataset}, documents are loaded as \texttt{xml} file
 The database contain many duplicate documents with the same content but different file names, we therefore start this phase by removing all duplicates.
 All punctuation, numbers, and other non-alphabetic symbols are removed, keeping only words entirely made of alphabetic symbols.
 
-Afterwards we remove documents containing fewer than 25 words.
-This is done to remove ads, sports results, snippets or other similar small sections that are present in newspapers, but aren't really news articles.
-\autoref{prepro:example2} shows an example of a document that would be removed. In this example the document is merely a front page snippet referencing an actual article, rather than a full news article.
+Afterward, we remove documents containing fewer than 25 words.
+This is done to remove ads, sports results, snippets, or other similar small sections that are present in newspapers but aren't really news articles.
+\autoref{prepro:example2} shows an example of a document that would be removed. In this example, the document is merely a front-page snippet referencing an actual article, rather than a full news article.
 \begin{figure}[h]
 	\begin{quote}
 		\textit{
@@ -63,7 +63,7 @@ This is done to remove ads, sports results, snippets or other similar small sect
 %\end{quote}
 
 \paragraph{Stopword and Word Frequency Filtering}
-Stopwords are removed, using \emph{nltk.corpus.stopwords}. We also added some stopwords ourselves based manual inspection of words that appeared in close to every topic.
+Stopwords are removed, using \emph{nltk.corpus.stopwords}. We also added some stopwords ourselves based on manual inspection of words that appeared in close to every topic and had a high topic probability for multiple topics.
 We also remove words based on their frequency. 
 Words are removed if they appear fewer than 25 times.
 These words are considered too rare to be relevant for a topic, as not each documents will share these words.
