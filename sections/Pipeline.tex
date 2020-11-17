@@ -1,31 +1,30 @@
-\section{Framework}\label{sec:framework}
-This section describes our framework on an abstract level.
-Each phase of the framework is described later on in more detail. 
-We start with a data set, in our case consisting of articles from the media group Nordjyske. Their primary focus is to maintain a variety of local newspapers within the North Jutland region of Denmark. 
-The data ranges from 2017-2019, where a total of $\sim$270.000 articles have been extracted from their database.
+\section{Method}\label{sec:method}
+This section describes our method on an abstract level.
+Each phase of the method is described later on in more detail. 
+We start with a data set, in our case consisting of articles from the media group Nordjyske. 
+Their primary focus is to maintain a variety of local newspapers within the North Jutland region of Denmark. 
+The data ranges from 2017, where a total of $\sim$~63.000 articles have been extracted from their database.
 
 \subsection*{Step 1: Preprocessing Phase}
 This phase applies different \gls{NLP} methods, such as stemming and removing stop words, to simplify the data set and remove redundant information.
 Details of this phase are given in \autoref{sec:prepro}.
-After finishing this phase, we are left with $\sim$130.000 articles, which will be used in the next step.
+After finishing this phase, we are left with $\sim$~32.000 articles, which will be used in the next step.
 
 \subsection*{Step 2: LDA}
-We train a \acrfull{lda} on the data set to generate topic clusters based on the content of the articles. 
+We train a \acrfull{lda} on the data set to generate topics based on the content of articles within the data set. 
 We describe the investigation and selection of hyper parameters in \autoref{subsec:lda}. 
 After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\beta$.
-$\theta$ will be used as clusters in the next phase.
+$\theta$ in the next phase.
 
 \subsection*{Step 3: Query Preprocessing}
 A search query, consisting of words, is stemmed and turned into a list of words.
 For each word, we generate a topic distribution based on $\beta$ or prediction of the model.
-We combine these distributions and use them to bias our cluster-based random walk, when searching/ranking articles.
+We use this distribution, as a personalization vector for some of our models.
 
 
-\subsection*{Step 4: Cluster-based Random Walk}
-In this phase, we use cluster-based random walk, described in \autoref{sec:cluster_pagerank}, to rank the articles based on clusters given in the \gls{lda} phase.
-Before we are able to rank the articles, we need to process a search query first to figure out which articles to focus on.
-The final product is a prioritized list of articles based on the search query.
-
+\subsection*{Step 4: Evaluation of models}
+In this phase, we evaluate different combination of models using the evaluation metric described in \todo{ref evaluation metric section}. 
+The combinations and results can be seen in section \todo{ref combination section } and \todo{ref result section }, respectively.
 
 %\input{figures/pipeline_figure.tex}
 %The pipeline of our framework is divided into five phases which are displayed in \autoref{fig:pipeline}.
