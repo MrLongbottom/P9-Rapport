@@ -1,8 +1,9 @@
 \section{Preprocessing}\label{sec:prepro}
 
-In this section we will give a detailed overview over our method of preprocessing documents.
-Our preprocessing steps were inspired by \cite{quanti}, who give do a thorough  preprocessing before applying LDA. 
+In this section, we will give a detailed overview of our method of preprocessing documents.
+Our preprocessing steps were inspired by \cite{quanti}, who do a thorough preprocessing before applying LDA. 
 Our preprocessing consists of several steps, each of which will be described in more detail, along with a running example over part of a real document.
+The preprocessing steps are:
 \begin{enumerate}[label=\alph*]
 	\item Article Extraction
 	\item Initial Document Filtering
@@ -26,7 +27,8 @@ Our preprocessing consists of several steps, each of which will be described in 
 \end{table}
 
 \paragraph{Article Extraction}
-As decribed in \autoref{sec:dataset}, documents are loaded as \texttt{xml} files from the database, and their ID, title, and body contents extracted and converted into \texttt{json} format. \autoref{prepro:example1} shows an example of an extracted document.
+As described in \autoref{sec:dataset}, documents are loaded as \texttt{xml} files from the database, and their ID, title, and body contents extracted and converted into \texttt{json} format.
+\autoref{prepro:example1} shows an example of an extracted document.
 \begin{figure}[h]
 	\begin{quote}
 		\textit{
