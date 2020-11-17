@@ -9,6 +9,24 @@ We have identified three steps when working with a search query:
 We will describe each step in the following sections.
 
 \subsection{Query Generation}
+We use two techniques for generating the queries used for evaluating our search algorithm, namely document-queries and topic-queries.
+The idea behind these is to evaluate the generality and specificity of the \gls{lda} model.
+The construction of the queries is described in the following.
+
+\subsubsection{Document query}
+To construct a document query, we randomly select a document from the corpus and a length of the query which can be between 1-4 words.
+From this selection, we apply \gls{tf-idf} on the selected document to find the most informative words.
+Our query is then the highest ranked word within the given document.
+The goal is to check whether or not the model is able to find a specific document based on a search query.
+
+\subsubsection{Topic query} 
+The topic query is slightly different in comparison to document query in that it focuses on the topics rather than a specific document.
+To construct a topic query, firstly we select a random topic $t$ and a length of a query $l_q$ to be between 1-4.
+We then sample $l_q$ document from on the document-topic distribution $\theta_t$ provided by the \gls{lda} model. 
+When sampling these documents, we only sample within the document-topic distribution where the topic is set to $t$.
+From these documents, we extract one word from each document and add these to the query based on the \gls{tf-idf} score.
+If an extracted word is in the query already, we skip it and add the second highest \gls{tf-idf} score to the query.
+In that way, we ensure to get unique words in the query.
 
 
 \subsection{Query Expansion}
