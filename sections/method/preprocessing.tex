@@ -8,7 +8,7 @@ The preprocessing steps are:
 	\item Article Extraction
 	\item Initial Document Filtering
 	\item Stopword and Word Frequency Filtering
-	\item Word Databases / POS Tagging
+	\item Word Databases
 	\item Stemming
 	\item Construct Files
 \end{enumerate}
@@ -19,8 +19,8 @@ The preprocessing steps are:
 		Article Extraction & 63266 & unknown \\ 
 		Initial Document Filtering & 32201 & 190133 \\ 
 		Stopword and Word Frequency Filtering & 32201 & 16406 \\
-		Word Databases / POS Tagging & 32201 & 14537 \\
-		Stemming / Lemmatization & 32201 & 8691 / 9934\\
+		Word Databases & 32201 & 14537 \\
+		Lemmatization & 32201 & 9934\\
 	\end{tabular}
 	\label{tab:prepro_doc_word}
 	\caption{Amount of documents and unique words remaining after each preprocessing step.}
@@ -52,7 +52,7 @@ This is done to remove ads, sports results, snippets, or other similar small sec
 			'Legedag for børnene Frivillighuset i Pandrup holdt for femte gang Legedag, så alle børn kan fortælle om en god ferieoplevelse. Side 12-13'
 		}
 	\end{quote}
-	\caption{snippet of raw document}
+	\caption{Example of document filtered for being too short}
 	\label{prepro:example2}
 \end{figure}
 
@@ -77,12 +77,12 @@ These constants were the same used by \cite{quanti}.
 			'fik fingre dankort hobro atter slået hobros gang gik årig mand superbrugsen adelgade dankort tilhørende kode'
 		}
 	\end{quote}
-	\caption{snippet of raw document}
+	\caption{Document from \autoref{prepro:example1} after removing stopwords and applying word frequency filtering.}
 	\label{prepro:example3}
 \end{figure}
 
 
-\paragraph{Words Database Filtering / POS-Tagging}
+\paragraph{Words Database Filtering}
 Due to a lack of danish POS-tagging resources, we instead check up the words in our document set against two databases containing only words of specific word classes, namely: nouns, adjectives, verbs, adverbs, and proper nouns.
 In practice this has the same effect as POS-tagging however words are not marked with their words class, instead they are removed if they do not appear in at least of the databases (containing only words of approved word classes).
 The two databases used are:  Wiktionary\footnote{https://github.com/fnielsen/awesome-danish (specifically Danish resources: https://people.compute.dtu.dk/faan/ps/Nielsen2016Danish.pdf)} and DanNet\cite{Pedersen2009DanNetTC}. 
@@ -99,14 +99,15 @@ Instead, \autoref{prepro:example4} shows an example of another document that doe
 			'\colorbox{pink}{country} kræver sommerens by \colorbox{pink}{night} sluttede afslappet band'
 		}
 	\end{quote}
-	\caption{snippet of raw document}
+	\caption{Snippet of a document which had words removed during the word database filtering.}
 	\label{prepro:example4}
 \end{figure}
 
-\paragraph{Stemming / Lemmatization}
-Words are reduced to their stems using \texttt{nltk.stem.snowball.DanishStemmer}. 
-This is done to combine word declensions, which reduces the number of words without removing too much information.
-After stemming has been applied some words might have been converted into stopwords. 
+\paragraph{Lemmatization}
+Words are reduced to their stems using \texttt{lemmy}. 
+This is done by combining word inflections.
+However since we do not have proper POS-tagging, some words have multiple different meaning depending on the word class. In these cases we keep all inflected words.
+After lemmatization has been applied some words might have been converted into stopwords.
 We, therefore, remove stopwords once again.
 We also remove any potential documents that may have become empty after all the word filtering, however, this is usually not the case.
 \begin{figure}[h]
@@ -115,17 +116,8 @@ We also remove any potential documents that may have become empty after all the 
 			'fingre dankort hobro atter årig adelgade dankort kode inden hæve bank hobro århus få slå hobro gange gang mande mand superbrugs tilhøre'
 		}
 	\end{quote}
-	\caption{LEM}
+	\caption{Lemmetized version of the example document from \autoref{prepro:example3}}
 	\label{prepro:example5}
-\end{figure}
-\begin{figure}[h]
-	\begin{quote}
-		\textit{
-			'fik dankort hobro slået gang gik årig mand dankort pin kr bank hobro beløb århus fingr att hobro superbrugs adelgad tilhør kod'
-		}
-	\end{quote}
-	\caption{STEM}
-	\label{prepro:example6}
 \end{figure}
 
 \paragraph{Construct Files}
