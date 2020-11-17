@@ -66,7 +66,7 @@ This is done to remove ads, sports results, snippets, or other similar small sec
 Stopwords are removed, using \emph{nltk.corpus.stopwords}. We also added some stopwords ourselves based on manual inspection of words that appeared in close to every topic and had a high topic probability for multiple topics.
 We also remove words based on their frequency. 
 Words are removed if they appear fewer than 25 times.
-These words are considered too rare to be relevant for a topic, as not each documents will share these words.
+These words are considered too rare to be relevant for a topic, as few documents will share these words.
 Words are also removed if they appear in over 25\% of the documents.
 These words are considered too common to be bound to specific topics and are therefore practically stop words.
 These constants were the same used by \cite{quanti}.
