@@ -45,3 +45,10 @@ While this resulted in more decisive distributions, the results were very bad, o
 Furthermore, under half the words from the query would have even a single matching topic with the original document, despite usually having more topics in their distribution than the document's distribution.
  
 In the end we decided that reverse engineering the \gls{lda} process, was not an effective strategy, and went on to try getting more context to our queries using 'query extension'.
+
+
+\subsection{Duplicates within the data set}
+Within Nordjyske's data, each article is published into a number of different magazines. 
+This results in the data set consisting of many duplicates. 
+In order to combat this problem, we make a dictionary of articles, so that we only process unique articles.
+When we have preprocessed the Nordjyske data, we might still be able to find duplicates since, articles containing information like, football scoreboards, contain different scores before preprocessing but same information after preprocessing, since we remove number from the articles.
