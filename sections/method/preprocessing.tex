@@ -84,13 +84,14 @@ These constants were the same used by \cite{quanti}.
 
 \paragraph{Words Database Filtering / POS-Tagging}
 Due to a lack of danish POS-tagging resources, we instead check up the words in our document set against two databases containing only words of specific word classes, namely: nouns, adjectives, verbs, adverbs, and proper nouns.
-In practise this has the same effect as POS-tagging however words are not marked with their words class, instead they are removed if they do not appear in at least of the databases (containing only words of approved word classes).
+In practice this has the same effect as POS-tagging however words are not marked with their words class, instead they are removed if they do not appear in at least of the databases (containing only words of approved word classes).
 The two databases used are:  Wiktionary\footnote{https://github.com/fnielsen/awesome-danish (specifically Danish resources: https://people.compute.dtu.dk/faan/ps/Nielsen2016Danish.pdf)} and DanNet\cite{Pedersen2009DanNetTC}. 
 
-Most words remaining at this step are contained within the databses, so this step does not remove as many words, however this is mostly due to the step being taken late, due to having a longer computation time per word.
-This step mostly serves to remove names, and words from different languages, namely english.
-However does also cut the odd non-word (eg. 'gimi') and abbreviations (eg. 'dk') that still exists at this point in the preprocessing.
-The example used in \autoref{prepro:example3} does not change at this step. Instead \autoref{prepro:example4} shows an example of another document that does change during this step.
+Most words remaining at this step are contained within the databases, so this step does not remove as many words, however, this is mostly due to the step being taken late, due to having a longer computation time per word.
+This step mostly serves to remove names, and words from different languages, namely English.
+However, does also cut the odd non-word (eg. 'gimi') and abbreviations (eg. 'DK') that still exists at this point in the preprocessing.
+The example used in \autoref{prepro:example3} does not change at this step. 
+Instead, \autoref{prepro:example4} shows an example of another document that does change during this step.
 
 \begin{figure}[h]
 	\begin{quote}
@@ -105,8 +106,9 @@ The example used in \autoref{prepro:example3} does not change at this step. Inst
 \paragraph{Stemming / Lemmatization}
 Words are reduced to their stems using \texttt{nltk.stem.snowball.DanishStemmer}. 
 This is done to combine word declensions, which reduces the number of words without removing too much information.
-After stemming has been applied some words might have been converted into stopwords. We therefore remove stopwords once again.
-We also remove any potential documents that may have become empty after all the word filtering, however this is usually not the case.
+After stemming has been applied some words might have been converted into stopwords. 
+We, therefore, remove stopwords once again.
+We also remove any potential documents that may have become empty after all the word filtering, however, this is usually not the case.
 \begin{figure}[h]
 	\begin{quote}
 		\textit{
