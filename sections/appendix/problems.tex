@@ -48,7 +48,7 @@ In the end we decided that reverse engineering the \gls{lda} process, was not an
 
 
 \subsection{Duplicates within the data set}
-Within Nordjyske's data, each article is published into a number of different magazines. 
+Within Nordjyske's data, each article is published in several different magazines. 
 This results in the data set consisting of many duplicates. 
-In order to combat this problem, we make a dictionary of articles, so that we only process unique articles.
-When we have preprocessed the Nordjyske data, we might still be able to find duplicates since, articles containing information like, football scoreboards, contain different scores before preprocessing but same information after preprocessing, since we remove number from the articles.
+To combat this problem, we make a dictionary of articles, so that we only process unique articles.
+When we have preprocessed the Nordjyske data, we might still be able to find duplicates since, articles containing information like, football scoreboards, contain different scores before preprocessing but the same information after preprocessing, since we remove a number from the articles.
