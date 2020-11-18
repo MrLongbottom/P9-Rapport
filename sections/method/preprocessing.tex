@@ -8,7 +8,7 @@ The preprocessing steps are:
 	\item Article Extraction
 	\item Initial Document Filtering
 	\item Stopword and Word Frequency Filtering
-	\item Word Databases
+	\item Word Database Filtering
 	\item Stemming
 	\item Construct Files
 \end{enumerate}
@@ -19,7 +19,7 @@ The preprocessing steps are:
 		Article Extraction & 63266 & unknown \\ 
 		Initial Document Filtering & 32201 & 190133 \\ 
 		Stopword and Word Frequency Filtering & 32201 & 16406 \\
-		Word Databases & 32201 & 14537 \\
+		Word Database Filtering & 32201 & 14537 \\
 		Lemmatization & 32201 & 9934\\
 	\end{tabular}
 	\label{tab:prepro_doc_word}
@@ -64,8 +64,7 @@ This is done to remove ads, sports results, snippets, or other similar small sec
 
 \paragraph{Stopword and Word Frequency Filtering}
 Stopwords are removed, using \emph{nltk.corpus.stopwords}. We also added some stopwords ourselves based on manual inspection of words that appeared in close to every topic and had a high topic probability for multiple topics.
-We also remove words based on their frequency. 
-Words are removed if they appear fewer than 25 times.
+We also remove words based on their frequency, where they are removed if they appear fewer than 25 times in the corpus.
 These words are considered too rare to be relevant for a topic, as few documents will share these words.
 Words are also removed if they appear in over 25\% of the documents.
 These words are considered too common to be bound to specific topics and are therefore practically stop words.
@@ -82,14 +81,14 @@ These constants were the same used by \cite{quanti}.
 \end{figure}
 
 
-\paragraph{Words Database Filtering}
-Due to a lack of danish POS-tagging resources, we instead check up the words in our document set against two databases containing only words of specific word classes, namely: nouns, adjectives, verbs, adverbs, and proper nouns.
-In practice this has the same effect as POS-tagging however words are not marked with their words class, instead they are removed if they do not appear in at least of the databases (containing only words of approved word classes).
+\paragraph{Word Database Filtering}
+Due to a lack of danish POS-tagging resources, we instead check up the words in our corpus against two databases containing only words of specific word classes, namely: nouns, adjectives, verbs, adverbs, and proper nouns.
+In practice this has the same effect as POS-tagging however words are not marked with their words class, instead they are removed if they do not appear in at least one of the databases (containing only words of approved word classes).
 The two databases used are:  Wiktionary\footnote{https://github.com/fnielsen/awesome-danish (specifically Danish resources: https://people.compute.dtu.dk/faan/ps/Nielsen2016Danish.pdf)} and DanNet\cite{Pedersen2009DanNetTC}. 
 
 Most words remaining at this step are contained within the databases, so this step does not remove as many words, however, this is mostly due to the step being taken late, due to having a longer computation time per word.
 This step mostly serves to remove names, and words from different languages, namely English.
-However, does also cut the odd non-word (eg. 'gimi') and abbreviations (eg. 'DK') that still exists at this point in the preprocessing.
+However, it also cuts the odd non-words (e.g. 'gimi') and abbreviations (e.g. 'DK') that still exist at this point in the preprocessing.
 The example used in \autoref{prepro:example3} does not change at this step. 
 Instead, \autoref{prepro:example4} shows an example of another document that does change during this step.
 
