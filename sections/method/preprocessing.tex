@@ -98,14 +98,15 @@ Instead, \autoref{prepro:example4} shows an example of another document that doe
 			'\colorbox{pink}{country} kræver sommerens by \colorbox{pink}{night} sluttede afslappet band'
 		}
 	\end{quote}
-	\caption{Snippet of a document which had words removed during the word database filtering.}
+	\caption{Snippet of a document which had words removed during the word database filtering. The highlighted words are removed, due to being foreign words.}
 	\label{prepro:example4}
 \end{figure}
 
 \paragraph{Lemmatization}
-Words are reduced to their stems using the python package \texttt{lemmy}\footnote{\url{https://pypi.org/project/lemmy/}}. 
-This is done by combining word inflections.
-However since we do not have proper POS-tagging, some words have multiple different meaning depending on the word class. In these cases we keep all inflected words.
+Words are reduced to their lemmas using the python package \texttt{lemmy}\footnote{\url{https://pypi.org/project/lemmy/}}. 
+This is done by reducing word inflections.
+However since we do not have proper POS-tagging, some words have multiple meanings depending on the word class.
+In these cases we keep all inflected words.
 After lemmatization has been applied some words might have been converted into stopwords.
 We, therefore, remove stopwords once again.
 We also remove any potential documents that may have become empty after all the word filtering, however, this is usually not the case.
@@ -115,15 +116,17 @@ We also remove any potential documents that may have become empty after all the 
 			'fingre dankort hobro atter årig adelgade dankort kode inden hæve bank hobro århus få slå hobro gange gang mande mand superbrugs tilhøre'
 		}
 	\end{quote}
-	\caption{Lemmetized version of the example document from \autoref{prepro:example3}}
+	\caption{Lemmatized version of the example document from \autoref{prepro:example3}}
 	\label{prepro:example5}
 \end{figure}
 
 \paragraph{Construct Files}
-Construct and save \texttt{CountVectorizer} (word-document frequency matrix) as a sparse matrix \texttt{npz} file. This file is used by the LDA to construct a document-topic matrix and a topic-word matrix.
-We also save various lookup files in \texttt{csv} format. \texttt{word2vec}, \texttt{doc2vec} files translate word and document to their ids.
-\texttt{doc2word} translates document ids to all the ids of the words used in the document.
-These files allow us to only use ids from here on, and then later translate back to words when needed.
+Finally, we construct and save the \texttt{CountVectorizer} (document-word frequency matrix) as a sparse matrix \texttt{npz} file.
+This file is used by the LDA to construct a document-topic matrix and a topic-word matrix.
+We also save various lookup files in \texttt{csv} format.
+\texttt{word2vec} and \texttt{doc2vec} files translate words and documents to their IDs.
+\texttt{doc2word} translates document IDs to all the IDs of the words used in the document.
+These files allow us to only use IDs in future phases, and then later translate back to words when needed.
 
 %\subsection{Post-LDA Preprocessing}
 %After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.
