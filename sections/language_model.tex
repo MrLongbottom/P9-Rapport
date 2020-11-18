@@ -8,7 +8,7 @@ $$ P(w|d) = \frac{N_d}{N_d + \lambda} \cdot \frac{tf(w,d)}{N_d} + (1 - \frac{N_d
 where $N_d$ is the number of word tokens in $d$ and $tf(w,d)$ is the word frequency of $w$ in $d$. $\lambda$ is a Dirichlet smoothing factor and is set to the average document length.
 When $D$ is used, it is referring to the document corpus.
 $ \frac{N_d}{N_d + \lambda} $ describes a relative term which is weighted based on $ \lambda $. If $N_d > \lambda$ the value is closer to 1 and if $ N_d < \lambda $ the value is closer to 0.
-$ \frac{tf(w,d)}{N_d} $ is the maximum likelihood estimate based on the relative counts.
+$ \frac{tf(w,d)}{N_d} $ and $\frac{tf(w,D)}{N_D}$ are the maximum likelihood estimate of $w$ appearing in a document $d$ or the corpus $D$, respectively.
 \todo{ref equation} calculates the relative maximum likelihood for the word being in $ d $ and $ D $ and weights these terms based on the document length compared to $\lambda$, with smaller documents weighing the corpus likelihood higher, and bigger documents weighing the document likelihood higher.
 
 To calculate this for a given query, we take the product of the word likelihood to get the probability for $q$.
