@@ -22,7 +22,7 @@ The principle is to let a number of surfers walk between nodes in a graph, where
 After an appropriate number of steps, the number of surfers on each node will be the ranking of the given node, where more surfers give a higher rank.
 The edges in the graph can be based on many interactions, such as hyperlinks, similarities, genres, etc.
 
-In \cite{yang2009topic} they investigate how to combine topic model \gls{lda} and PageRank.
+In \cite{yang2009topic} \citeauthor{yang2009topic} investigate how to combine topic model \gls{lda}, \gls{lm}, and PageRank.
 They also investigate a modified version of the PageRank algorithm which takes topic-level information into account.
 They use a scientific article dataset where they manually label their dataset with queries. 
 In this paper, we want to expand the framework which \cite{yang2009topic} have provided.
@@ -37,9 +37,20 @@ These topics can be seen as a set of documents sharing a specific topic.
 When evaluating search engines, manual labeling of documents is usually used to measure the performance of models\cite{yang2009topic}\cite{Tang2008}.
 Since the topics, that is created by the \gls{lda}, is a distribution between of topics over documents, we can use these to evaluate a search algorithm's retrieval performance. 
 
-Our goal is thus to improve news article search by using a combination of \gls{lda} and PageRank.
+Our goal is thus to improve news article search by using a combination of \gls{lda}, \gls{lm}, and PageRank.
 For our experiments we use the Nordjyske database of news articles as our dataset.
-We also want to investigate whether an automatic evaluation measure can be used to evaluate a search engine. 
+We also want to investigate whether an automatic evaluation measure can be used to evaluate a search engine.
+Here we want to look into whether it makes sense to make an evaluation metric based on whether search results are in a given topic.
+Finally, since the news article dataset does not include connections between the articles, how PageRank can be run on this needs to be investigated.
+With these goals we look at the following questions:
+
+\begin{quote}
+	\emph{How can search queries be evaluated based on specific documents or topics?}
+\end{quote}
+
+\begin{quote}
+	\emph{How can PageRank be used on a news article dataset where connections between articles are not obvious?}
+\end{quote}
 
 \input{sections/introduction/contributions}
 
