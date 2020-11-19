@@ -1,51 +1,135 @@
 \section{Preprocessing}\label{sec:prepro}
 
-Our preprocessing consists of several steps, each of which will be described in more detail.
-The steps are:
-\vejleder[inline]{give examples of each of the preprocessing steps}
-\begin{enumerate}
+In this section, we will give a detailed overview of our method of preprocessing documents.
+Our preprocessing steps were inspired by \cite{quanti}, who do a thorough preprocessing before applying LDA. 
+Our preprocessing consists of several steps, each of which will be described in more detail, along with a running example over part of a real document.
+The preprocessing steps are:
+\begin{enumerate}[label=\alph*]
 	\item Article Extraction
 	\item Initial Document Filtering
-	\item Stopwords and Word Frequency
-	\item Word Databases / POS Tagging
+	\item Stopword and Word Frequency Filtering
+	\item Word Database Filtering
 	\item Stemming
-	\item Repeat step 2 and Stopwords
 	\item Construct Files
 \end{enumerate}
 
+\begin{table}
+	\begin{tabular}{c|c|c}
+		Preprocessing Step & Documents & Words\\
+		Article Extraction & 63266 & unknown \\ 
+		Initial Document Filtering & 32201 & 190133 \\ 
+		Stopword and Word Frequency Filtering & 32201 & 16406 \\
+		Word Database Filtering & 32201 & 14537 \\
+		Lemmatization & 32201 & 9934\\
+	\end{tabular}
+	\label{tab:prepro_doc_word}
+	\caption{Amount of documents and unique words remaining after each preprocessing step.}
+\end{table}
+
 \paragraph{Article Extraction}
-Documents are loaded from \texttt{xml} files, and their ID, title, and body contents extracted and converted into \texttt{json} format.
+As described in \autoref{sec:dataset}, documents are loaded as \texttt{xml} files from the database, and their ID, title, and body contents extracted and converted into \texttt{json} format.
+\autoref{prepro:example1} shows an example of an extracted document.
 
 \paragraph{Initial Document Filtering}
-Duplicate documents and documents containing fewer than 20 words are removed.\vejleder[inline]{why? and why 20?}
+The database contain many duplicate documents with the same content but different file names, we therefore start this phase by removing all duplicates.
+All punctuation, numbers, and other non-alphabetic symbols are removed, keeping only words entirely made of alphabetic symbols.
 
-\paragraph{Stopwords and Word Frequency Filtering}
-Stopwords are removed, using \emph{nltk.corpus.stopwords}. 
-Words are removed if they appear fewer than 25 times in the document set or if they are used in over 25\% of the documents.\vejleder[inline]{why 25 and 20\%}
+Afterward, we remove documents containing fewer than 25 words.
+This is done to remove ads, sports results, snippets, or other similar small sections that are present in newspapers but aren't really news articles.
+\autoref{prepro:example2} shows an example of a document that would be removed. In this example, the document is merely a front-page snippet referencing an actual article, rather than a full news article.
+\begin{figure}[h]
+	\begin{quote}
+		\textit{
+			'Legedag for børnene Frivillighuset i Pandrup holdt for femte gang Legedag, så alle børn kan fortælle om en god ferieoplevelse. Side 12-13'
+		}
+	\end{quote}
+	\caption{Example of document filtered for being too short}
+	\label{prepro:example2}
+\end{figure}
 
-\paragraph{Words Database Filtering / POS-Tagging}
-Words are checked against the two word databases: Wiktionary and DanNet\vejleder[inline]{ref}. 
-The databases contain only: nouns, adjectives, verbs, adverbs, and proper nouns. 
-Words that are not contained within either database are removed.
+%\begin{quote}
+%	\textit{
+%		'tricktyve fik fingre i dankort hobro frække tricktyve har atter slået til i en af hobros dagligvareforretninger denne gang gik det ud over en årig mand som under indkøbsturen i superbrugsen i adelgade blev frastjålet sit visa dankort med tilhørende pin kode% inden kortet blev spærret nåede tyvene at hæve kr i en jutlander bank automat i hobro og yderligere et beløb i en billetautomat på århus kanten'
+%	}
+%\end{quote}
 
-\paragraph{Stemming}
-Words are reduced to their stems using \texttt{nltk.stem.snowball.DanishStemmer}. 
-This is done to combine word declensions, which reduces the number of words without removing too much information.
-Words that are stemmed into stopwords are also removed at this time.
+\paragraph{Stopword and Word Frequency Filtering}
+Stopwords are removed, using \emph{nltk.corpus.stopwords}. We also added some stopwords ourselves based on manual inspection of words that appeared in close to every topic and had a high topic probability for multiple topics.
+We also remove words based on their frequency, where they are removed if they appear fewer than 25 times in the corpus.
+These words are considered too rare to be relevant for a topic, as few documents will share these words.
+Words are also removed if they appear in over 25\% of the documents.
+These words are considered too common to be bound to specific topics and are therefore practically stop words.
+These constants were the same used by \cite{quanti}.
+\autoref{prepro:example3} shows how the document from \autoref{prepro:example1} has changed after this step.
+\begin{figure}[h]
+	\begin{quote}
+		\textit{
+			'fik fingre dankort hobro atter slået hobros gang gik årig mand superbrugsen adelgade dankort tilhørende kode'
+		}
+	\end{quote}
+	\caption{Document from \autoref{prepro:example1} after removing stopwords and applying word frequency filtering.}
+	\label{prepro:example3}
+\end{figure}
+
+
+\paragraph{Word Database Filtering}
+Due to a lack of danish POS-tagging resources, we instead check up the words in our corpus against two databases containing only words of specific word classes, namely: nouns, adjectives, verbs, adverbs, and proper nouns.
+In practice this has the same effect as POS-tagging however words are not marked with their words class, instead they are removed if they do not appear in at least one of the databases (containing only words of approved word classes).
+The two databases used are:  Wiktionary\footnote{https://github.com/fnielsen/awesome-danish (specifically Danish resources: https://people.compute.dtu.dk/faan/ps/Nielsen2016Danish.pdf)} and DanNet\cite{Pedersen2009DanNetTC}. 
+
+Most words remaining at this step are contained within the databases, so this step does not remove as many words, however, this is mostly due to the step being taken late, due to having a longer computation time per word.
+This step mostly serves to remove names, and words from different languages, namely English.
+However, it also cuts the odd non-words (e.g. 'gimi') and abbreviations (e.g. 'DK') that still exist at this point in the preprocessing.
+The example used in \autoref{prepro:example3} does not change at this step. 
+Instead, \autoref{prepro:example4} shows an example of another document that does change during this step.
+
+\begin{figure}[h]
+	\begin{quote}
+		\textit{
+			'\colorbox{pink}{country} kræver sommerens by \colorbox{pink}{night} sluttede afslappet band'
+		}
+	\end{quote}
+	\caption{Snippet of a document which had words removed during the word database filtering. The highlighted words are removed, due to being foreign words.}
+	\label{prepro:example4}
+\end{figure}
+
+\paragraph{Lemmatization}
+Words are reduced to their lemmas using the python package \texttt{lemmy}\footnote{\url{https://pypi.org/project/lemmy/}}. 
+This is done by reducing word inflections.
+However since we do not have proper POS-tagging, some words have multiple meanings depending on the word class.
+In these cases we keep all inflected words.
+After lemmatization has been applied some words might have been converted into stopwords.
+We, therefore, remove stopwords once again.
+We also remove any potential documents that may have become empty after all the word filtering, however, this is usually not the case.
+\begin{figure}[h]
+	\begin{quote}
+		\textit{
+			'fingre dankort hobro atter årig adelgade dankort kode inden hæve bank hobro århus få slå hobro gange gang mande mand superbrugs tilhøre'
+		}
+	\end{quote}
+	\caption{Lemmatized version of the example document from \autoref{prepro:example3}}
+	\label{prepro:example5}
+\end{figure}
 
 \paragraph{Construct Files}
-Construct and save scikit-learn.CountVectorizer as a sparse matrix \texttt{npz} file, and word2vec, doc2vec, doc2word as \texttt{csv} files.\vejleder[inline]{what is the structure of the csv files and why do we create them?}
+Finally, we construct and save the \texttt{CountVectorizer} (document-word frequency matrix) as a sparse matrix \texttt{npz} file.
+This file is used by the LDA to construct a document-topic matrix and a topic-word matrix.
+We also save various lookup files in \texttt{csv} format.
+\texttt{word2vec} and \texttt{doc2vec} files translate words and documents to their IDs.
+\texttt{doc2word} translates document IDs to all the IDs of the words used in the document.
+These files allow us to only use IDs in future phases, and then later translate back to words when needed.
 
-\todo[inline]{steps missing}
-\subsection{Post-LDA Preprocessing}
-After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.
-Topics that occur in almost every document are also considered too general, and would also be removed. \todo[inline]{Tjek senere at Post-LDA preprocesseringen bliver brugt i pipelinen.}
-Initially, this presented some implementation challenges, as it required removing topics and documents from files generated earlier in the process and from the LDA model, to be able to use the right topic/document IDs in the future.
+%\subsection{Post-LDA Preprocessing}
+%After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.
+%Topics that occur in almost every document are also considered too general, and would also be removed.
+%Initially, this presented some implementation challenges, as it required removing topics and documents from files generated earlier in the process and from the LDA model, to be able to use the right topic/document IDs in the future.
 
 \subsection{Query Preprocessing}
+\todo[inline]{move this subsec to query section}
 One of the challenges of preprocessing queries is that they usually contain very few words.
 Therefore, there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
 
 Our method converts each word in the query into a topic distribution, making the query have the same format as a document. \todo[inline]{Detaljer specifikt hvordan denne distribution laves, når det er færdigimplementeret.}
 This enables us to compare the query to other documents, and therefore do a random walk based on the query \vejleder[inline]{say why this is usefull}.
 The danger of this method is that a query only containing a couple of words, will likely have a very skewed topic distribution.
+\todo[inline]{make running example}
