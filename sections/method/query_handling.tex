@@ -1,0 +1,48 @@
+\section{Search Query}
+We have identified three steps when working with a search query:
+\begin{itemize}
+	\item Generation
+	\item Expansion
+	\item Handling
+\end{itemize}
+
+We will describe each step in the following sections.
+
+\subsection{Query Generation}
+
+
+\subsection{Query Expansion}
+Query expansion is a method which adds more words to a given query to add more context to the search process.
+\citet{yang2009topic} describes a query expansion method, called window query expansion.
+Queries are expanded based on the neighboring words in the document set.
+Specifically, for each word in the query, we count the frequency of each word appearing before and after the given word in the corpus.
+We then add top $m$ most frequent words to the query.
+An example of this could be the query: 
+\begin{quote}
+	Query = "Football"
+\end{quote}
+As an example the most frequent words before and after "Football" in our document set could be:
+\begin{itemize}
+	\item Coach - 15
+	\item Match - 10
+	\item Ball - 5
+\end{itemize}
+A resulting expanded query with an $m$ = 2 would then be:
+\begin{quote}
+	Query = "Football Coach Match"
+\end{quote}
+
+
+
+\subsection{Query Handling}
+Searching for a given document in a whole data set of documents can be a challenge. 
+In this setting, we propose to use the topic distributions of each document for searching.
+The search process consists of multiple steps before we are able to use a query within the PageRank algorithm. 
+We start with a search query consisting of words which are stemmed.
+For each word in the query, we check whether our model knows the word.
+If it is known, we use the $\beta$ distribution given by the model for the given word. 
+If it is not known, we let the model predict the topic distribution for the given word.
+We take the average of these distributions and calculate the Jenson-Shannon distance between this distribution and all other document-topic distributions to figure out which articles are the most similar to the given query.
+The final vector has the length of the number of documents and has a value from zero to one in all cells, which describes how similar a query is to the given documents based on the topics.
+We then use the resulting vector as our personalization vector for a cluster-based random walk, when searching/ranking articles.
+ 
