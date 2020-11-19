@@ -1,4 +1,11 @@
 \section{Search Query}
+One of the challenges of preprocessing queries is that they usually contain very few words.
+Therefore, there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
+Our method converts each word in the query into a topic distribution, making the query have the same format as a document. \todo[inline]{Detaljer specifikt hvordan denne distribution laves, når det er færdigimplementeret.}
+This enables us to compare the query to other documents, and therefore do a random walk based on the query.
+This is an important process, since we need to compare different models against how well they retrieve the articles.
+The danger of this method is that a query only containing a couple of words, will likely have a very skewed topic distribution.
+
 We have identified three steps when working with a search query:
 \begin{itemize}
 	\item Generation
