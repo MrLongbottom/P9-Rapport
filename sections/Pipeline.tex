@@ -2,7 +2,7 @@
 This section describes our method on an abstract level.
 Each phase of the method is described later on in more detail. 
 
-We start with a data set, in our case consisting of articles from the media group Nordjyske. 
+We start with a dataset, in our case consisting of news articles from the media group Nordjyske. 
 Their primary focus is to maintain a variety of local newspapers within the North Jutland region of Denmark. 
 The data ranges from 2017, where a total of $\sim$~63.000 articles have been extracted from their database.
 
@@ -12,7 +12,7 @@ Details of this phase are given in \autoref{sec:prepro}.
 After finishing this phase, we are left with $\sim$~32.000 articles, which will be used in the next step.
 
 \subsection*{Step 2: LDA}
-We train a \acrfull{lda} on the data set to generate topics based on the content of articles within the data set. 
+We train a \acrfull{lda} on the dataset to generate topics based on the content of articles within the dataset. 
 We describe the investigation and selection of hyper parameters in \autoref{subsec:lda}. 
 After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\beta$.
 
@@ -20,11 +20,12 @@ After the model has been trained, we have a document-topic distribution matrix $
 A search query, consisting of words, is stemmed and turned into a list of words.
 For each word, we generate a topic distribution based on $\beta$ or prediction of the model.
 We use this distribution, as a personalization vector for some of our models.
+\todo[inline]{Check that the description of how the personalization vector is made, is correct}
 The output of this step is a list of search queries.
 
 
 \subsection*{Step 4: Evaluation of models}
-In this phase, we evaluate different combination of models using the evaluation metric described in \todo{ref evaluation metric section}.
+In this phase, we evaluate different combinations of models using the evaluation metrics described in \todo{ref evaluation metric section}.
 The evaluation is done by testing the search queries against the different models. 
 The combinations and results can be seen in section \todo{ref combination section } and \todo{ref result section }, respectively.
 
