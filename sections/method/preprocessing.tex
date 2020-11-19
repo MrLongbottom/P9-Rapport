@@ -29,15 +29,6 @@ The preprocessing steps are:
 \paragraph{Article Extraction}
 As described in \autoref{sec:dataset}, documents are loaded as \texttt{xml} files from the database, and their ID, title, and body contents extracted and converted into \texttt{json} format.
 \autoref{prepro:example1} shows an example of an extracted document.
-\begin{figure}[h]
-	\begin{quote}
-		\textit{
-			'Tricktyve fik fingre i dankort HOBRO: Frække tricktyve har atter slået til i en af Hobros dagligvareforretninger. Denne gang gik det ud over en 87-årig mand, som under indkøbsturen i Superbrugsen i Adelgade blev frastjålet sit Visa-Dankort med tilhørende pin-kode.'
-		}
-	\end{quote}
-	\caption{snippet of raw document}
-	\label{prepro:example1}
-\end{figure}
 
 \paragraph{Initial Document Filtering}
 The database contain many duplicate documents with the same content but different file names, we therefore start this phase by removing all duplicates.
