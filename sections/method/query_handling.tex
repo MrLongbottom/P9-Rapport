@@ -9,7 +9,26 @@ We have identified three steps when working with a search query:
 We will describe each step in the following sections.
 
 \subsection{Query Generation}
+We use two techniques for generating the queries used for evaluating our search algorithm, namely document queries and topic queries.
+The idea behind these two methods is to evaluate the specificity and generality of the \gls{lda} model, respectively.
+The construction of the queries is described in the following.
 
+\subsubsection{Document query}
+To construct a document query, we randomly select a document from the corpus and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
+From this selection, we apply \gls{tf-idf} on the selected document to find the most informative words.
+Our query is then the $ql$ highest ranked words within the given document.
+The goal is to check whether or not the model is able to find a specific document based on a search query generated from that document.
+
+\subsubsection{Topic query} 
+The topic query is slightly different in comparison to document query in that it focuses on the topics rather than a specific document.
+To construct a topic query, firstly we select a random topic $t$ and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
+We then sample $ql$ documents based on the document-topic distribution $\theta_t$ provided by the \gls{lda} model.
+Though $theta$ is normally one topic distribution for each document, we create document distributions for each topic by row normalizing the matrix. 
+When sampling these documents, we only sample within the document-topic distribution where the topic is set to $t$.
+From these sampled documents, we extract one word from each document, based on the \gls{tf-idf} score, and add these to the query.
+If an extracted word is in the query already, we skip it and add the next highest \gls{tf-idf} scored word to the query.
+In that way, we ensure to get unique words in the query.
+The goal, of generating this query, is to check whether the model can find similar documents based on a search query generated from a topic distribution.
 
 \subsection{Query Expansion}
 Query expansion is a method which adds more words to a given query to add more context to the search process.
