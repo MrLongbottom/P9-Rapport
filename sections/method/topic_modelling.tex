@@ -14,6 +14,7 @@ The generative process has two Dirichlet distributions $Dir(\alpha)$ for the doc
 	\caption{Plate notation for \gls{lda}. Boxes symbolize repeated processes, shaded elements are observed information. Image is from \url{https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation}}
 	\label{fig:lda}
 \end{figure}
+\vejleder[inline]{beskriv hver plate i LDA}
 From these Dirichlet distributions, we can sample two multinomial distributions: document-topic $\theta$ and topic-word $\beta$.
 These Dirichlet distributions are tuned with the hyperparameters $\alpha$ and $\eta$, which adjust the entropy of the sampled distributions.
 An $\alpha$ value near 1 causes each document to be distributed over almost all topics, while an $\alpha$ value near 0 causes each document to be distributed over only a few topics.
