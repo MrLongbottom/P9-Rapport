@@ -1,1 +1,36 @@
 \section{Experiments}\label{sec:experiment}
+
+\subsection{Hyperparameters}\label{subsec:hyperparameters}
+Before setting up our experiment we did some initial testing in order to find acceptable hyperparameter values for our \gls{lda} model.
+% runtime parameters
+First we adjusted parameters that had to do with how the algorithms runs to ensure that the model converged, without spending unneccesary resources.
+\texttt{passes} adjusts how many times the model passes over the whole corpus, and can be seen as an 'epoch'. This is neccessary for smaller dataset to ensure convergence before the algorithm finishes, but for large enough datasets this parameter can have a value of one, as is the case for \cite{online} where their corpus includes 3.3M documents.
+\texttt{iterations} which adjusts the maximum number of iterations of the E-step (from \cite{}, Algorithm 2) is allowed without all documents having converged. Setting this to a high value ensures convergence, but also increases training time. In practice iterations should be set to the lowest possible values where nearly (> 99\%) all documents have converged by the end of trainning.
+From testing we found 20 \texttt{passes} and \texttt{iterations} was enough to converge 27678 out of 27919 documents (99.14\%).
+
+% model parameters
+Once we had assured that our model would converge, we tested hyperparameters for our \gls{lda} model.
+These include:
+\begin{itemize}
+	\item K - the number of topics
+	\item $\alpha$ - dirichlet prior for document-topic distributions
+	\item $\eta$ - dirichlet prior for topic-word distributions
+\end{itemize}
+Similar to clustering algorithms, there is usually an optimal setting for K, where all values above will produce topics which are subtopic of the optimal topics, and all values below will achieve subpar performance.
+This theoretical optimal value is however based on the corpus, so will need to be tested in order to find some setting of K that is close to optimal.
+$\alpha$ and $\eta$ adjusts the dirichlet distributions that will create the binomial distribtions for document-topic and topic-word relations, respectively.
+Lower values will lead to more uneven distributions, favoring fewer topics per document and fewer words per topic, while higher values will make the distribution more uniform distributions.
+
+\begin{table}[h]
+	\centering
+	\label{tab:params}
+	\begin{tabular}{c|c}
+		Parameter & Tested Values\\
+		\hline
+		$K_1$ & 10, 50, 100, 200, 300\\
+		$K_2$ & 5, 10, 15, 20, 25, 30, 35, 40, 45, 50\\
+		$\alpha$ & 0.5, 0.1, 0.01, 0.001\\
+		$\eta$ & 0.1, 0.01, 0.001, 0.0001\\
+	\end{tabular}
+	\caption{test}
+\end{table}
