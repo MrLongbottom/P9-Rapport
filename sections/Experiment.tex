@@ -21,9 +21,17 @@ This theoretical optimal value is however based on the corpus, so will need to b
 $\alpha$ and $\eta$ adjusts the dirichlet distributions that will create the binomial distribtions for document-topic and topic-word relations, respectively.
 Lower values will lead to more uneven distributions, favoring fewer topics per document and fewer words per topic, while higher values will make the distribution more uniform distributions.
 
+To find the optimal hyperparameter values we did two sequencial gridsearches using the hyperparameter values shown in \autoref{tab:params}.
+To evaluate the \gls{lda} models, we measured perplexity \todo{explain perlexity}.
+During the first gridsearch, $10$ and $50$ where clearly the best values for K.
+However, $\alpha$ and $\eta$ values showed no clear favorite.
+For the second gridsearch we choose more specific K values, to narrow the search, while keeping the $\alpha$ and $\eta$ values the same.
+\todo[inline]{what do we do about one of the alpha values in the first gridsearch being set wrong (0.0001 instead of 0.001)?}
+\todo[inline]{add graphs from gridsearches}
+\todo[inline]{add conclusion}
+
 \begin{table}[h]
 	\centering
-	\label{tab:params}
 	\begin{tabular}{c|c}
 		Parameter & Tested Values\\
 		\hline
@@ -32,5 +40,6 @@ Lower values will lead to more uneven distributions, favoring fewer topics per d
 		$\alpha$ & 0.5, 0.1, 0.01, 0.001\\
 		$\eta$ & 0.1, 0.01, 0.001, 0.0001\\
 	\end{tabular}
-	\caption{test}
+	\caption{Tested hyperparameter values. $K_1$ is the $K$ values used for the first hyperparameter test, while $K_2$ is the $K$ values used for the second hyperparameter test.}
+	\label{tab:params}
 \end{table}
