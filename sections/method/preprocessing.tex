@@ -62,7 +62,7 @@ We also added some stopwords ourselves based on manual inspection of words that 
 We also remove words based on their frequency, where they are removed if they appear fewer than 25 times in the corpus.
 These words are considered too rare to be relevant for a topic, as few documents will share these words.
 Words are also removed if they appear in over 25\% of the documents.
-These words are considered too common to be bound to specific topics and are therefore practically stop words. \vejleder[inline]{egenavne?}
+These words are considered too common to be bound to specific topics and are therefore practically stop words.
 These constants were the same used by \cite{quanti}.
 \autoref{prepro:example3} shows how the document from \autoref{prepro:example1} has changed after this step.
 \begin{figure}[h]
@@ -113,14 +113,13 @@ We also remove any potential documents that may have become empty after all the 
 	\begin{framed}
 		\begin{quote}
 			\textit{
-				'fingre dankort hobro atter årig adelgade dankort kode inden hæve bank hobro århus få slå hobro gange gang mande mand superbrugs tilhøre'
+				'fingre dankort hobro atter årig adelgade dankort kode'
 			}
 		\end{quote}
 	\end{framed}
 	\caption{Lemmatized version of the example document from \autoref{prepro:example3}}
 	\label{prepro:example5}
 \end{figure}
-\vejleder[inline]{mere tekst?}
 
 \paragraph{Construct Files}
 Finally, we construct and save the \texttt{CountVectorizer} (document-word frequency matrix) as a sparse matrix \texttt{npz} file.
