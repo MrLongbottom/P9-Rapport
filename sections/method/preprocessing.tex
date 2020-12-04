@@ -9,7 +9,7 @@ The preprocessing steps are:
 	\item Initial Document Filtering
 	\item Stopword and Word Frequency Filtering
 	\item Word Database Filtering
-	\item Stemming
+	\item Lemmatization 
 	\item Construct Files
 \end{enumerate}
 
@@ -38,11 +38,13 @@ Afterward, we remove documents containing fewer than 25 words.
 This is done to remove ads, sports results, snippets, or other similar small sections that are present in newspapers but aren't really news articles.
 \autoref{prepro:example2} shows an example of a document that would be removed. In this example, the document is merely a front-page snippet referencing an actual article, rather than a full news article.
 \begin{figure}[h]
-	\begin{quote}
-		\textit{
-			'Legedag for børnene Frivillighuset i Pandrup holdt for femte gang Legedag, så alle børn kan fortælle om en god ferieoplevelse. Side 12-13'
-		}
-	\end{quote}
+	\begin{framed}
+		\begin{quote}
+			\textit{
+				'Legedag for børnene Frivillighuset i Pandrup holdt for femte gang Legedag, så alle børn kan fortælle om en god ferieoplevelse. Side 12-13'
+			}
+		\end{quote}
+	\end{framed}
 	\caption{Example of document filtered for being too short}
 	\label{prepro:example2}
 \end{figure}
@@ -54,7 +56,9 @@ This is done to remove ads, sports results, snippets, or other similar small sec
 %\end{quote}
 
 \paragraph{Stopword and Word Frequency Filtering}
-Stopwords are removed, using \emph{nltk.corpus.stopwords}. We also added some stopwords ourselves based on manual inspection of words that appeared in close to every topic and had a high topic probability for multiple topics.
+Stopwords are removed, using \emph{nltk.corpus.stopwords}. 
+This is a list consisting of 94 stopwords, like ``og'' and ``på''
+We also added some stopwords ourselves based on manual inspection of words that appeared in close to every topic and had a high topic probability for multiple topics.
 We also remove words based on their frequency, where they are removed if they appear fewer than 25 times in the corpus.
 These words are considered too rare to be relevant for a topic, as few documents will share these words.
 Words are also removed if they appear in over 25\% of the documents.
@@ -62,11 +66,13 @@ These words are considered too common to be bound to specific topics and are the
 These constants were the same used by \cite{quanti}.
 \autoref{prepro:example3} shows how the document from \autoref{prepro:example1} has changed after this step.
 \begin{figure}[h]
-	\begin{quote}
-		\textit{
-			'fik fingre dankort hobro atter slået hobros gang gik årig mand superbrugsen adelgade dankort tilhørende kode'
-		}
-	\end{quote}
+	\begin{framed}
+		\begin{quote}
+			\textit{
+				'fik fingre dankort hobro atter slået hobros gang gik årig mand superbrugsen adelgade dankort tilhørende kode'
+			}
+		\end{quote}
+	\end{framed}
 	\caption{Document from \autoref{prepro:example1} after removing stopwords and applying word frequency filtering.}
 	\label{prepro:example3}
 \end{figure}
@@ -84,11 +90,13 @@ The example used in \autoref{prepro:example3} does not change at this step.
 Instead, \autoref{prepro:example4} shows an example of another document that does change during this step.
 
 \begin{figure}[h]
-	\begin{quote}
-		\textit{
-			'\colorbox{pink}{country} kræver sommerens by \colorbox{pink}{night} sluttede afslappet band'
-		}
-	\end{quote}
+	\begin{framed}
+		\begin{quote}
+			\textit{
+				'\colorbox{pink}{country} kræver sommerens by \colorbox{pink}{night} sluttede afslappet band'
+			}
+		\end{quote}
+	\end{framed}
 	\caption{Snippet of a document which had words removed during the word database filtering. The highlighted words are removed, due to being foreign words.}
 	\label{prepro:example4}
 \end{figure}
@@ -102,11 +110,13 @@ After lemmatization has been applied some words might have been converted into s
 We, therefore, remove stopwords once again.
 We also remove any potential documents that may have become empty after all the word filtering, however, this is usually not the case.
 \begin{figure}[h]
-	\begin{quote}
-		\textit{
-			'fingre dankort hobro atter årig adelgade dankort kode inden hæve bank hobro århus få slå hobro gange gang mande mand superbrugs tilhøre'
-		}
-	\end{quote}
+	\begin{framed}
+		\begin{quote}
+			\textit{
+				'fingre dankort hobro atter årig adelgade dankort kode'
+			}
+		\end{quote}
+	\end{framed}
 	\caption{Lemmatized version of the example document from \autoref{prepro:example3}}
 	\label{prepro:example5}
 \end{figure}
@@ -118,6 +128,7 @@ We also save various lookup files in \texttt{csv} format.
 \texttt{word2vec} and \texttt{doc2vec} files translate words and documents to their IDs.
 \texttt{doc2word} translates document IDs to all the IDs of the words used in the document.
 These files allow us to only use IDs in future phases, and then later translate back to words when needed.
+\todo[inline]{den skal nok bare flyttes til appendix}
 
 %\subsection{Post-LDA Preprocessing}
 %After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.

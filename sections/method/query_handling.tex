@@ -28,7 +28,8 @@ The goal is to check whether or not the model is able to find a specific documen
 The topic query is slightly different in comparison to document query in that it focuses on the topics rather than a specific document.
 To construct a topic query, firstly we select a random topic $t$ and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
 We then sample $ql$ documents based on the document-topic distribution $\theta_t$ provided by the \gls{lda} model.
-Though $theta$ is normally one topic distribution for each document, we create document distributions for each topic by row normalizing the matrix. 
+Though $\theta$ is normally one topic distribution for each document, we create document distributions for each topic by row normalizing the matrix.
+\vejleder[inline]{uddyb row normalization} 
 When sampling these documents, we only sample within the document-topic distribution where the topic is set to $t$.
 From these sampled documents, we extract one word from each document, based on the \gls{tf-idf} score, and add these to the query.
 If an extracted word is in the query already, we skip it and add the next highest \gls{tf-idf} scored word to the query.
