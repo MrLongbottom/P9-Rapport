@@ -124,12 +124,4 @@ These files allow us to only use IDs in future phases, and then later translate 
 %Topics that occur in almost every document are also considered too general, and would also be removed.
 %Initially, this presented some implementation challenges, as it required removing topics and documents from files generated earlier in the process and from the LDA model, to be able to use the right topic/document IDs in the future.
 
-\subsection{Query Preprocessing}
-\todo[inline]{move this subsec to query section}
-One of the challenges of preprocessing queries is that they usually contain very few words.
-Therefore, there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
 
-Our method converts each word in the query into a topic distribution, making the query have the same format as a document. \todo[inline]{Detaljer specifikt hvordan denne distribution laves, når det er færdigimplementeret.}
-This enables us to compare the query to other documents, and therefore do a random walk based on the query \vejleder[inline]{say why this is usefull}.
-The danger of this method is that a query only containing a couple of words, will likely have a very skewed topic distribution.
-\todo[inline]{make running example}
