@@ -11,3 +11,20 @@
 	\item Discovery of related papers
 	\item Found out our model didn't converge
 \end{itemize}
+
+Our initial idea with the project was to combine \gls{lda} with a PageRank algorithm to see if this could improve the information retrival results of \gls{lda}.
+
+We began by implementing some initial preprocessing methods and using an \gls{lda} implementation by gensim\todo{ref}.
+
+After this we only needed to combine \gls{lda} with a PageRank implementation. But in order to do so, we first needed to construct an adjacency matrix. This is where we started to run into trouble as constructing a large adjecency matrix based a similarity measure took extremely long time, which forced us to make changes to the way we constructed the adjacency matrix as well as changes to the earlier phases: preprocessing and \gls{lda}.
+We made the preprocessing more aggressive and implemeneted more preprocessing methods, to contenually make the dataset smaller while keeping the relevant data.
+We also implemented thresholds to the $\theta$ and $beta$ matrixes made by the \gls{lda} model. All values under the normal destribution values were set to 0, so that we could work more efficiently with sparse matrixes.
+This ended up causing more trouble than it was worth, as we now had to deal with a large portion of our evaluations containing no values.
+We also tried many different ways to construct the adjacency matrix more efficiently, described further in \autoref{app:adj_matrix}.
+
+However even after we managed to produce an adjecency matrix our results proved to be very bad.
+From here we began searching for more similar papers, where we managed to find two: \todo{refs}.
+We focused particularly on \todo{ref}, due to a strong similarity between their project and our ideas.
+We used their methods to improve upon several parts of our methods, and we underwent change from building a single framework, to testing and comparing multiple different methods. However still our results were bad.
+
+It was by then that we began testing our lda model and found out that it was unable to converge using only a single pass through the corpus. We then began testing hyperparameters for the implementation of lda, before once again finding hyperparameters for our lda dataset.

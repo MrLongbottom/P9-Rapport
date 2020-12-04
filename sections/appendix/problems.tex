@@ -1,7 +1,7 @@
 \subsection{Encountered Problems}
 \todo[inline]{indicate whether the problems were solved.}
 
-\subsubsection{Adjacency Matrix Construction}
+\subsubsection{Adjacency Matrix Construction}\label{app:adj_matrix}
 Our adjacency matrix is based on whether documents share some topics in their topic distributions. 
 This leads us to the problem of $D*D*T$ insertion operations into a sparse matrix with what was originally ~50.000 documents. We never tested how long this would end up taking, but it was definitely infeasible.
 We did a lot of preprocessing, which reduced this number eventually all the way down to ~30.000 documents, but it was too insignificant to solve anything. Calculation time was now estimated to be ~140 days.
