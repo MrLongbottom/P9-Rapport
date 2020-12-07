@@ -27,6 +27,35 @@
 	\label{tab:results}
 \end{table*}
 
+\begin{table}[h]
+	\centering
+	\caption{Average rank of relevant document for document-queries.}
+	\begin{tabular}{l|c|c|c|c}
+		Model / map & D1 & D2 & D3 & D4 \\
+		\midrule
+		\gls{lda} & 2287.93 & 1599.95 & 1241.18 & 1926.78 \\
+		\gls{lm} & 7120.04 & 9082.9 & 6501.85 & 7782.65 \\
+		\gls{bm25} & \textbf{19.58} & 7.94 & 1.78 & 1.41 \\
+		\gls{tf-idf} & 30.0 & 9.3 & 2.03 & 1.29 \\
+		\gls{lda} + \gls{pr} & 2491.31 & 1342.53 & 1126.23 & 1906.76\\
+		\gls{lda} * \gls{pr} & 2305.04 & 1600.93 & 1223.14 & 1920.175\\
+		\gls{lm} + \gls{lda} & 1971.19 & 1192.91 & 1027.95 & 1482.69 \\
+		\gls{lm} * \gls{lda} & 1874.81 & 1456.21 & 954.66 & 1853.44 \\
+		\gls{lm} + \gls{pr} & 7299.85 & 9134.81 & 6429.24 & 7725.36 \\
+		\gls{lm} * \gls{pr} & 7328.7625 & 9137.23 & 6504.85 & 7772.4\\
+		\gls{lm} + \gls{lda} + \gls{pr} & 1978.74 & 1179.21 & 994.91 & 1438.88 \\
+		\gls{lm} * \gls{lda} * \gls{pr} & 1892.12 & 1453.56 & 941.4 & 1850.43 \\
+		\gls{bm25} + \gls{lda} & 30.45 & 28.59 & 17.7 & 23.76 \\
+		\gls{bm25} * \gls{lda} & 163.76 & 557.13 & 297.48 & 1159.33 \\
+		\gls{bm25} + \gls{pr} & 19.69 & \textbf{7.88} & 1.79 & 1.43\\
+		\gls{bm25} * \gls{pr} & 23.96 & 8.45 & \textbf{1.61} & \textbf{1.24}\\
+		\gls{bm25} + \gls{lda} + \gls{pr} & 30.35 & 28.44 & 17.65 & 23.76\\
+		\gls{bm25} * \gls{lda} * \gls{pr} & 163.5 & 555.35 & 295.69 & 1158.08\\
+	\end{tabular}
+	
+	\label{tab:hit_results}
+\end{table}
+
 \subsection{Hyperparameters}\label{subsec:hyperparameters}
 Before setting up our experiment, we did some initial testing to find acceptable hyperparameter values for our \gls{lda} model.
 % runtime parameters
