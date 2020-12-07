@@ -12,14 +12,15 @@ Details of this phase are given in \autoref{sec:prepro}.
 After finishing this phase, we are left with $\sim$~32.000 articles, which will be used in the next step.
 
 \subsection*{Step 2: LDA}
-We train a \acrfull{lda} on the dataset to generate topics based on the content of articles within the dataset. 
+We train a \acrfull{lda} model on the dataset to generate topics based on the content of articles within the dataset. 
 We describe the investigation and selection of hyper parameters in \autoref{subsec:lda}. 
 After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\beta$.
 
 \subsection*{Step 3: Query Preprocessing}
 A search query, consisting of words, is stemmed and turned into a list of words.
-For each word, we generate a topic distribution based on $\beta$ or prediction of the model.
-We use this distribution, as a personalization vector for some of our models.
+For each word, we generate a topic distribution based on topic-word distribution $\beta$ if the model knows the words within the query.
+Otherwise, we let the model predict which topics the unknown words belong to.
+We use the final distribution, as a personalization vector for our PageRank combination models.
 \todo[inline]{Check that the description of how the personalization vector is made, is correct}
 The output of this step is a list of search queries.
 
