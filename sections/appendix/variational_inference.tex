@@ -20,7 +20,9 @@ Our goal is to fit the variational paramaters $\nu$ to estimate the hidden varia
 \end{figure}
 \footnotetext{http://www.cs.columbia.edu/~blei/talks/Blei\_VI\_tutorial.pdf}
 
-\subsubsection{LDA learning}
+\subsubsection*{LDA learning}
 We use an implementation of the LDA which is based on \cite{blei2010online}, where \citeauthor{blei2010online} present a way of training the LDA using \gls{vi}.
 They do this by using Stocastic \gls{vi}, which also outperforms batch learning.
-To do  
+In learning the \gls{lda}, we first sample the whole corpus, where we learn the structure of this sample and use this to change parameters in the global model.
+To do this, we need some form of verification of whether we are getting closer to the the true posterior distribution $p(z|\textbf{x})$.
+In \gls{lda}, we use perplexity as a score to check whether, we are moving towards $p(z|\textbf{x})$
