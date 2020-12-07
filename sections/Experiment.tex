@@ -27,6 +27,31 @@
 	\label{tab:results}
 \end{table*}
 
+\begin{table*}[h]
+	\centering
+	\caption{Results table}
+	\begin{tabular}{l|c|c|c|c}
+		Model / Pre@10 & T1 & T2 & T3 & T4 \\
+		\midrule
+		\gls{lm} & 0.126 & 0.118 & 0.116 & 0.069 \\
+		\gls{lda} & 0.02 & 0.103 & 0.13 & 0.203 \\
+		\gls{bm25} & 0.136 & 0.161 & 0.164 & 0.174 \\ 
+		\gls{tf-idf} & 0.16 & 0.125 & 0.2 & 0.148 \\
+		\gls{lm} + \gls{lda} & 0.02 & 0.101 & 0.136 & 0.196 \\
+		\gls{lm} * \gls{lda} & 0.02 & 0.085 & 0.109 & 0.161\\
+		\gls{lm} + \gls{pr} & 0.138 & 0.130 & 0.116 & 0.0763 \\
+		\gls{lm} * \gls{pr} & 0.148 & 0.128 & 0.116 & 0.0963 \\
+		\gls{lda} + \gls{pr} & 0.0188 & 0.103 & 0.141 & \textbf{0.211} \\
+		\gls{lda} * \gls{pr} & 0.0125 & 0.100 & 0.133 & 0.200 \\
+		\gls{bm25} + \gls{pr} & 0.135 & 0.163 & 0.165 & 0.173 \\
+		\gls{bm25} * \gls{pr} & \textbf{0.165} & \textbf{0.169} & \textbf{0.184} & 0.170 \\
+		\gls{bm25} + \gls{lda} + \gls{pr} & 0.135 & 0.163 & 0.165 & 0.173 \\
+		\gls{bm25} * \gls{lda} * \gls{pr} & \textbf{0.165} & \textbf{0.169} & \textbf{0.184} & 0.170 \\
+	\end{tabular}
+	
+	\label{tab:results_precision_at_10}
+\end{table*}
+
 \subsection{Hyperparameters}\label{subsec:hyperparameters}
 Before setting up our experiment, we did some initial testing to find acceptable hyperparameter values for our \gls{lda} model.
 % runtime parameters
