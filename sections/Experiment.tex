@@ -1,5 +1,11 @@
 \section{Experiments}\label{sec:experiment}
 
+For each baseline we evaluate the quality of it's \gls{ir} for both queries generated based on documents and queries generated based on topics.
+For topic queries, all documents with values higher than the mean value in the topic's vector in the document-topic matrix $\theta_t$ are considered correct retrivals.
+This also means that while document queries always only have one ground truth positive, topic queries can have several thousands (~1.000-10.000).
+This makes them had to compare on a single baseline, however it is still possible to compare these two results between multiple baselines.
+
+For evaluation metrics/measures we use \gls{map} and .
 
 \subsection{Results}\label{subsec:results}
 
