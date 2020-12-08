@@ -86,6 +86,16 @@ A new model is generated using these values and this model will be used for the 
 
 Results are shown on \autoref{tab:results}, \autoref{tab:results_precision_at_10}, and \autoref{tab:hit_results}.
 
+\todo[inline]{BM25 is the best document retrival algorithm. When combined with PR, LDA or both it also has a fair topic retrival performance, though this does come at the cost of some document retrival performance.}
+
+\todo[inline]{LM performed suprisingly bad. We need to figure out what we are going to say about that, or maybe move some of it to appendix if we want to avoid talking too much about it}
+
+\todo[inline]{PR does improve performance of most algorithms and is usually included in the best results! OVERALL: very sucessfull}
+
+\todo[inline]{LDA does get the best topic retrival scores when combined with PR (MAP T2-4). However we can see on p@n that it needs a lot of words to have good topN performance. In general LDA is more of an abstract algorithm, good at sorting all documents in a fair manner (MAP), but not that good at getting a perfect topN (p@n). However this combination of cause does have very bad document retrival, as it is usually a tradeoff. OVERALL: somewhat sucessfull}
+
+\todo[inline]{Overall BM25+PR, BM25*PR, (and to a lesser degree BM25+LDA+PR) seems to be pretty good at not sacrifising too much document retrival performance while improving topic retrival performance. MAP supports BM25+PR, while BM25+LDA+PR has better high context topic retrival as seen on P@N T4s, though it comes at a significant cost.}
+
 \begin{table*}[h]
 	\centering
 	\caption{Results table}
