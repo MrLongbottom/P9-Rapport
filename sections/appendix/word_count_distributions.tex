@@ -1,4 +1,17 @@
 \subsection{Distributions of the Corpus and Topics by Word Count}
+In this section we will look at the word count distributions for the corpus and the topics shown in \autoref{fig:30TopicWords}, and describe some observations.
+
+In \autoref{fig:corpus_wc_distribution} the word count distribution of the whole corpus can be seen.
+Here the word count can be seen of the x-axis, and the number of documents that have these word counts are on the y-axis.
+This gives an overall idea of the size of the documents after preprocessing.
+Just by looking at the distribution, it is clear that there are a lot of documents of smaller sizes.
+There is a clear spike from word counts of around 20-100, and this drops steadily until around a word count of 1000, where only few documents appear afterwards.
+Statistics of this distribution can also be seen on the right side of the figure.
+This tells us that, on average, the documents have a size of 256, and a median relatively close of 190.
+It also confirms that the distribution is mainly in the range from 24-1182, which can be seen from the 1st and 99th percentile.
+This is a good sign, since part of our preprocessing was meant to remove the empty and very short documents, to still have enough context to find topics.
+
+\autoref{fig:topic_wc_distribution}
 
 \begin{figure*}[h]
 	\centering
