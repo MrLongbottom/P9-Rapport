@@ -24,8 +24,9 @@ For topic queries, all documents with values higher than the mean value in the t
 This also means that while document queries always only have one ground truth positive, topic queries can have several thousands (~1.000-10.000).
 This makes them hard to compare on a single baseline, however it is still possible to compare these two results between multiple baselines.
 
-For evaluation metrics/measures we use \gls{map} and $p @ n$.
+For evaluation metrics/measures we use \gls{map}. We also use $p @ n$ for the topic queries. However since document queries only contain one ground truth positive, $p @ n$ doesn't make much sense to show. Instead we show average ranking of the relevant document for document queries.
 Each of these metrics are shown as the mean value for 80 queries of length 1 to 4, making a total of 320 queries.
+Document queries are all based on different documents. Topic queries can be based on the same topic, but will have high variance in the actual words used.
 
 Specifially we hope to see whether \gls{lda} is able to improve the topic \gls{ir} when combined with other baselines and whether \gls{pr} algorithms operating on a graph build based on topic similarity is able to improve any results when combined with other baselines.
 
