@@ -39,30 +39,61 @@ The results of the experiment are shown on \autoref{tab:results}.
 	\begin{tabular}{l|c|c|c|c|c|c|c|c}
 		Model / \gls{map} & D1 & D2 & D3 & D4 & T1 & T2 & T3 & T4 \\
 		\midrule
-		\gls{lm} & 0.198 & 0.152 & 0.291 & 0.260 & 0.126 & 0.130 & 0.128 & 0.129 \\  
 		\gls{lda} & 0.00457 & 0.00527 & 0.0429 & 0.0538 & 0.155 & 0.186 & 0.168 & 0.178 \\
-		\gls{bm25} & \textbf{0.270} & 0.656 & 0.866 & \textbf{0.908} & 0.155 & 0.158 & 0.155 & 0.161 \\
+		\gls{lm} & 0.198 & 0.152 & 0.291 & 0.260 & 0.126 & 0.130 & 0.128 & 0.129 \\
+		\gls{bm25} & 0.270 & 0.656 & 0.866 & \textbf{0.908} & 0.155 & 0.158 & 0.155 & 0.161 \\
 		\gls{tf-idf} & 0.210 & 0.621 & 0.799 & 0.897 & 0.155 & 0.157 & 0.155 & 0.161 \\
+		\gls{lda} + \gls{pr} & 0.00458 & 0.00526 & 0.0429 & 0.0538 & 0.162 & \textbf{0.195} & \textbf{0.177} & \textbf{0.187} \\
+		\gls{lda} * \gls{pr} & 0.00781 & 0.00569 & 0.0410 & 0.0537 & 0.156 & 0.186 & 0.168 & 0.179 \\
 		\gls{lm} + \gls{lda} & 0.0419 & 0.0214 & 0.0602 & 0.120 & 0.147 & 0.163 & 0.145 & 0.146 \\
 		\gls{lm} * \gls{lda} & 0.0931 & 0.0462 & 0.175 & 0.177 & 0.150 & 0.175 & 0.155 & 0.166 \\
 		\gls{lm} + \gls{pr} & 0.170 & 0.153 & 0.283 & 0.256 & 0.130 & 0.132 & 0.130 & 0.131 \\
 		\gls{lm} * \gls{pr} & 0.163 & 0.138 & 0.259 & 0.236 & 0.130 & 0.133 & 0.129 & 0.130 \\
-		\gls{lda} + \gls{pr} & 0.00458 & 0.00526 & 0.0429 & 0.0538 & 0.162 & \textbf{0.195} & \textbf{0.177} & \textbf{0.187} \\
-		\gls{lda} * \gls{pr} & 0.00781 & 0.00569 & 0.0410 & 0.0537 & 0.156 & 0.186 & 0.168 & 0.179 \\
 		\gls{bm25} + \gls{pr} & 0.269 & 0.656 & 0.866 & 0.902 & \textbf{0.192} & 0.193 & 0.175 & 0.183 \\
 		\gls{bm25} * \gls{pr} & 0.267 & \textbf{0.663} & \textbf{0.884} & 0.904 & 0.155 & 0.159 & 0.155 & 0.161 \\
-		\gls{bm25} + \gls{lda} + \gls{pr} & 0.269 & 0.656 & 0.866 & 0.902 & \textbf{0.192} & 0.193 & 0.175 & 0.183 \\
-		\gls{bm25} * \gls{lda} * \gls{pr} & 0.267 & \textbf{0.663} & \textbf{0.884} & 0.904 & 0.155 & 0.159 & 0.155 & 0.161 \\
+		\gls{bm25} + \gls{lda} + \gls{pr} & \textbf{0.276} & 0.525 & 0.589 & 0.366 & 0.162 & 0.192 & 0.176 & 0.184 \\
+		\gls{bm25} * \gls{lda} * \gls{pr} & 0.150 & 0.266 & 0.446 & 0.381 & 0.155 & 0.159 & 0.156 & 0.163 \\
 	\end{tabular}
 	
 	\label{tab:results}
 \end{table*}
 
+
+\begin{table*}[h]
+	\centering
+	\caption{Results table}
+	\begin{tabular}{l|c|c|c|c||c|c|c|c}
+		Model / P@10 || P@100 & T1 & T2 & T3 & T4 & T1 & T2 & T3 & T4\\
+		\midrule
+		\gls{lda} & 0.02 & 0.103 & 0.13 & 0.203 & 0.062 & 0.131 & 0.164 & 0.191 \\
+		\gls{lm} & 0.126 & 0.118 & 0.116 & 0.069 & 0.090 & 0.092 & 0.087 & 0.093\\
+		\gls{bm25} & 0.136 & 0.161 & 0.164 & 0.174 & 0.142 & 0.165 & 0.175 & 0.151\\ 
+		\gls{tf-idf} & 0.16 & 0.125 & 0.2 & 0.148 & 0.163 & 0.169 & \textbf{0.188} & 0.170 \\
+		\gls{lda} + \gls{pr} & 0.0188 & 0.103 & 0.141 & \textbf{0.211} & 0.062 & 0.131 & 0.175 & \textbf{0.198} \\
+		\gls{lda} * \gls{pr} & 0.0125 & 0.100 & 0.133 & 0.200 & 0.062 & 0.132 & 0.167 & 0.192 \\
+		\gls{lm} + \gls{lda} & 0.02 & 0.101 & 0.136 & 0.196 & 0.060 & 0.129 & 0.161 & 0.188  \\
+		\gls{lm} * \gls{lda} & 0.02 & 0.085 & 0.109 & 0.161 & 0.055 & 0.114 & 0.129 & 0.152 \\
+		\gls{lm} + \gls{pr} & 0.138 & 0.130 & 0.116 & 0.0763 & 0.110 & 0.108 & 0.097 & 0.098 \\
+		\gls{lm} * \gls{pr} & 0.148 & 0.128 & 0.116 & 0.0963 & 0.110 & 0.112 & 0.101 & 0.101 \\
+		\gls{lm} + \gls{lda} + \gls{pr} & 0.019 & 0.101 & 0.134 & 0.195 & 0.061 & 0.129 & 0.163 & 0.187\\
+		\gls{lm} * \gls{lda} * \gls{pr} & 0.026 & 0.090 & 0.110 & 0.161 & 0.059 & 0.115 & 0.130 & 0.152\\
+		\gls{bm25} + \gls{pr} & 0.135 & 0.163 & 0.165 & 0.173 & \textbf{0.155} & 0.165 & 0.176 & 0.151 \\
+		\gls{bm25} * \gls{pr} & \textbf{0.165} & \textbf{0.169} & \textbf{0.184} & 0.170 & 0.148 & \textbf{0.177} & 0.186 & 0.161\\
+		\gls{bm25} + \gls{lda} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.168 & 0.198 \\
+		\gls{bm25} * \gls{lda} & 0.09 & 0.139 & 0.175& 0.206 & 0.134 & 0.170 & 0.174 & 0.187 \\
+		\gls{bm25} + \gls{lda} + \gls{pr} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.17 & \textbf{0.198}\\
+		\gls{bm25} * \gls{lda} * \gls{pr} & 0.095 & 0.141 & 0.176 & 0.206 & 0.135 & 0.174 & 0.174 & 0.188\\
+	\end{tabular}
+	
+	\label{tab:results_precision_at_10}
+\end{table*}
+
+
 \begin{table}[h]
 	\centering
 	\caption{Average rank of relevant document for document-queries.}
 	\begin{tabular}{l|c|c|c|c}
-		Model / map & D1 & D2 & D3 & D4 \\
+		Model / Avg. rank & D1 & D2 & D3 & D4 \\
 		\midrule
 		\gls{lda} & 2287.93 & 1599.95 & 1241.18 & 1926.78 \\
 		\gls{lm} & 7120.04 & 9082.9 & 6501.85 & 7782.65 \\
@@ -86,6 +117,7 @@ The results of the experiment are shown on \autoref{tab:results}.
 	
 	\label{tab:hit_results}
 \end{table}
+
 
 \subsection{Hyperparameters}\label{subsec:hyperparameters}
 Before setting up our experiment, we did some initial testing to find acceptable hyperparameter values for our \gls{lda} model.
