@@ -86,19 +86,20 @@ A new model is generated using these values and this model will be used for the 
 
 Results are shown on \autoref{tab:results} showing the \gls{map} of each model, \autoref{tab:results_precision_at_10} showing the precision@10 and precision@100 of each model for topic queries, and \autoref{tab:hit_results} showing the average rank of each model for document queries.
 
-\autoref{tab:results} and \autoref{tab:hit_results} shows that \gls{bm25} is clearly the best model for document query retrieval, with all the best results using \gls{bm25}, sometimes combined with \gls{pr} and/or \gls{lda}. However \gls{bm25} does not fair well with topic query retrieval, as shown on \autoref{tab:results} and \autoref{tab:results_precision_at_10}.
+\autoref{tab:results} and \autoref{tab:hit_results} show that \gls{bm25} is clearly the best model for document query retrieval, with all the best results using \gls{bm25}, sometimes combined with \gls{pr} and/or \gls{lda}. 
+However \gls{bm25} does not fare well with topic query retrieval, as shown in \autoref{tab:results} and \autoref{tab:results_precision_at_10}.
 
-Combinations of \gls{tf-idf} are omitted from the results as the initial results of \gls{tf-idf} was worse than \gls{bm25} and the two algorithms serve the same purpose for our experiment.
+Combinations of \gls{tf-idf} are omitted from the results as the initial results of \gls{tf-idf} were worse than \gls{bm25} and the two algorithms serve the same purpose for our experiment.
 \gls{lm} performed surprisingly bad compared to the results of \cite{yang2009topic}.
 \todo[inline]{We need to figure out what we are going to say about lm's bad performance, or maybe move some of it to appendix if we want to avoid talking too much about it}
 
-\gls{pr} using our adjacency-matrix successfully improved upon the results of other models in many cases.
-This is worth noting as our adjacency matrix was constructed based on similarity of the documents' topic-distributions, rather than any relation embedded in the documents themselves, such as articles referencing each other as with \cite{yang2009topic}.
+\gls{pr} using our adjacency-matrix successfully improved the results of other models in many cases.
+This is worth noting as our adjacency matrix was constructed based on the similarity of the documents' topic-distributions, rather than any relation embedded in the documents themselves, such as articles referencing each other as in \cite{yang2009topic}.
 
 \gls{lda} gets good topic query retrieval results when combined with \gls{pr}, as seen on \autoref{tab:results}.
-This comes at the cost of very bad query retrieval results.
-However \autoref{tab:results_precision_at_10} shows that \gls{lda} only gets the best precision@10 and precision@100 with queries of 4 words.
-This means that while it is well suited for ranking a large number of documents fairly well (as with \gls{map}), it is not the best at finding a relatively small number of relevant documents with certainty.
+This comes at the cost of very bad document query retrieval results.
+However, \autoref{tab:results_precision_at_10} shows that \gls{lda} only gets the best precision@10 and precision@100 with queries of 4 words.
+This means that while it is well suited for ranking a large number of documents fairly well (as with \gls{map}), it is not finding a relatively small number of relevant documents with great certainty.
 It also points towards \gls{lda} being more reliant on a larger amount of context than many of the other models, and could therefore likely benefit greatly from query expansion methods.
 However for this experiment \gls{lda} serves mostly to improve the topic retrieval performance of other models it is combined with, at the cost of reducing their document retrieval performance.
 
