@@ -101,11 +101,11 @@ This comes at the cost of very bad document query retrieval results.
 However, \autoref{tab:results_precision_at_10} shows that \gls{lda} only gets the best precision@10 and precision@100 with queries of 4 words.
 This means that while it is well suited for ranking a large number of documents fairly well (as with \gls{map}), it is not finding a relatively small number of relevant documents with great certainty.
 It also points towards \gls{lda} being more reliant on a larger amount of context than many of the other models, and could therefore likely benefit greatly from query expansion methods.
-However for this experiment \gls{lda} serves mostly to improve the topic retrieval performance of other models it is combined with, at the cost of reducing their document retrieval performance.
+However, for this experiment \gls{lda}'s purpose is mostly to improve the topic retrieval performance of other models it is combined with, at the cost of reducing their document retrieval performance.
 
-Overall the most successful combinations of baselines for combining document query retrieval and topic query retrieval seems to be $\gls{bm25}+\gls{pr}$ and $\gls{bm25}*\gls{pr}$.
+Overall, the most successful combinations of baselines for combining document query retrieval and topic query retrieval seems to be $\gls{bm25}+\gls{pr}$ and $\gls{bm25}*\gls{pr}$.
 These combinations get good results in both categories, even managing to outperform the other models in topic query retrieval as measured by precision@10 in \autoref{tab:results_precision_at_10}.
-If dealing with larger queries, the combination $\gls{bm25}+\gls{lda}+\gls{pr}$ can also be considered as it improves further upon the topic query retrieval, however this does come at an extra cost of decreasing the document query retrieval performance further.
+If dealing with larger queries, the combination $\gls{bm25}+\gls{lda}+\gls{pr}$ can also be considered as it improves further upon the topic query retrieval; however, this comes at the cost of decreasing the document query retrieval performance further.
 
 \begin{table*}[h]
 	\centering
