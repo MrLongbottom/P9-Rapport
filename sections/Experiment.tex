@@ -24,8 +24,8 @@ This also means that while document queries always only have one ground truth po
 This makes it hard to compare on a single baseline.
 However, it is still possible to compare these two results between multiple baselines.
 
-For evaluation metrics/measures we use \gls{map}. 
-We also use $p @ n$ for the topic queries. \todo{describe what it is and how it is calculated}
+We use \gls{map} to evaluate all baselines. 
+We also use precision@10 and precision@100 for the topic queries. \todo{describe what it is and how it is calculated}
 However since document queries only contain one ground truth positive, $p @ n$ doesn't make much sense to show. 
 Instead, we show the average ranking of the relevant document for document queries.
 Each of these metrics are shown as the mean value for 80 queries of length 1 to 4, making a total of 320 queries ($\sim 1\%$ of the entire corpus).
