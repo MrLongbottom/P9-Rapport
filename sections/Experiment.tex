@@ -88,7 +88,28 @@ A new model is generated using these values and this model will be used for the 
 
 \subsection{Results}\label{subsec:results}
 
-Results are shown in \autoref{tab:results}, \autoref{tab:results_precision_at_10}, and \autoref{tab:hit_results}.
+Results are shown on \autoref{tab:results} showing the \gls{map} of each model, \autoref{tab:results_precision_at_10} showing the precision@10 and precision@100 of each model for topic queries, and \autoref{tab:hit_results} showing the average rank of each model for document queries.
+
+\autoref{tab:results} and \autoref{tab:hit_results} show that \gls{bm25} is clearly the best model for document query retrieval, with all the best results using \gls{bm25}, sometimes combined with \gls{pr} and/or \gls{lda}. 
+However \gls{bm25} does not fare well with topic query retrieval, as shown in \autoref{tab:results} and \autoref{tab:results_precision_at_10}.
+
+Combinations of \gls{tf-idf} are omitted from the results as the initial results of \gls{tf-idf} were worse than \gls{bm25} and the two algorithms serve the same purpose for our experiment.
+\gls{lm} performed significantly worse than the results of \cite{yang2009topic}.
+\todo[inline]{We need to figure out what we are going to say about lm's bad performance, or maybe move some of it to appendix if we want to avoid talking too much about it}
+
+\gls{pr} using our adjacency-matrix successfully improved the results of other models in many cases.
+This is worth noting as our adjacency matrix was constructed based on the similarity of the documents' topic-distributions, rather than any relation embedded in the documents themselves, such as articles referencing each other as in \cite{yang2009topic}.
+
+\gls{lda} gets good topic query retrieval results when combined with \gls{pr}, as seen on \autoref{tab:results}.
+This comes at the cost of very bad document query retrieval results.
+However, \autoref{tab:results_precision_at_10} shows that \gls{lda} only gets the best precision@10 and precision@100 with queries of 4 words.
+This means that while it is well suited for ranking a large number of documents fairly well (as with \gls{map}), it is not finding a relatively small number of relevant documents with great certainty.
+It also points towards \gls{lda} being more reliant on a larger amount of context than many of the other models, and could therefore likely benefit greatly from query expansion methods.
+However, for this experiment \gls{lda}'s purpose is mostly to improve the topic retrieval performance of other models it is combined with, at the cost of reducing their document retrieval performance.
+
+Overall, the most successful combinations of baselines for combining document query retrieval and topic query retrieval seems to be $\gls{bm25}+\gls{pr}$ and $\gls{bm25}*\gls{pr}$.
+These combinations get good results in both categories, even managing to outperform the other models in topic query retrieval as measured by precision@10 in \autoref{tab:results_precision_at_10}.
+If dealing with larger queries, the combination $\gls{bm25}+\gls{lda}+\gls{pr}$ can also be considered as it improves further upon the topic query retrieval; however, this comes at the cost of decreasing the document query retrieval performance further.
 
 \begin{table*}[h]
 	\centering
@@ -108,7 +129,7 @@ Results are shown in \autoref{tab:results}, \autoref{tab:results_precision_at_10
 		\gls{lm} * \gls{pr} & 0.163 & 0.138 & 0.259 & 0.236 & 0.130 & 0.133 & 0.129 & 0.130 \\
 		\gls{lm} + \gls{lda} + \gls{pr} & 0.0499 & 0.0214 & 0.0601 & 0.120 & 0.148 & 0.164 & 0.146 & 0.147 \\
 		\gls{lm} * \gls{lda} * \gls{pr} & 0.0911 & 0.0459  & 0.157 & 0.170 & 0.150 & 0.175 & 0.155 & 0.166 \\
-		\gls{bm25} + \gls{lda} & 0.276 & 0.524 & 0.588 & 0.365 & 0.155 & 0.184 & 0.168 & 0.176 \\
+		\gls{bm25} + \gls{lda} & \textbf{0.276} & 0.524 & 0.588 & 0.365 & 0.155 & 0.184 & 0.168 & 0.176 \\
 		\gls{bm25} * \gls{lda} & 0.139 & 0.270 & 0.412 & 0.365 & 0.154 & 0.159 & 0.156 & 0.162 \\
 		\gls{bm25} + \gls{pr} & 0.269 & 0.656 & 0.866 & 0.902 & \textbf{0.192} & 0.193 & 0.175 & 0.183 \\
 		\gls{bm25} * \gls{pr} & 0.267 & \textbf{0.663} & \textbf{0.884} & 0.904 & 0.155 & 0.159 & 0.155 & 0.161 \\
@@ -138,10 +159,10 @@ Results are shown in \autoref{tab:results}, \autoref{tab:results_precision_at_10
 		\gls{lm} * \gls{pr} & 0.148 & 0.128 & 0.116 & 0.0963 & 0.110 & 0.112 & 0.101 & 0.101 \\
 		\gls{lm} + \gls{lda} + \gls{pr} & 0.019 & 0.101 & 0.134 & 0.195 & 0.061 & 0.129 & 0.163 & 0.187\\
 		\gls{lm} * \gls{lda} * \gls{pr} & 0.026 & 0.090 & 0.110 & 0.161 & 0.059 & 0.115 & 0.130 & 0.152\\
+		\gls{bm25} + \gls{lda} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.168 & \textbf{0.198} \\
+		\gls{bm25} * \gls{lda} & 0.09 & 0.139 & 0.175& 0.206 & 0.134 & 0.170 & 0.174 & 0.187 \\
 		\gls{bm25} + \gls{pr} & 0.135 & 0.163 & 0.165 & 0.173 & \textbf{0.155} & 0.165 & 0.176 & 0.151 \\
 		\gls{bm25} * \gls{pr} & \textbf{0.165} & \textbf{0.169} & \textbf{0.184} & 0.170 & 0.148 & \textbf{0.177} & 0.186 & 0.161\\
-		\gls{bm25} + \gls{lda} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.168 & 0.198 \\
-		\gls{bm25} * \gls{lda} & 0.09 & 0.139 & 0.175& 0.206 & 0.134 & 0.170 & 0.174 & 0.187 \\
 		\gls{bm25} + \gls{lda} + \gls{pr} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.17 & \textbf{0.198}\\
 		\gls{bm25} * \gls{lda} * \gls{pr} & 0.095 & 0.141 & 0.176 & 0.206 & 0.135 & 0.174 & 0.174 & 0.188\\
 	\end{tabular}
