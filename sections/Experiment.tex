@@ -21,7 +21,8 @@ However, in this experiment we will not only test the ability to retrieve a spec
 For each baseline, we evaluate the quality of its \gls{ir} for both queries generated based on documents (document queries) and queries generated based on topics (topic queries).
 For topic queries, all documents with values higher than the mean of the topic's vector in the document-topic matrix $\theta_t$ are considered correct retrievals.
 This also means that while document queries always only have one ground truth positive, topic queries can have several thousand (~1.000-10.000).
-This makes them hard to compare on a single baseline, however it is still possible to compare these two results between multiple baselines.
+This makes it hard to compare on a single baseline.
+However, it is still possible to compare these two results between multiple baselines.
 
 For evaluation metrics/measures we use \gls{map}. 
 We also use $p @ n$ for the topic queries. \todo{describe what it is and how it is calculated}
