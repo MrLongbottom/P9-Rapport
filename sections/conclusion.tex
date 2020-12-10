@@ -1,8 +1,8 @@
 \section{Conclusion}\label{sec:conclusion}
-In this paper we explored the possibility of improving news article search using different combinations of models.
-Here the focus has been on exploring whether using the \gls{lda} topic model could improve the performance of the article retrieval.
+We have explored the possibility of improving news article search using various model combinations.
+The focus has been on exploring whether using the \gls{lda} topic model could improve the performance of the article retrieval.
 
-Now we can answer the following questions from the introduction:
+We can answer our questions from the introduction:
 \begin{quote}
 	\emph{How can information retrieval techniques be evaluated based on search queries?}
 	\begin{itemize}
@@ -18,8 +18,10 @@ Now we can answer the following questions from the introduction:
 
 For the first question, queries can be generated in different ways depending on what the purpose of the evaluation is.
 We generate two types of queries based on either important words from a specific document or a specific topic.
-These are evaluated, respectively, on \acrlong{map} and P@n, to favor both the specificity of finding a specific document and the more abstract idea of finding documents related to a topic.
+These are evaluated on \acrlong{map} and P@n, respectively, to favor both the specificity of finding a specific document and the more abstract idea of finding documents related to a topic.
 The results from \autoref{tab:results} and \autoref{tab:results_precision_at_10} indicate that, when searching for documents in a topic, combinations using \gls{lda} can perform better than \gls{bm25} when longer queries are used.
+However, this does come at the cost of decreased performance in document query retrieval.
 
 For the second question, we explored the possibility of creating the adjacency matrix for \gls{pr} by using the similarity between \gls{lda} topics, generated for the articles.
+This is an alternative to explicit relations between documents, such as references between articles.
 From the results in \autoref{tab:results}, \autoref{tab:results_precision_at_10}, and \autoref{tab:hit_results}, this would seem to have been highly effective, since most best performing models include \gls{pr}.
