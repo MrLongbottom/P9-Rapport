@@ -1,13 +1,13 @@
 \subsubsection{Query Expansion Results}
 
 Based on the results from \autoref{tab:results_precision_at_10}, we wanted to test whether \gls{lda} would have better performance if given more context.
-To this end we generated extended document and topic queries.
+To test this, we generated extended document and topic queries, as described in \todo{ref expansion section}.
 All queries have been extended to be 10 times larger. 
 So a topic query which originally had 1 word, will be extended to approximately 10 words.
 
 \autoref{tab:expansion_results} shows precision@10 and precision@100 for selected baselines using expanded queries.
 As with \autoref{tab:results_precision_at_10}, $\gls{bm25} * \gls{pr}$ has better results in the queries containing fewer words.
-With longer queries, combinations containing \gls{lda} start to take over in \autoref{tab:expansion_results} from T3-T4 for precision@10 and from T2-T4 for precision@100 .
+With longer queries, combinations containing \gls{lda} become among the best, in \autoref{tab:expansion_results}, from T3-T4 for precision@10 and from T2-T4 for precision@100 .
 Compared to \autoref{tab:results_precision_at_10}, where \gls{lda} is only included in a best performing combination from T4.
 
 Better performance for \gls{lda} gives more viability to combinations using \gls{lda} as a means to get better topic query retrieval results.
