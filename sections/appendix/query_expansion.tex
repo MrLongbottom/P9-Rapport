@@ -2,7 +2,8 @@
 
 Based on the results from \autoref{tab:results_precision_at_10}, we wanted to test whether \gls{lda} would have better performance if given more context.
 To this end we generated extended document and topic queries.
-All queries have been extended to be 10 times larger. So a topic query which originally had 1 word, will be extended to approximately 10 words.
+All queries have been extended to be 10 times larger. 
+So a topic query which originally had 1 word, will be extended to approximately 10 words.
 
 \autoref{tab:expansion_results} shows precision@10 and precision@100 for selected baselines using expanded queries.
 As with \autoref{tab:results_precision_at_10}, $\gls{bm25} * \gls{pr}$ has better results in the queries containing fewer words.
