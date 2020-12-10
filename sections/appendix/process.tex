@@ -14,7 +14,7 @@
 
 Our initial idea with the project was to combine \gls{lda} with a PageRank algorithm to see if this could improve the information retrieval results of \gls{lda}.
 
-We began by implementing some initial preprocessing methods and using an \gls{lda} implementation by gensim\todo{ref}.
+We began by implementing some initial preprocessing methods and using an \gls{lda} implementation by gensim\footnote{https://radimrehurek.com/gensim/models/ldamodel.html}.
 
 After this, we only needed to combine \gls{lda} with a PageRank implementation. 
 But to do so, we first needed to construct an adjacency matrix. 
@@ -26,9 +26,10 @@ This ended up causing more trouble than it was worth, as we now had to deal with
 We also tried many different ways to construct the adjacency matrix more efficiently, described further in \autoref{app:adj_matrix}.
 
 However even after we managed to produce an adjacency matrix our results proved to be very bad.
-From here we began searching for more similar papers, where we managed to find two: \todo{refs}.
+From here we began searching for more similar papers, where we found: \todo{refs}.
 We focused particularly on \todo{ref}, due to a strong similarity between their project and our ideas.
 We used their methods to improve upon several parts of our methods, and we changed from building a single framework, to testing and comparing multiple different methods. 
 However, our results were still bad.
 
-It was by then that we began testing our lda model and found out that it was unable to converge using only a single pass through the corpus. We then began testing hyperparameters for the implementation of lda, before once again finding hyperparameters for our lda dataset.
+It was by then that we began testing our \gls{lda} model and found out that it was unable to converge using only a single pass through the corpus. 
+We then began testing hyperparameters for the implementation of \gls{lda}, before once again finding hyperparameters for our \gls{lda}.
