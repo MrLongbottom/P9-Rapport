@@ -1,1 +1,8 @@
-Abstract
+We investigate whether using a topic model can improve \gls{ir} methods.
+We employ a probabilistic topic model, specifically \gls{lda}, to automatically extract topics from Danish news articles.
+%How can \gls{pr} be used on a dataset without explicit edges?
+We use the topic distribution, from the \gls{lda}, to construct the adjacency matrix edge by measuring the Jensen-Shannon distance between each article topic distribution, since references between news articles do not exist.
+We use \gls{lda}, \gls{tf-idf}, \gls{bm25}, \gls{lm} and \gls{pr} as our baselines for testing \gls{ir} performance.
+We also combine these in various ways to investigate the individual performance of each method.
+We evaluate the \gls{ir} methods by generating document and topic queries which are based on the topic distribution from the \gls{lda}.
+\gls{bm25} is the best performing baseline, we have, and we improve \gls{bm25} by combining it with \gls{pr}.
