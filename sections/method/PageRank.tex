@@ -1,4 +1,14 @@
 \section{PageRank}\label{sec:pagerank}
+\gls{pr} is a recursive ranking algorithm based on the random surfer model, where a number of surfers would take $s$ amount of steps across a graph. 
+The number of surfers standing on a given node would be the resulting score for that node.
+The \gls{pr} algorithm is defined as follows(expressed on matrix form)
+$$ \overrightarrow{\lambda} = \mu \widetilde{M}^T \overrightarrow{\lambda} + \frac{(1-\mu)}{|D|} \overrightarrow{e} $$  
+where $\overrightarrow{\lambda}$ is a vector consisting of scores for each document. 
+$\mu$ is the dampening factor which is set to $0.85$.
+$\widetilde{M}^T$ is the adjacency matrix transposed.
+$|D|$ is the number of documents.
+$\overrightarrow{e}$ is column vector with all elements equalling 1.
+
 We construct a graph over our documents, where edges between documents $d_i$ and $d_j$ are based on the similarity between them $sim(d_i, d_j)$.
 
 This allows us to use PageRank on the graph to search for similar documents.
