@@ -1,4 +1,4 @@
-\section{Search Query}\label{sec:search_query}
+\section{Search Query}\label{sec:query}
 %One of the challenges of preprocessing queries is that they usually contain very few words.
 %Therefore, there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
 %Our method converts each word in the query into a topic distribution, making the query have the same format as a document. \todo[inline]{Detaljer specifikt hvordan denne distribution laves, når det er færdigimplementeret.}
@@ -13,18 +13,18 @@ We have identified three steps when working with a search query:
 	\item Handling
 \end{itemize}
 We will describe each step in the following sections.
-\subsection{Query Generation}
+\subsection{Query Generation}\label{subsec:query_gen}
 We use two techniques for generating the queries used for evaluating our search algorithm, namely document queries and topic queries.
 The idea behind these two methods is to evaluate the specificity and generality of the \gls{lda} model, respectively.
 The construction of the queries is described in the following.
 
-\subsubsection{Document query}
+\subsubsection{Document query}\label{subsec:query_gen_doc}
 To construct a document query, we randomly select a document from the corpus and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
 From this selection, we apply \gls{tf-idf} on the selected document to find the most informative words.
 Our query is then the $ql$ highest ranked words within the given document.
 The goal is to check whether or not the model is able to find a specific document based on a search query generated from that document.
 
-\subsubsection{Topic query} 
+\subsubsection{Topic query}\label{subsec:query_gen_top}
 The topic query is slightly different in comparison to document query in that it focuses on the topics rather than a specific document.
 To construct a topic query, firstly we select a random topic $t$ and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
 We then sample $ql$ documents based on the document-topic distribution $\theta_t$ provided by the \gls{lda} model.
