@@ -1,1 +1,8 @@
-\section{Future Work}\label{sec:future_work}
+\subsection{Future Work}\label{sec:future_work}
+
+The method, we have presented, can be expanded in different ways. 
+An interesting approach, could be to investigate other versions of \gls{lda}, such as the Dynamic Topic Model\cite{blei2006dynamic}, which is good at finding specific topics over time, which might improve the retrieval of old and important articles within a large dataset.
+There is also the approach of \cite{blei2007correlated}, where the correlation of topics is taken into account, which might yield improved information retrieval performance.
+
+Another approach to our method is to replace standard \gls{pr} with a more sophisticated one, like the Topical PageRank\cite{yang2009topic}. 
+E.g. the transition probability within the adjacency matrix can be changed to focus on the correlation between topics.
