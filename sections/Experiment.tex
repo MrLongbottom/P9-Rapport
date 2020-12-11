@@ -2,10 +2,10 @@
 
 The goal of our experiment is to test two different aspects of quality for combinations of \gls{ir} methods.
 We test the \gls{ir} methods' ability to find a specific document based a on query.
-To do this we generate queries based on documents in the corpus as described in \autoref{subsec:query_gen_doc}, and then test the \gls{ir} methods' ability to find the original document that each query was based upon.
+To do this we generate queries based on documents in the corpus, as described in \autoref{subsec:query_gen_doc}, and then test the \gls{ir} methods' ability to find the original document that each query was based upon.
 
 We also test the \gls{ir} methods' ability understand the queries on a more abstract level and find documents are within the same topic as the query.
-To do this we generate queries based on topics from our \gls{lda} as described in \autoref{subsec:query_gen_top}, and test the \gls{ir} methods' ability to find all documents that are relevant to the original topic that the query was based upon.
+To do this, we generate queries based on topics from our \gls{lda}, as described in \autoref{subsec:query_gen_top}, and test the \gls{ir} methods' ability to find all documents that are relevant to the original topic that the query was based upon.
 
 We test combinations of the following \gls{ir} methods:
 \begin{itemize}
@@ -16,11 +16,11 @@ We test combinations of the following \gls{ir} methods:
 	\item \acrfull{pr}
 \end{itemize}
 
-\gls{lm} was described in \autoref{sec:lm} based on implementation by \citeauthor{yang2009topic}\cite{yang2009topic}.
+\gls{lm} was described in \autoref{sec:lm} based on the implementation by \citeauthor{yang2009topic}\cite{yang2009topic}.
 \gls{pr} was described in \autoref{sec:pagerank}.
 
 \citeauthor{yang2009topic}\cite{yang2009topic} defines \autoref{eq:lda-ir} for using \gls{lda} as an \gls{ir} method. 
-They do this based on previous application of \gls{lda} to \gls{ir}\cite{lda-ir}.
+They do this based on a previous application of \gls{lda} for \gls{ir}\cite{lda-ir}.
 
 \begin{equation}\label{eq:lda-ir}
 	P(w|d, \theta, \beta) = \sum_{z \in T} P(w|z,\beta_z) P(z|d,\theta_d)
