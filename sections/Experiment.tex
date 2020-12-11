@@ -1,17 +1,36 @@
 \section{Experiments}\label{sec:experiment}
 
-The goal of our experiment is to test the quality of various \gls{ir} models and combinations of \gls{ir} models.
+The goal of our experiment is to test two different aspects of quality for combinations of \gls{ir} methods.
+We test the \gls{ir} methods' ability to find a specific document based a on query.
+To do this we generate queries based on documents in the corpus as described in \autoref{subsec:query_gen_doc}, and then test the \gls{ir} methods' ability to find the original document that each query was based upon.
 
-We test various combinations of the following baselines:
+We also test the \gls{ir} methods' ability understand the queries on a more abstract level and find documents are within the same topic as the query.
+To do this we generate queries based on topics from our \gls{lda} as described in \autoref{subsec:query_gen_top}, and test the \gls{ir} methods' ability to find all documents that are relevant to the original topic that the query was based upon.
+
+We test combinations of the following \gls{ir} methods:
 \begin{itemize}
-	\item \gls{lm}
-	\item \gls{lda}
-	\item \gls{bm25}
-	\item \gls{tf-idf}
-	\item \gls{pr}
+	\item \acrfull{lm}
+	\item \gls{lda}-\gls{ir}
+	\item \acrfull{bm25}
+	\item \acrfull{tf-idf}
+	\item \acrfull{pr}
 \end{itemize}
-\todo[inline]{clarify the difference between lda and this ir method based on lda. Maybe calling it reverse lda or something?}
-\todo[inline]{add a small description of each baseline, especially the ones not described earlier in the paper}
+
+\gls{lm} was described in \autoref{sec:lm} based on implementation by \citeauthor{yang2009topic}\cite{yang2009topic}.
+\gls{pr} was described in \autoref{sec:pagerank}.
+
+\citeauthor{yang2009topic}\cite{yang2009topic} defines \autoref{eq:lda-ir} for using \gls{lda} as an \gls{ir} method. They do this based on previous application of \gls{lda} to \gls{ir}\cite{lda-ir}.
+
+\begin{equation}\label{eq:lda-ir}
+	P(w|d, \theta, \beta) = \sum_{z \in T} P(w|z,\beta_z) P(z|d,\theta_d)
+\end{equation}
+
+The idea behind this equation is to reverse-engineer the generative process \gls{lda} uses to create the topic model, to predict the probability of a word appearing in a document given the document-topic distribution matrix $\theta$ and the topic-word distribution matrix $\beta$.
+We use the term \gls{lda}-\gls{ir}, to refer to information retrieval made using \autoref{eq:lda-ir}.
+
+\todo[inline]{describe bm25}
+
+\todo[inline]{describe tf-idf}
 
 Each baseline will be given a query and produce a document-value vector, based on that query, with one value for each document indicating the relevance of that document.
 Our evaluation results are based on the ranking order of these values.
@@ -91,7 +110,7 @@ A new model is generated using these values and this model will be used for the 
 Results are shown on \autoref{tab:results} showing the \gls{map} of each model, \autoref{tab:results_precision_at_10} showing the precision@10 and precision@100 of each model for topic queries, and \autoref{tab:hit_results} showing the average rank of each model for document queries.
 
 
-\autoref{tab:results} and \autoref{tab:hit_results} show that \gls{bm25} is clearly the best model for document query retrieval, with all the best results using \gls{bm25}, sometimes combined with \gls{pr} and/or \gls{lda}. 
+\autoref{tab:results} and \autoref{tab:hit_results} show that \gls{bm25} is clearly the best model for document query retrieval, with all the best results using \gls{bm25}, sometimes combined with \gls{pr} and/or \gls{lda}-\gls{ir}. 
 However \gls{bm25} does not fare well with topic query retrieval, as shown in \autoref{tab:results} and \autoref{tab:results_precision_at_10}.
 
 Combinations of \gls{tf-idf} are omitted from the results as the initial results of \gls{tf-idf} were worse than \gls{bm25} and the two algorithms serve the same purpose for our experiment.
@@ -103,24 +122,24 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 	\begin{tabular}{l|c|c|c|c|c|c|c|c}
 		Model / \gls{map} & D1 & D2 & D3 & D4 & T1 & T2 & T3 & T4 \\
 		\midrule
-		\gls{lda} & 0.00457 & 0.00527 & 0.0429 & 0.0538 & 0.155 & 0.186 & 0.168 & 0.178 \\
+		\gls{lda}-\gls{ir} & 0.00457 & 0.00527 & 0.0429 & 0.0538 & 0.155 & 0.186 & 0.168 & 0.178 \\
 		\gls{lm} & 0.198 & 0.152 & 0.291 & 0.260 & 0.126 & 0.130 & 0.128 & 0.129 \\
 		\gls{bm25} & 0.270 & 0.656 & 0.866 & \textbf{0.908} & 0.155 & 0.158 & 0.155 & 0.161 \\
 		\gls{tf-idf} & 0.210 & 0.621 & 0.799 & 0.897 & 0.155 & 0.157 & 0.155 & 0.161 \\
-		\gls{lda} + \gls{pr} & 0.00458 & 0.00526 & 0.0429 & 0.0538 & 0.162 & \textbf{0.195} & \textbf{0.177} & \textbf{0.187} \\
-		\gls{lda} * \gls{pr} & 0.00781 & 0.00569 & 0.0410 & 0.0537 & 0.156 & 0.186 & 0.168 & 0.179 \\
-		\gls{lm} + \gls{lda} & 0.0419 & 0.0214 & 0.0602 & 0.120 & 0.147 & 0.163 & 0.145 & 0.146 \\
-		\gls{lm} * \gls{lda} & 0.0931 & 0.0462 & 0.175 & 0.177 & 0.150 & 0.175 & 0.155 & 0.166 \\
+		\gls{lda}-\gls{ir} + \gls{pr} & 0.00458 & 0.00526 & 0.0429 & 0.0538 & 0.162 & \textbf{0.195} & \textbf{0.177} & \textbf{0.187} \\
+		\gls{lda}-\gls{ir} * \gls{pr} & 0.00781 & 0.00569 & 0.0410 & 0.0537 & 0.156 & 0.186 & 0.168 & 0.179 \\
+		\gls{lm} + \gls{lda}-\gls{ir} & 0.0419 & 0.0214 & 0.0602 & 0.120 & 0.147 & 0.163 & 0.145 & 0.146 \\
+		\gls{lm} * \gls{lda}-\gls{ir} & 0.0931 & 0.0462 & 0.175 & 0.177 & 0.150 & 0.175 & 0.155 & 0.166 \\
 		\gls{lm} + \gls{pr} & 0.170 & 0.153 & 0.283 & 0.256 & 0.130 & 0.132 & 0.130 & 0.131 \\
 		\gls{lm} * \gls{pr} & 0.163 & 0.138 & 0.259 & 0.236 & 0.130 & 0.133 & 0.129 & 0.130 \\
-		\gls{lm} + \gls{lda} + \gls{pr} & 0.0499 & 0.0214 & 0.0601 & 0.120 & 0.148 & 0.164 & 0.146 & 0.147 \\
-		\gls{lm} * \gls{lda} * \gls{pr} & 0.0911 & 0.0459  & 0.157 & 0.170 & 0.150 & 0.175 & 0.155 & 0.166 \\
-		\gls{bm25} + \gls{lda} & \textbf{0.276} & 0.524 & 0.588 & 0.365 & 0.155 & 0.184 & 0.168 & 0.176 \\
-		\gls{bm25} * \gls{lda} & 0.139 & 0.270 & 0.412 & 0.365 & 0.154 & 0.159 & 0.156 & 0.162 \\
+		\gls{lm} + \gls{lda}-\gls{ir} + \gls{pr} & 0.0499 & 0.0214 & 0.0601 & 0.120 & 0.148 & 0.164 & 0.146 & 0.147 \\
+		\gls{lm} * \gls{lda}-\gls{ir} * \gls{pr} & 0.0911 & 0.0459  & 0.157 & 0.170 & 0.150 & 0.175 & 0.155 & 0.166 \\
+		\gls{bm25} + \gls{lda}-\gls{ir} & \textbf{0.276} & 0.524 & 0.588 & 0.365 & 0.155 & 0.184 & 0.168 & 0.176 \\
+		\gls{bm25} * \gls{lda}-\gls{ir} & 0.139 & 0.270 & 0.412 & 0.365 & 0.154 & 0.159 & 0.156 & 0.162 \\
 		\gls{bm25} + \gls{pr} & 0.269 & 0.656 & 0.866 & 0.902 & \textbf{0.192} & 0.193 & 0.175 & 0.183 \\
 		\gls{bm25} * \gls{pr} & 0.267 & \textbf{0.663} & \textbf{0.884} & 0.904 & 0.155 & 0.159 & 0.155 & 0.161 \\
-		\gls{bm25} + \gls{lda} + \gls{pr} & \textbf{0.276} & 0.525 & 0.589 & 0.366 & 0.162 & 0.192 & 0.176 & 0.184 \\
-		\gls{bm25} * \gls{lda} * \gls{pr} & 0.150 & 0.266 & 0.446 & 0.381 & 0.155 & 0.159 & 0.156 & 0.163 \\
+		\gls{bm25} + \gls{lda}-\gls{ir} + \gls{pr} & \textbf{0.276} & 0.525 & 0.589 & 0.366 & 0.162 & 0.192 & 0.176 & 0.184 \\
+		\gls{bm25} * \gls{lda}-\gls{ir} * \gls{pr} & 0.150 & 0.266 & 0.446 & 0.381 & 0.155 & 0.159 & 0.156 & 0.163 \\
 	\end{tabular}
 	
 	\label{tab:results}
@@ -133,24 +152,24 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 	\begin{tabular}{l|c|c|c|c||c|c|c|c}
 		Model / P@10 || P@100 & T1 & T2 & T3 & T4 & T1 & T2 & T3 & T4\\
 		\midrule
-		\gls{lda} & 0.02 & 0.103 & 0.13 & 0.203 & 0.062 & 0.131 & 0.164 & 0.191 \\
+		\gls{lda}-\gls{ir} & 0.02 & 0.103 & 0.13 & 0.203 & 0.062 & 0.131 & 0.164 & 0.191 \\
 		\gls{lm} & 0.126 & 0.118 & 0.116 & 0.069 & 0.090 & 0.092 & 0.087 & 0.093\\
 		\gls{bm25} & 0.136 & 0.161 & 0.164 & 0.174 & 0.142 & 0.165 & 0.175 & 0.151\\ 
 		\gls{tf-idf} & 0.16 & 0.125 & 0.2 & 0.148 & 0.163 & 0.169 & \textbf{0.188} & 0.170 \\
-		\gls{lda} + \gls{pr} & 0.0188 & 0.103 & 0.141 & \textbf{0.211} & 0.062 & 0.131 & 0.175 & \textbf{0.198} \\
-		\gls{lda} * \gls{pr} & 0.0125 & 0.100 & 0.133 & 0.200 & 0.062 & 0.132 & 0.167 & 0.192 \\
-		\gls{lm} + \gls{lda} & 0.02 & 0.101 & 0.136 & 0.196 & 0.060 & 0.129 & 0.161 & 0.188  \\
-		\gls{lm} * \gls{lda} & 0.02 & 0.085 & 0.109 & 0.161 & 0.055 & 0.114 & 0.129 & 0.152 \\
+		\gls{lda}-\gls{ir} + \gls{pr} & 0.0188 & 0.103 & 0.141 & \textbf{0.211} & 0.062 & 0.131 & 0.175 & \textbf{0.198} \\
+		\gls{lda}-\gls{ir} * \gls{pr} & 0.0125 & 0.100 & 0.133 & 0.200 & 0.062 & 0.132 & 0.167 & 0.192 \\
+		\gls{lm} + \gls{lda}-\gls{ir} & 0.02 & 0.101 & 0.136 & 0.196 & 0.060 & 0.129 & 0.161 & 0.188  \\
+		\gls{lm} * \gls{lda}-\gls{ir} & 0.02 & 0.085 & 0.109 & 0.161 & 0.055 & 0.114 & 0.129 & 0.152 \\
 		\gls{lm} + \gls{pr} & 0.138 & 0.130 & 0.116 & 0.0763 & 0.110 & 0.108 & 0.097 & 0.098 \\
 		\gls{lm} * \gls{pr} & 0.148 & 0.128 & 0.116 & 0.0963 & 0.110 & 0.112 & 0.101 & 0.101 \\
-		\gls{lm} + \gls{lda} + \gls{pr} & 0.019 & 0.101 & 0.134 & 0.195 & 0.061 & 0.129 & 0.163 & 0.187\\
-		\gls{lm} * \gls{lda} * \gls{pr} & 0.026 & 0.090 & 0.110 & 0.161 & 0.059 & 0.115 & 0.130 & 0.152\\
-		\gls{bm25} + \gls{lda} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.168 & \textbf{0.198} \\
-		\gls{bm25} * \gls{lda} & 0.09 & 0.139 & 0.175& 0.206 & 0.134 & 0.170 & 0.174 & 0.187 \\
+		\gls{lm} + \gls{lda}-\gls{ir} + \gls{pr} & 0.019 & 0.101 & 0.134 & 0.195 & 0.061 & 0.129 & 0.163 & 0.187\\
+		\gls{lm} * \gls{lda}-\gls{ir} * \gls{pr} & 0.026 & 0.090 & 0.110 & 0.161 & 0.059 & 0.115 & 0.130 & 0.152\\
+		\gls{bm25} + \gls{lda}-\gls{ir} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.168 & \textbf{0.198} \\
+		\gls{bm25} * \gls{lda}-\gls{ir} & 0.09 & 0.139 & 0.175& 0.206 & 0.134 & 0.170 & 0.174 & 0.187 \\
 		\gls{bm25} + \gls{pr} & 0.135 & 0.163 & 0.165 & 0.173 & \textbf{0.155} & 0.165 & 0.176 & 0.151 \\
 		\gls{bm25} * \gls{pr} & \textbf{0.165} & \textbf{0.169} & \textbf{0.184} & 0.170 & 0.148 & \textbf{0.177} & 0.186 & 0.161\\
-		\gls{bm25} + \gls{lda} + \gls{pr} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.17 & \textbf{0.198}\\
-		\gls{bm25} * \gls{lda} * \gls{pr} & 0.095 & 0.141 & 0.176 & 0.206 & 0.135 & 0.174 & 0.174 & 0.188\\
+		\gls{bm25} + \gls{lda}-\gls{ir} + \gls{pr} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.17 & \textbf{0.198}\\
+		\gls{bm25} * \gls{lda}-\gls{ir} * \gls{pr} & 0.095 & 0.141 & 0.176 & 0.206 & 0.135 & 0.174 & 0.174 & 0.188\\
 	\end{tabular}
 	
 	\label{tab:results_precision_at_10}
@@ -163,24 +182,24 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 	\begin{tabular}{l|c|c|c|c}
 		Model / Avg. rank & D1 & D2 & D3 & D4 \\
 		\midrule
-		\gls{lda} & 2287.93 & 1599.95 & 1241.18 & 1926.78 \\
+		\gls{lda}-\gls{ir} & 2287.93 & 1599.95 & 1241.18 & 1926.78 \\
 		\gls{lm} & 7120.04 & 9082.9 & 6501.85 & 7782.65 \\
 		\gls{bm25} & \textbf{19.58} & 7.94 & 1.78 & 1.41 \\
 		\gls{tf-idf} & 30.0 & 9.3 & 2.03 & 1.29 \\
-		\gls{lda} + \gls{pr} & 2491.31 & 1342.53 & 1126.23 & 1906.76\\
-		\gls{lda} * \gls{pr} & 2305.04 & 1600.93 & 1223.14 & 1920.175\\
-		\gls{lm} + \gls{lda} & 1971.19 & 1192.91 & 1027.95 & 1482.69 \\
-		\gls{lm} * \gls{lda} & 1874.81 & 1456.21 & 954.66 & 1853.44 \\
+		\gls{lda}-\gls{ir} + \gls{pr} & 2491.31 & 1342.53 & 1126.23 & 1906.76\\
+		\gls{lda}-\gls{ir} * \gls{pr} & 2305.04 & 1600.93 & 1223.14 & 1920.175\\
+		\gls{lm} + \gls{lda}-\gls{ir} & 1971.19 & 1192.91 & 1027.95 & 1482.69 \\
+		\gls{lm} * \gls{lda}-\gls{ir} & 1874.81 & 1456.21 & 954.66 & 1853.44 \\
 		\gls{lm} + \gls{pr} & 7299.85 & 9134.81 & 6429.24 & 7725.36 \\
 		\gls{lm} * \gls{pr} & 7328.7625 & 9137.23 & 6504.85 & 7772.4\\
-		\gls{lm} + \gls{lda} + \gls{pr} & 1978.74 & 1179.21 & 994.91 & 1438.88 \\
-		\gls{lm} * \gls{lda} * \gls{pr} & 1892.12 & 1453.56 & 941.4 & 1850.43 \\
-		\gls{bm25} + \gls{lda} & 30.45 & 28.59 & 17.7 & 23.76 \\
-		\gls{bm25} * \gls{lda} & 163.76 & 557.13 & 297.48 & 1159.33 \\
+		\gls{lm} + \gls{lda}-\gls{ir} + \gls{pr} & 1978.74 & 1179.21 & 994.91 & 1438.88 \\
+		\gls{lm} * \gls{lda}-\gls{ir} * \gls{pr} & 1892.12 & 1453.56 & 941.4 & 1850.43 \\
+		\gls{bm25} + \gls{lda}-\gls{ir} & 30.45 & 28.59 & 17.7 & 23.76 \\
+		\gls{bm25} * \gls{lda}-\gls{ir} & 163.76 & 557.13 & 297.48 & 1159.33 \\
 		\gls{bm25} + \gls{pr} & 19.69 & \textbf{7.88} & 1.79 & 1.43\\
 		\gls{bm25} * \gls{pr} & 23.96 & 8.45 & \textbf{1.61} & \textbf{1.24}\\
-		\gls{bm25} + \gls{lda} + \gls{pr} & 30.35 & 28.44 & 17.65 & 23.76\\
-		\gls{bm25} * \gls{lda} * \gls{pr} & 163.5 & 555.35 & 295.69 & 1158.08\\
+		\gls{bm25} + \gls{lda}-\gls{ir} + \gls{pr} & 30.35 & 28.44 & 17.65 & 23.76\\
+		\gls{bm25} * \gls{lda}-\gls{ir} * \gls{pr} & 163.5 & 555.35 & 295.69 & 1158.08\\
 	\end{tabular}
 	
 	\label{tab:hit_results}
