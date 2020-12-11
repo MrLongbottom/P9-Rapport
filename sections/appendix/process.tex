@@ -27,12 +27,12 @@ But to do so, we first needed to construct an adjacency matrix.
 This is where we started to run into trouble as constructing a large adjacency matrix based on a similarity measure took an extremely long time, which forced us to make changes to the way we constructed the adjacency matrix as well as changes to the earlier phases: preprocessing and \gls{lda}.
 We made the preprocessing more aggressive and implemented more preprocessing methods, to continually make the dataset smaller while keeping the relevant data.
 
-Importantly we also implemented thresholds to the topic-document distributions matrix $\theta$ and  the topic-word distributions matrix $\beta$ made by the \gls{lda} model.
+Importantly, we also implemented thresholds to the topic-document distribution matrix $\theta$ and the topic-word distribution matrix $\beta$ made by the \gls{lda} model.
 For each distribution we replaced values below one divided by the number of values in the distribution, with 0.
 This was also done to make sure that every document wasn't connected to every other document in the adjacency matrix, and to save calculation time by working with sparse matrices.
 This change ended up causing a lot more problems later on, as many future calculations expected non-zero values, and would be dominated by zeros because of multiplication.
 
-Lastly we also tried many different ways to construct the adjacency matrix more efficiently, described further in \autoref{app:adj_matrix}.
+Lastly, we also tried many different ways to construct the adjacency matrix more efficiently, described further in \autoref{app:adj_matrix}.
 
 However even after we managed to produce an adjacency matrix our results proved to be very bad.
 From here we began searching for more similar papers, where we found: \todo{refs}.
