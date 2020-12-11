@@ -1,5 +1,6 @@
 \section{PageRank}\label{sec:pagerank}
-\gls{pr} is a recursive ranking algorithm based on the random surfer model, where a number of surfers would take $s$ amount of steps across a graph. 
+\gls{pr} is a recursive ranking algorithm, used to rank nodes in a graph.
+It is based on the random surfer model, where several surfers would take $s$ amount of steps across a graph.
 The number of surfers standing on a given node would be the resulting score for that node.
 The \gls{pr} algorithm is defined as follows(expressed on matrix form)
 $$ \overrightarrow{\lambda} = \mu \widetilde{M}^T \overrightarrow{\lambda} + \frac{(1-\mu)}{|D|} \overrightarrow{e} $$  
