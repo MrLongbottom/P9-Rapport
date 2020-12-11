@@ -4,8 +4,13 @@ The result consists of a topic-word distribution matrix $\beta$, which for each 
 
 \citeauthor{lda} \cite{lda} introduce \gls{lda}, which has since become a staple within topic modeling.
 \gls{lda} works under the assumption that documents are generated from a specific generative process, and tries to reverse engineer this process.
-This process generates $K$ topics and $D$ documents containing $N_{d}$ words, where $d$ is a document in $D$.
 This generative process assumes that documents are random mixtures of latent topics and that each topic is a distribution over all the words in the corpus.
+
+\begin{definition}\label{def:topic}
+	A topic is a distribution over words in a corpus
+\end{definition}
+
+This process generates $K$ topics and $D$ documents containing $N_{d}$ words, where $d$ is a document in $D$.
 The generative process has two Dirichlet distributions $Dir(\alpha)$ for the document-topic relation and $Dir(\eta)$ for the topic-word relation.
 
 \begin{figure}[h]
