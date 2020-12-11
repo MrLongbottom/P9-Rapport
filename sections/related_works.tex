@@ -1,0 +1,37 @@
+\section{Related Work}\label{sec:related-works} \vejleder[inline]{add some more}
+In this section, we investigate existing literature concerning \gls{lda} and similar topic models, as well as relevant work related to random walk.
+
+\citet{lda} describes a generative statistical model, which is heavily used within topic modeling. 
+The intuition behind the \gls{lda} topic model is that a document has an underlying distribution of topics, and that the words of a document are based on these topics.
+This model is used widely within the field of topic modeling and is somewhat considered a standard, see section \autoref{sec:lda} for more detail.
+
+There also exists a large amount of extensions to \gls{lda}.
+\citet{blei2012topicmodels} describes some of the most significant extensions that are made from relaxing the assumptions of \gls{lda}.
+Some extensions mentioned are: the dynamic topic model\cite{blei2006dynamic} which assumes that topics change over time, and thus respects the order of the documents, and the correlated topic model\cite{blei2007correlated} and pachinko allocation model\cite{li2006pachinko} which each allow correlations to exist between topics.
+
+
+\citet{quanti} describes a method of how to quantitatively preprocess and analyze large amounts of journalistic data dating from 1945-2000. 
+They propose \gls{lda} as a way of categorizing articles and using this as the basis for search.
+However, they only check for a single subject, namely the nuclear topic.  
+
+
+\citet{Tang2008} successfully combine the two research fields of Topic Modeling and Random Walk search. 
+Though their focus is mainly on mapping author and venue relations as part of their topic model, their methods for combining these two fields are still novel and generally applicable.
+
+
+\citet{yang2009topic} presents a four step method for doing the topic-level random walk to search scientific articles. 
+They also describe various combinations of \gls{lda} and PageRank.
+These combinations are evaluated against information retrieval baselines such as BM25\cite{bm251996}.
+
+
+While our method in some ways will be similar to the work of \citeauthor{Tang2008} and \citeauthor{yang2009topic}, our method will have a significant change of working with a new dataset consisting of documents without explicit connections between documents, namely news articles.
+\todo[inline]{we might need to focus on only applying LM*LDA*PageRank to the new dataset}
+This will be detailed further in the following sections.
+
+%Articles, we might want in our related works section:
+%\begin{itemize}
+%	\item \cite{lda} (written)
+%	\item \cite{ClusterPageRank} (written)
+%	\item \cite{Tang2008} (written)
+%	\item \cite{jelodar2019latent}
+%\end{itemize}

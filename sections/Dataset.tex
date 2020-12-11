@@ -1,0 +1,23 @@
+\section{Dataset}\label{sec:dataset}
+Nordjyske is a media group maintaining many local newspapers, radios, and websites in the North Jutland region of Denmark.
+All articles produced by Nordjyske are saved in a nonpublic database.
+Each article is represented with a \texttt{pdf} file and an \texttt{xml} file, as well as one \texttt{png} file for each image in the article.
+The dataset we are using is only a subset of all articles contained in the database.
+We choose to take all articles written from 2017-2019, due to the file structures being more consistent after 2016.
+We also wanted to include 2020, however, there was a period where no articles were uploaded to the database around the time of the Covid-19 outbreak, so a lot of articles seem to be missing from this year, unfortunately.
+
+Currently we extract only the ID, body text, and headline from the xml files, though they do contain more information, such as authors, references to images, article type, date and time of publishing, etc.
+This information could become relevant with the use of various \gls{lda} modifications.
+
+An example of an article can be seen in \autoref{prepro:example1}
+
+\begin{figure}[h]
+	\begin{framed}
+		\begin{quote}
+			headline: \textit{'Tricktyve fik fingre i dankort HOBRO:'}
+			body: \textit{'Frække tricktyve har atter slået til i en af Hobros dagligvareforretninger. Denne gang gik det ud over en 87-årig mand, som under indkøbsturen i Superbrugsen i Adelgade blev frastjålet sit Visa-Dankort med tilhørende pin-kode.'}
+		\end{quote}
+	\end{framed}
+		\caption{snippet of raw document}
+		\label{prepro:example1}
+\end{figure}

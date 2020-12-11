@@ -1,0 +1,22 @@
+\tikzstyle{process} = [rectangle, rounded corners, minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=gray!50]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+    %\draw[step=1cm,gray,very thin] (-8,-8) grid (8,8);
+	\node (Dataset) [process] {Nordjyske dataset};
+	\node (Cleaning)[process, below of=Dataset] {Preprocessing Phase};
+	\node (Training) [process, below of=Cleaning] {Train LDA};
+	\node (Cluster PR) [process, below of=Training] {Evaluate models};
+	\node (Query) at (-4.5, -6) [process] {Query Processing};
+	\node (Result) [process, below of=Cluster PR] {Results};
+	\draw [->, very thick] (Dataset) edge (Cleaning); 
+	\draw [->, very thick] (Cleaning) edge (Training);
+	\draw [->, very thick] (Training) edge (Cluster PR);
+	\draw [->, very thick] (Cluster PR) edge (Result);
+	\draw [->, very thick] (Query) edge (Cluster PR);
+\end{tikzpicture}
+	\caption{The method visualized as a flowchart, where a dataset consisting of articles is processed into a list of ranked results.}
+    \label{fig:process_figure}
+\end{figure}
