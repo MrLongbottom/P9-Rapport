@@ -1,7 +1,9 @@
 \subsection{Project Process}
-Below, an overview of our process is given:
+In this section, we provide a general overview of the project, as well as some of the changes and challenges we underwent during the project.
+Below, is a brief overview of the points covered in this section:
+
 \begin{itemize}
-	\item Initial Idea - Combine LDA and PageRank (clustering)
+	\item Initial Idea - Combine LDA and PageRank
 	\item Preprocessing \& LDA implementation
 	\item Adjacency matrix construction
 	\begin{itemize}
@@ -13,19 +15,24 @@ Below, an overview of our process is given:
 	\item Found out our model didn't converge
 \end{itemize}
 
-Our initial idea with the project was to combine \gls{lda} with a PageRank algorithm to see if this could improve the information retrieval results of \gls{lda}.
+Each of these items will now be described in more detail.
+
+Our initial idea with the project was to combine \gls{lda} with a PageRank algorithm to see if this could improve the \acrlong{ir} results of \gls{lda}.
+Originally we had wanted to use Clustering PageRank as described in \citeauthor{ClusterPageRank}\cite{ClusterPageRank}, but that idea was later scrapped.
 
 We began by implementing some initial preprocessing methods and using an \gls{lda} implementation from Gensim\footnote{\url{https://radimrehurek.com/gensim/models/ldamodel.html}}.
 
 After this, we only needed to combine \gls{lda} with a PageRank implementation. 
-But to do so, we first needed to construct an adjacency matrix. 
+But to do so, we first needed to construct an adjacency matrix.
 This is where we started to run into trouble as constructing a large adjacency matrix based on a similarity measure took an extremely long time, which forced us to make changes to the way we constructed the adjacency matrix as well as changes to the earlier phases: preprocessing and \gls{lda}.
 We made the preprocessing more aggressive and implemented more preprocessing methods, to continually make the dataset smaller while keeping the relevant data.
-We also implemented thresholds to the $\theta$ and $\beta$ matrices made by the \gls{lda} model.
-This was also done to make sure that every document wasn't connected to every other document in the adjacency matrix.
-All values under the normal distribution values were set to 0 so that we could work more efficiently with sparse matrices.
-This change ended up causing a lot more problems later on, as we now had to deal with a large portion of our evaluations containing no values. \todo{ref to related problems}
-We also tried many different ways to construct the adjacency matrix more efficiently, described further in \autoref{app:adj_matrix}.
+
+Importantly we also implemented thresholds to the topic-document distributions matrix $\theta$ and  the topic-word distributions matrix $\beta$ made by the \gls{lda} model.
+For each distribution we replaced values below one divided by the number of values in the distribution, with 0.
+This was also done to make sure that every document wasn't connected to every other document in the adjacency matrix, and to save calculation time by working with sparse matrices.
+This change ended up causing a lot more problems later on, as many future calculations expected non-zero values, and would be dominated by zeros because of multiplication.
+
+Lastly we also tried many different ways to construct the adjacency matrix more efficiently, described further in \autoref{app:adj_matrix}.
 
 However even after we managed to produce an adjacency matrix our results proved to be very bad.
 From here we began searching for more similar papers, where we found: \todo{refs}.
