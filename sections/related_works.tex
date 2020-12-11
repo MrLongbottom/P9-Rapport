@@ -9,9 +9,11 @@ There also exists a large amount of extensions to \gls{lda}.
 \citet{blei2012topicmodels} describes some of the most significant extensions that are made from relaxing the assumptions of \gls{lda}.
 Some extensions mentioned are: the dynamic topic model\cite{blei2006dynamic} which assumes that topics change over time, and thus respects the order of the documents, and the correlated topic model\cite{blei2007correlated} and pachinko allocation model\cite{li2006pachinko} which each allow correlations to exist between topics.
 
-\citet{ClusterPageRank} present an improved method for doing summarization of documents using a new random walk model called ClusterCMRV. 
-This random walk model has a modified transition probability based on sentence-cluster similarity and cluster-document similarity.
-Using this model, they create summaries of documents, where they perform better in the majority of ROUGE-N results compared to the original random walk model.
+
+\citet{quanti} describes a method of how to quantitatively preprocess and analyze large amounts of journalistic data dating from 1945-2000. 
+They propose \gls{lda} as a way of categorizing articles and using this as the basis for search.
+However, they only check for a single subject, namely the nuclear topic.  
+
 
 \citet{Tang2008} successfully combine the two research fields of Topic Modeling and Random Walk search. 
 Though their focus is mainly on mapping author and venue relations as part of their topic model, their methods for combining these two fields are still novel and generally applicable.
@@ -22,7 +24,7 @@ They also describe various combinations of \gls{lda} and PageRank.
 These combinations are evaluated against information retrieval baselines such as BM25\cite{bm251996}.
 
 
-While our method in some ways will be similar to the work of \citeauthor{Tang2008} and \citeauthor{yang2009topic}, our method will have a significant change of working with a cluster-based PageRank on topic clusters, inspired by \cite{ClusterPageRank}.
+While our method in some ways will be similar to the work of \citeauthor{Tang2008} and \citeauthor{yang2009topic}, our method will have a significant change of working with a new dataset consisting of documents without explicit connections between documents, namely news articles.
 \todo[inline]{we might need to focus on only applying LM*LDA*PageRank to the new dataset}
 This will be detailed further in the following sections.
 

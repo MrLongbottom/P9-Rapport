@@ -1,4 +1,11 @@
 \section{Search Query}
+%One of the challenges of preprocessing queries is that they usually contain very few words.
+%Therefore, there is a huge possibility of information loss during preprocessing and conversion, as there is not much content or context to be learned from.
+%Our method converts each word in the query into a topic distribution, making the query have the same format as a document. \todo[inline]{Detaljer specifikt hvordan denne distribution laves, når det er færdigimplementeret.}
+%This enables us to compare the query to other documents, and therefore do a random walk based on the query.
+%This is an important process, since we need to compare different models against how well they retrieve the articles.
+%The danger of this method is that a query only containing a couple of words, will likely have a very skewed topic distribution.
+
 We have identified three steps when working with a search query:
 \begin{itemize}
 	\item Generation
@@ -21,14 +28,15 @@ The goal is to check whether or not the model is able to find a specific documen
 The topic query is slightly different in comparison to document query in that it focuses on the topics rather than a specific document.
 To construct a topic query, firstly we select a random topic $t$ and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
 We then sample $ql$ documents based on the document-topic distribution $\theta_t$ provided by the \gls{lda} model.
-Though $theta$ is normally one topic distribution for each document, we create document distributions for each topic by row normalizing the matrix. 
+Though $\theta$ is normally one topic distribution for each document, we create document distributions for each topic by row normalizing the matrix.
+\vejleder[inline]{uddyb row normalization} 
 When sampling these documents, we only sample within the document-topic distribution where the topic is set to $t$.
 From these sampled documents, we extract one word from each document, based on the \gls{tf-idf} score, and add these to the query.
 If an extracted word is in the query already, we skip it and add the next highest \gls{tf-idf} scored word to the query.
 In that way, we ensure to get unique words in the query.
 The goal, of generating this query, is to check whether the model can find similar documents based on a search query generated from a topic distribution.
 
-\subsection{Query Expansion}
+\subsection{Query Expansion}\label{subsec:query_expansion}
 Query expansion is a method which adds more words to a given query to add more context to the search process.
 \citet{yang2009topic} describes a query expansion method, called window query expansion.
 Queries are expanded based on the neighboring words in the document set.
