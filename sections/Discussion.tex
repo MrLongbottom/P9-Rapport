@@ -2,7 +2,8 @@
 In this section, we analyze and describe the results, we get from running our experiment.
 
 \gls{pr} using our adjacency-matrix successfully improved upon the results of other models in many cases.
-This is worth noting as our adjacency matrix was constructed based on similarity of the documents' topic-distributions, rather than any relation embedded in the documents themselves, such as scientific articles referencing each other as with \cite{yang2009topic}.
+This is worth noting as our adjacency matrix was constructed based on similarity of the documents' topic-distributions, rather than any relation embedded in the documents themselves, such as scientific articles referencing each other as with \citeauthor{yang2009topic}\cite{yang2009topic}.
+This suggests that other \gls{ir} methods benefit from the similarity context provided by our \gls{pr}, regardless of the validity of the underlying edges.
 This means that our initial idea of using the topic distributions as a similarity measure in the \gls{pr} algorithm, was a success.
 They use the standard \gls{pr} in $\frac{4}{13}$ test cases, where we use \gls{pr} in $\frac{12}{18}$ test cases.
 In \cite{yang2009topic}, they use a specialized version of \gls{pr} which is their focus.
