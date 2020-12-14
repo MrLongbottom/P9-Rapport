@@ -6,14 +6,6 @@
 %This is an important process, since we need to compare different models against how well they retrieve the articles.
 %The danger of this method is that a query only containing a couple of words, will likely have a very skewed topic distribution.
 
-We have identified three steps when working with a search query:
-\begin{itemize}
-	\item Generation
-	\item Expansion
-	\item Handling
-\end{itemize}
-We will describe each step in the following sections.
-\subsection{Query Generation}\label{subsec:query_gen}
 We use two techniques for generating the queries used for evaluating our search algorithm, namely document queries and topic queries.
 The idea behind these two methods is to evaluate the specificity and generality of the \gls{lda} model, respectively.
 The construction of the queries is described in the following.
