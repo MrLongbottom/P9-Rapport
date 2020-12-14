@@ -26,3 +26,4 @@ They do this by using stochastic \gls{vi}, which also outperforms batch learning
 In learning the \gls{lda}, we first sample a batch of documents from the whole corpus, where we learn the structure of this sample and use it to update the topics within the model.
 To do this, we need some form of verification of whether we are getting closer to the the true posterior distribution $p(z|\textbf{x})$.
 In \gls{lda}, we use perplexity as a score to check whether we are moving towards $p(z|\textbf{x})$
+\todo{write a little section about how we change the elbo, and use that to try and approximate the true postiore}
