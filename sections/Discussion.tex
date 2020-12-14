@@ -11,7 +11,7 @@ This means that our initial idea of using the topic distributions as a similarit
 \todo[inline]{We need to figure out what we are going to say about lm's bad performance, or maybe move some of it to appendix if we want to avoid talking too much about it}
 
 \gls{lda} gets good topic query retrieval results when combined with \gls{pr}, as seen in \autoref{tab:results}.
-This comes at the cost of very bad document query retrieval results.
+This comes at the cost of bad document query retrieval results.
 Though \gls{lda} has good \gls{map} results, \autoref{tab:results_precision_at_10} shows that \gls{lda} only gets the best precision@10 and precision@100 with queries of 4 words.
 This means that while it is well suited for ranking a large number of documents fairly well (as with \gls{map}), it is not good at finding a relatively small number of relevant documents
 It also points towards \gls{lda} being more reliant on a larger amount of context than many of the other models, and could therefore likely benefit greatly from query expansion methods.
