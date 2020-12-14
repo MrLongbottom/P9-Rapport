@@ -58,7 +58,7 @@ This is done to remove ads, sports results, snippets, or other similar small sec
 \paragraph{Stopword and Word Frequency Filtering}
 Stopwords are removed, using \emph{nltk.corpus.stopwords}. 
 This is a list consisting of 94 stopwords, like ``og'' and ``på''.
-We also added some stopwords ourselves based on manual inspection of words that appeared in close to every topic and had a high topic probability for multiple topics.
+We also added some stopwords ourselves based on manual inspection of words that appeared in almost every topic and had a high topic probability for multiple topics.
 We also remove words based on their frequency, where they are removed if they appear fewer than 25 times in the corpus.
 These words are considered too rare to be relevant for a topic, as few documents will share these words.
 Words are also removed if they appear in over 25\% of the documents.
