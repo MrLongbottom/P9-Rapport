@@ -19,16 +19,6 @@ We test combinations of the following \gls{ir} methods (these will be referred t
 \gls{lm} was described in \autoref{sec:lm} based on the implementation by \citeauthor{yang2009topic}\cite{yang2009topic}.
 \gls{pr} was described in \autoref{sec:pagerank}.
 
-\citeauthor{yang2009topic}\cite{yang2009topic} defines \autoref{eq:lda-ir} for using \gls{lda} as an \gls{ir} method. 
-They do this based on a previous application of \gls{lda} for \gls{ir}\cite{lda-ir}.
-
-\begin{equation}\label{eq:lda-ir}
-	P(w|d, \theta, \beta) = \sum_{z \in T} P(w|z,\beta_z) P(z|d,\theta_d)
-\end{equation}
-
-The idea behind this equation is to reverse-engineer the generative process \gls{lda} uses to create the topic model, to predict the probability of a word appearing in a document given the document-topic distribution matrix $\theta$ and the topic-word distribution matrix $\beta$.
-We use the term \gls{lda}-\gls{ir}, to refer to information retrieval made using \autoref{eq:lda-ir}.
-
 \todo[inline]{describe bm25}
 
 \todo[inline]{describe tf-idf}
