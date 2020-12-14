@@ -32,7 +32,7 @@ As described in \autoref{sec:dataset}, documents are loaded as \texttt{xml} file
 
 \paragraph{Initial Document Filtering}
 The database contain many duplicate documents with the same content but different file names, we therefore start this phase by removing all duplicates.
-All punctuation, numbers, and other non-alphabetic symbols are removed, keeping only words entirely made of alphabetic symbols.
+During this step, all punctuation, numbers, and other non-alphabetic symbols are also removed, keeping only words entirely made of alphabetic symbols.
 
 Afterward, we remove documents containing fewer than 25 words.
 This is done to remove ads, sports results, snippets, or other similar small sections that are present in newspapers but aren't really news articles.
@@ -57,7 +57,7 @@ This is done to remove ads, sports results, snippets, or other similar small sec
 
 \paragraph{Stopword and Word Frequency Filtering}
 Stopwords are removed, using \emph{nltk.corpus.stopwords}. 
-This is a list consisting of 94 stopwords, like ``og'' and ``på''
+This is a list consisting of 94 stopwords, like ``og'' and ``på''.
 We also added some stopwords ourselves based on manual inspection of words that appeared in close to every topic and had a high topic probability for multiple topics.
 We also remove words based on their frequency, where they are removed if they appear fewer than 25 times in the corpus.
 These words are considered too rare to be relevant for a topic, as few documents will share these words.
@@ -80,10 +80,12 @@ These constants were the same used by \cite{quanti}.
 
 \paragraph{Word Database Filtering}
 Due to a lack of danish POS-tagging resources, we instead check up the words in our corpus against two databases containing only words of specific word classes, namely: nouns, adjectives, verbs, adverbs, and proper nouns.
-In practice this has the same effect as POS-tagging however words are not marked with their words class, instead they are removed if they do not appear in at least one of the databases (containing only words of approved word classes).
+In practice, this has the same effect as POS-tagging.
+However, words are not marked with their words class, instead they are removed if they do not appear in at least one of the databases.
 The two databases used are:  Wiktionary\footnote{https://github.com/fnielsen/awesome-danish (specifically Danish resources: https://people.compute.dtu.dk/faan/ps/Nielsen2016Danish.pdf)} and DanNet\cite{Pedersen2009DanNetTC}. 
 
-Most words remaining at this step are contained within the databases, so this step does not remove as many words, however, this is mostly due to the step being taken late, due to having a longer computation time per word.
+Most words remaining at this step are contained within the databases, so this step does not remove as many words as the other steps.
+However, this is mostly due to the step being taken late in the preprocessing process, due to having a longer computation time per word.
 This step mostly serves to remove names, and words from different languages, namely English.
 However, it also cuts the odd non-words (e.g. 'gimi') and abbreviations (e.g. 'DK') that still exist at this point in the preprocessing.
 The example used in \autoref{prepro:example3} does not change at this step. 
@@ -134,5 +136,3 @@ These files allow us to only use IDs in future phases, and then later translate 
 %After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.
 %Topics that occur in almost every document are also considered too general, and would also be removed.
 %Initially, this presented some implementation challenges, as it required removing topics and documents from files generated earlier in the process and from the LDA model, to be able to use the right topic/document IDs in the future.
-
-
