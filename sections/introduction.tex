@@ -15,7 +15,8 @@ More specifically, we look into \gls{lda} since it is currently the most used to
 \gls{lda} uses Dirichlet distributions to calculate the probability of a word belonging to a given topic and a document containing a given topic.
 Topic modeling does not rank documents, which is why an additional part is necessary if we want to search the documents.
 
-Ranking articles can be done in multiple ways, where PageRank is commonly used\cite{google_pagerank2006}.
+Ranking articles is a common \gls{ir} task and has been done in many ways.
+One commonly used method is \gls{pr}\cite{google_pagerank2006}.
 PageRank\cite{pagerank_1999} is a ranking algorithm, which is based on the random walk process.
 The principle is to let a number of surfers walk between nodes in a graph, where each surfer takes one step in each iteration.
 After an appropriate number of steps, the number of surfers on each node will be the ranking of the given node, where more surfers give a higher rank.
