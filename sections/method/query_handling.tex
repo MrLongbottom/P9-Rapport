@@ -14,7 +14,7 @@ The construction of the queries is described in the following.
 To generate a document query, we randomly select a document from the corpus and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
 From this selection, we apply \gls{tf-idf} on the selected document to find the most informative words.
 Our query is then the $ql$ highest ranked words within the given document.
-The goal is to check whether or not the model is able to find a specific document based on a search query generated from that document.
+The goal is to check whether or not the \gls{ir} method is able to find the specific document based on a search query generated from that document.
 
 \subsubsection{Topic query}\label{subsec:query_gen_top}
 The topic query is slightly different in comparison to document query in that it focuses on the topics rather than a specific document.
