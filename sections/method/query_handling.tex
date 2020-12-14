@@ -26,7 +26,7 @@ When sampling these documents, we only sample within the document-topic distribu
 From these sampled documents, we extract one word from each document, based on the \gls{tf-idf} score, and add these to the query.
 If an extracted word is in the query already, we skip it and add the next highest \gls{tf-idf} scored word to the query.
 In that way, we ensure to get unique words in the query.
-The goal, of generating this query, is to check whether the model can find similar documents based on a search query generated from a topic distribution.
+The goal, of generating this query, is to check whether the \gls{ir} method can find similar documents based on a search query generated from a topic.
 
 \subsection{Query Expansion}\label{subsec:query_expansion}
 Query expansion is a method which adds more words to a given query to add more context to the search process.
