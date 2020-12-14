@@ -36,7 +36,7 @@ However, it is still possible to compare these two results between multiple base
 We use \gls{map} to evaluate all baselines. 
 We also use precision@10 and precision@100 for the topic queries. \todo{describe what it is and how it is calculated}
 However since document queries only contain one ground truth positive, $p @ n$ doesn't make much sense to calculate. 
-Instead, we show the average ranking of the relevant document for document queries.
+Instead, we show the average ranking of the relevant document for each document query.
 Each of these metrics are shown as the mean value for 80 queries of length 1 to 4, making a total of 320 queries ($\sim 1\%$ of the entire corpus).
 Document queries are all based on different documents. 
 Topic queries can be based on the same topic but will have a high variance in the actual words used.
