@@ -18,7 +18,8 @@ We train a \acrfull{lda} model on the dataset to generate topics based on the co
 We describe the investigation and selection of hyper parameters in \autoref{subsec:hyperparameters}. 
 After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\beta$.
 
-\subsection*{Step 3: Query Preprocessing}
+\subsection*{Step 3: Query Generation}
+\todo[inline]{re-write. remember to ref section.}
 A search query, consisting of words, is stemmed and turned into a list of words.
 For each word, we generate a topic distribution based on topic-word distribution $\beta$ if the model knows the words within the query.
 Otherwise, we let the model predict which topics the unknown words belong to.
