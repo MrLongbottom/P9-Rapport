@@ -48,6 +48,7 @@ We hypothesize that \gls{lda} can improve the topic \gls{ir} when combined with 
 Before setting up our experiment, we run a grid search to find acceptable hyperparameter values for our \gls{lda} model.
 % runtime parameters
 First, we adjusted parameters that had to do with how the algorithms run to ensure that the model converged, without spending unnecessary resources.
+
 \texttt{passes} adjusts how many times the model passes over the whole corpus, and can be seen as an 'epoch'. 
 This is necessary for smaller datasets to ensure convergence before the algorithm finishes, but for large enough datasets this parameter can have a value of 1, as is the case for \citeauthor{blei2010online}\cite{blei2010online} where their corpus includes 3.3M documents, whereas our dataset is $\sim32000$ documents.
 
