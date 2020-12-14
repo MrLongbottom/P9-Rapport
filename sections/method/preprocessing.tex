@@ -84,7 +84,8 @@ In practice, this has the same effect as POS-tagging.
 However, words are not marked with their words class, instead they are removed if they do not appear in at least one of the databases.
 The two databases used are:  Wiktionary\footnote{https://github.com/fnielsen/awesome-danish (specifically Danish resources: https://people.compute.dtu.dk/faan/ps/Nielsen2016Danish.pdf)} and DanNet\cite{Pedersen2009DanNetTC}. 
 
-Most words remaining at this step are contained within the databases, so this step does not remove as many words, however, this is mostly due to the step being taken late, due to having a longer computation time per word.
+Most words remaining at this step are contained within the databases, so this step does not remove as many words as the other steps.
+However, this is mostly due to the step being taken late in the preprocessing process, due to having a longer computation time per word.
 This step mostly serves to remove names, and words from different languages, namely English.
 However, it also cuts the odd non-words (e.g. 'gimi') and abbreviations (e.g. 'DK') that still exist at this point in the preprocessing.
 The example used in \autoref{prepro:example3} does not change at this step. 
