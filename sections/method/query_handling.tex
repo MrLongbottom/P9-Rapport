@@ -11,7 +11,7 @@ The idea behind these two methods is to evaluate the specificity and generality 
 The construction of the queries is described in the following.
 
 \subsubsection{Document query}\label{subsec:query_gen_doc}
-To construct a document query, we randomly select a document from the corpus and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
+To generate a document query, we randomly select a document from the corpus and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
 From this selection, we apply \gls{tf-idf} on the selected document to find the most informative words.
 Our query is then the $ql$ highest ranked words within the given document.
 The goal is to check whether or not the model is able to find a specific document based on a search query generated from that document.
