@@ -6,7 +6,7 @@ A widely used sampling approach is the MCMC algorithm Gibbs sampling.
 Gibbs sampling approximates the posterior distribution by trying to infer hidden structure by iteratively recalculating the state of each node based on its neighbors or similar nodes in a Bayesian network.
 
 \gls{vi} is used to solve inference with optimization.
-In \gls{vi}, we have the initial variational parameters $\nu_{init}$ in which we want approximate the true posterior distribution $p(z|\textbf{x})$ where $z$ is the hidden variables and $x$ is the observations.
+In \gls{vi}, we have the initial variational parameters $\nu_{init}$ in which we want approximate the true posterior distribution $p(z|\textbf{x})$ where $z$ is the hidden variables and $\textbf{x}$ is the observations.
 We do the approximation by fitting variational parameters $\nu$, to minimize the distance between the initial distribution $v$ and $\nu^*$, where $\nu^*$ is the distribution that is closest to $p(z|\textbf{x})$.
 In \autoref{fig:vi}, we can see a visualization of this where we want to optimize the variational parameters to minimize the distance to the true posterior distribution.
 In \autoref{fig:vi}, $q(z; \nu)$ is a family of variational distributions over the latent variables which are different instances of the hidden variables $z$.
