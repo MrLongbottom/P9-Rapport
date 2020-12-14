@@ -62,12 +62,12 @@ A resulting expanded query with an $m$ = 2 would then be:
 \subsection{Query Handling}
 Searching for a given document in a whole data set of documents can be a challenge. 
 In this setting, we propose to use the topic distributions of each document for searching.
-The search process consists of multiple steps before we are able to use a query within the PageRank algorithm. 
-We start with a search query consisting of words which are stemmed.
-For each word in the query, we check whether our model knows the word.
-If it is known, we use the $\beta$ distribution given by the model for the given word. 
-If it is not known, we let the model predict the topic distribution for the given word.
-We take the average of these distributions and calculate the Jenson-Shannon distance between this distribution and all other document-topic distributions to figure out which articles are the most similar to the given query.
-The final vector has the length of the number of documents and has a value from zero to one in all cells, which describes how similar a query is to the given documents based on the topics.
-We then use the resulting vector as our personalization vector for a cluster-based random walk, when searching/ranking articles.
+%The search process consists of multiple steps before we are able to use a query within the PageRank algorithm. 
+%We start with a search query consisting of words which are stemmed.
+%For each word in the query, we check whether our model knows the word.
+%If it is known, we use the $\beta$ distribution given by the model for the given word. 
+%If it is not known, we let the model predict the topic distribution for the given word.
+%We take the average of these distributions and calculate the Jenson-Shannon distance between this distribution and all other document-topic distributions to figure out which articles are the most similar to the given query.
+%The final vector has the length of the number of documents and has a value from zero to one in all cells, which describes how similar a query is to the given documents based on the topics.
+%We then use the resulting vector as our personalization vector for a cluster-based random walk, when searching/ranking articles.
  
