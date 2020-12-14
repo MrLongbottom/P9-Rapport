@@ -124,14 +124,6 @@ We also remove any potential documents that may have become empty after all the 
 	\label{prepro:example5}
 \end{figure}
 
-\paragraph{Construct Files}
-Finally, we construct and save the \texttt{CountVectorizer} (document-word frequency matrix) as a sparse matrix \texttt{npz} file.
-This file is used by the LDA to construct a document-topic matrix and a topic-word matrix.
-We also save various lookup files in \texttt{csv} format.
-\texttt{word2vec} and \texttt{doc2vec} files translate words and documents to their IDs.
-\texttt{doc2word} translates document IDs to all the IDs of the words used in the document.
-These files allow us to only use IDs in future phases, and then later translate back to words when needed.
-\todo[inline]{den skal nok bare flyttes til appendix}
 
 %\subsection{Post-LDA Preprocessing}
 %After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.
