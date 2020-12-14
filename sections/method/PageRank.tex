@@ -13,8 +13,6 @@ $\overrightarrow{e}$ is a column vector with all elements equalling 1.
 We construct a graph over our documents, where edges between documents $d_i$ and $d_j$ are based on the similarity between them $sim(d_i, d_j)$.
 
 This allows us to use PageRank on the graph to search for similar documents.
-On top of this, we can add a personalization vector, to guide the search in a specific direction by multiplying a vector on the adjacency matrix during every iteration of PageRank.
-We can base this personalization vector on a search query to find documents similar to the query.
 
 To construct the adjacency matrix for the graph, we apply a similarity function on each pair of document-topic distributions $\theta_{d_i}, \theta_{d_j}$, from our topic model.
 
