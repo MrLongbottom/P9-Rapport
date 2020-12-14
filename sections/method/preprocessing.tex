@@ -32,7 +32,7 @@ As described in \autoref{sec:dataset}, documents are loaded as \texttt{xml} file
 
 \paragraph{Initial Document Filtering}
 The database contain many duplicate documents with the same content but different file names, we therefore start this phase by removing all duplicates.
-All punctuation, numbers, and other non-alphabetic symbols are removed, keeping only words entirely made of alphabetic symbols.
+During this step, all punctuation, numbers, and other non-alphabetic symbols are also removed, keeping only words entirely made of alphabetic symbols.
 
 Afterward, we remove documents containing fewer than 25 words.
 This is done to remove ads, sports results, snippets, or other similar small sections that are present in newspapers but aren't really news articles.
@@ -134,5 +134,4 @@ These files allow us to only use IDs in future phases, and then later translate 
 %After LDA has made a topic model, documents which have no associated topics, and topics which have no associated documents would be removed.
 %Topics that occur in almost every document are also considered too general, and would also be removed.
 %Initially, this presented some implementation challenges, as it required removing topics and documents from files generated earlier in the process and from the LDA model, to be able to use the right topic/document IDs in the future.
-
 
