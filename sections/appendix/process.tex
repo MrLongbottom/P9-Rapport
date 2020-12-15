@@ -29,12 +29,12 @@ We made the preprocessing more aggressive and implemented more preprocessing met
 
 Importantly, we also implemented thresholds to the topic-document distribution matrix $\theta$ and the topic-word distribution matrix $\beta$ made by the \gls{lda} model.
 For each distribution we replaced values below one divided by the number of values in the distribution, with 0.
-This was also done to make sure that every document wasn't connected to every other document in the adjacency matrix, and to save calculation time by working with sparse matrices.
+This was done to make sure that every document wasn't connected to every other document in the adjacency matrix, and to save calculation time by working with sparse matrices.
 This change ended up causing a lot more problems later on, as many future calculations expected non-zero values, and would be dominated by zeros because of multiplication.
 
 Lastly, we also tried many different ways to construct the adjacency matrix more efficiently, described further in \autoref{app:adj_matrix}.
 
-However even after we managed to produce an adjacency matrix our results proved to be very bad.
+However even after we managed to produce an adjacency matrix our results proved to be unrealistically bad, pointing towards something being wrong with our implementation.
 From here we began searching for more similar papers, where we found: \todo{refs}.
 We focused particularly on \todo{ref}, due to a strong similarity between their project and our ideas.
 We used their methods to improve upon several parts of our methods, and we changed from building a single framework, to testing and comparing multiple different methods. 
