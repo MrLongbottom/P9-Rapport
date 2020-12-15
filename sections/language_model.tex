@@ -9,7 +9,7 @@ To calculate this probability, they find the likelihood for each word in the que
 
 where $N_d$ is the number of word tokens in document $d$ and $tf(w,d)$ is the word frequency of word $w$ in document $d$. Likewise, $N_D$ is the total number of word tokens in the corpus $D$, and $tf(w,D)$ is the word frequency of word $w$ in the whole corpus $D$. $\lambda$ is a Dirichlet smoothing factor and is set to the average document length.
 $ \frac{N_d}{N_d + \lambda} $ describes a relative term which is weighted based on $ \lambda $. If $N_d > \lambda$ the value is closer to 1 and if $ N_d < \lambda $ the value is closer to 0.
-$ \frac{tf(w,d)}{N_d} $ and $\frac{tf(w,D)}{N_D}$ are the maximum likelihood estimate of $w$ appearing in a document $d$ or the corpus $D$, respectively.
+$ \frac{tf(w,d)}{N_d} $ and $\frac{tf(w,D)}{N_D}$ are the maximum likelihood estimates of $w$ appearing in a document $d$ or the corpus $D$, respectively.
 \autoref{eq:word_prob} calculates the relative maximum likelihood for the word being in $ d $ and $ D $, and weighs these terms based on the document length $N_d$ compared to $\lambda$, with smaller documents weighing the corpus likelihood higher, and bigger documents weighing the document likelihood higher.
 
 To calculate this for a given query, we take the product of the word likelihood to get the probability for $q$.

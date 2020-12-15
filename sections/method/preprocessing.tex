@@ -15,6 +15,7 @@ The preprocessing steps are:
 \begin{table}
 	\begin{tabular}{c|c|c}
 		Preprocessing Step & Documents & Words\\
+		\hline
 		Article Extraction & 63266 & unknown \\ 
 		Initial Document Filtering & 32201 & 190133 \\ 
 		Stopword and Word Frequency Filtering & 32201 & 16406 \\
@@ -26,16 +27,16 @@ The preprocessing steps are:
 \end{table}
 
 \paragraph{Article Extraction}
-As described in \autoref{sec:dataset}, documents are loaded as \texttt{xml} files from the database, and their ID, title, and body contents extracted and converted into \texttt{json} format.
+As described in \autoref{sec:dataset}, documents are loaded as \texttt{xml} files from the database, and their ID, title, and body contents are extracted and converted into \texttt{json} format.
 \autoref{prepro:example1} shows an example of an extracted document.
 
 \paragraph{Initial Document Filtering}
-The dataset contains many duplicate documents with the same content but different file names.
+The dataset contains many duplicate documents with the same content but different file IDs.
 Therefore, we start this phase by removing all duplicates.
 During this step, all punctuation, numbers, and other non-alphabetic symbols are also removed, keeping only words entirely made of alphabetic symbols.
 
 Afterward, we remove documents containing fewer than 25 words.
-This is done to remove ads, sports results, snippets, or other similar small sections that are present in newspapers but aren't really news articles.
+This is done to remove advertisements, sports results, snippets, or other similar small sections that are present in newspapers but are not really news articles.
 \autoref{prepro:example2} shows an example of a document that would be removed. In this example, the document is merely a front-page snippet referencing an actual article, rather than a full news article.
 \begin{figure}[h]
 	\begin{framed}
@@ -82,7 +83,7 @@ These constants were the same used by \cite{quanti}.
 Due to a lack of danish POS-tagging resources, we instead check up the words in our corpus against two databases containing only words of specific word classes, namely: nouns, adjectives, verbs, adverbs, and proper nouns.
 In practice, this has the same effect as POS-tagging.
 However, words are not marked with their words class, instead they are removed if they do not appear in at least one of the databases.
-The two databases used are:  Wiktionary\footnote{https://github.com/fnielsen/awesome-danish (specifically Danish resources: https://people.compute.dtu.dk/faan/ps/Nielsen2016Danish.pdf)} and DanNet\cite{Pedersen2009DanNetTC}. 
+The two databases used are:  Wiktionary\footnote{\url{https://github.com/fnielsen/awesome-danish} (specifically Danish resources: \url{https://people.compute.dtu.dk/faan/ps/Nielsen2016Danish.pdf})} and DanNet\cite{Pedersen2009DanNetTC}. 
 
 Most words remaining at this step are contained within the databases, so this step does not remove as many words as the other steps.
 However, this is mostly due to the step being taken late in the preprocessing process, due to having a longer computation time per word.
@@ -112,6 +113,7 @@ In these cases we keep all inflected words.
 After lemmatization has been applied some words might have been converted into stopwords.
 We, therefore, remove stopwords once again.
 We also remove any potential documents that may have become empty after all the word filtering, however, this is usually not the case.
+The example from \autoref{prepro:example3} after lemmatization can be seen in \autoref{prepro:example5}.
 \begin{figure}[h]
 	\begin{framed}
 		\begin{quote}
@@ -120,7 +122,7 @@ We also remove any potential documents that may have become empty after all the 
 			}
 		\end{quote}
 	\end{framed}
-	\caption{Lemmatized version of the example document from \autoref{prepro:example3}}
+	\caption{Lemmatized version of the example document from \autoref{prepro:example3}.}
 	\label{prepro:example5}
 \end{figure}
 
