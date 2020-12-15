@@ -65,6 +65,5 @@ This has shown to be a problem in several of our baselines (namely \gls{lm} and 
 One of the consequences of this problem is that the algorithms give the same value for all queries containing at least one 0-value word, even when the other words have different values. 
 Queries that contain one 0-value word are also evaluated the same as queries containing multiple 0-value words.
 
-To counteract this problem, we have implemented a minimum value when calculating this equation. 
-Each 0-value is replaced with $?$\todo{insert value}. 
-This value is so low that the query will always score lower than queries containing no 0-value words, but it makes it possible to sort queries containing one or more 0-value words.
+This problem was counteracted by removing thresholds.
+However, introducing a minimum value was also considered and would have been an alternative solution.
