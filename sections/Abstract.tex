@@ -4,4 +4,5 @@ We employ the probabilistic topic model, \acrlong{lda}, to automatically extract
 %How can \gls{pr} be used on a dataset without explicit edges?
 We use \acrlong{lda}, to construct an adjacency matrix, by measuring the Jensen-Shannon distance between the articles' topic distributions.
 We test various \acrlong{ir} methods' ability to find documents related to a query, but also to find documents related to topics expressed in queries.
-We evaluate \gls{ir} performance of combinations of \gls{lda}, \gls{tf-idf}, \gls{bm25}, \gls{lm}, and \gls{pr}.
+We evaluate \acrlong{ir} performance of combinations of \acrlong{lda}, \acrlong{tf-idf}, \acrlong{bm25}, \acrlong{lm}, and \acrlong{pr}.
+Our results show that using \acrlong{pr} on an adjacency matrix based on topic similarity can improve performance of most \acrlong{ir} methods.
