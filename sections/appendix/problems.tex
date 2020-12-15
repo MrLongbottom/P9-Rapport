@@ -3,8 +3,10 @@
 
 \subsubsection{Adjacency Matrix Construction}\label{app:adj_matrix}
 Our adjacency matrix is based on whether documents share some topics in their topic distributions. 
-This leads us to the problem of $D*D*T$ insertion operations into a sparse matrix with what was originally ~50.000 documents. We never tested how long this would end up taking, but it was definitely infeasible.
-We did a lot of preprocessing, which reduced this number eventually all the way down to ~30.000 documents, but it was too insignificant to solve anything. Calculation time was now estimated to be ~140 days.
+This leads us to the problem of $D*D*T$ insertion operations into a sparse matrix with what was originally $\sim$50.000 documents.
+We never tested how long this would end up taking, but it was definitely infeasible.
+We did a lot of preprocessing, which reduced this number eventually all the way down to $\sim$30.000 documents, but it was too insignificant to solve anything.
+Calculation time was now estimated to be $\sim$140 days.
 However our similarity function is symmetric, so we cut the time in half by only constructing half of the adjacency matrix.
 Calculation time was now estimated to be $\sim$69 days.
 We then changed our algorithm to only consider documents that shared topics to the original documents, decreasing our time to $D*T_d*D_t$, where both of the new variables are reduced compared to the originals.
