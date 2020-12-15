@@ -1,4 +1,4 @@
-\section{Related Work}\label{sec:related-works} \vejleder[inline]{add some more}
+\section{Related Work}\label{sec:related-works}
 In this section, we investigate existing literature concerning \gls{lda} and similar topic models, as well as relevant work related to random walk.
 
 \citet{lda} describes \acrlong{lda}, a generative statistical model, which is widely used within the field of topic modeling. 
@@ -21,13 +21,13 @@ Though their focus is mainly on mapping author and venue relations as part of th
 
 
 \citet{yang2009topic} present a method for doing the topic-level random walk to search scientific articles.
-\todo[inline]{mention LM and reference section}.
+They combine their method with various other \gls{ir} methods, such as a \gls{lm}, which they introduce.
 They also describe various combinations of \gls{lda} and PageRank.
 These combinations are evaluated against information retrieval baselines such as BM25\cite{bm251996}.
 
 
 This paper is largely based on the work of \citeauthor{yang2009topic}\cite{yang2009topic} and \citeauthor{Tang2008}\cite{Tang2008}.
-However, the novelty in this paper comes from a different focus as described by our goals in \todo{ref introduction / goals}.
+However, the novelty in this paper comes from a different focus as described by our goals in the \autoref{sec:introduction}.
 Our method will have the significant change of working with a new dataset consisting of documents without explicit connections between documents, which introduces a challenge in using \gls{pr} effectively.
 We also evaluate \gls{ir} performance based on queries generated from our dataset.
 
