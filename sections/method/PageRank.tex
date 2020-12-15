@@ -11,13 +11,17 @@ $|D|$ is the number of documents.
 $\overrightarrow{e}$ is a column vector with all elements equalling 1.
 
 We construct a graph over our documents, where edges between documents $d_i$ and $d_j$ are based on the similarity between them $sim(d_i, d_j)$.
-
+We run the \gls{pr} algorithm for 20 iterations.
 This allows us to use \gls{pr} on the graph to search for similar documents.
-
 To construct the adjacency matrix for the graph, we apply a similarity function on each pair of document-topic distributions $\theta_{d_i}, \theta_{d_j}$, from our topic model.
 
 We use Jenson-Shannon distance as our similarity function, which is a measure of the distance between probability distributions\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
 It is calculated using the square root of the Jenson-Shannon divergence between two probability distributions and gives a score from 0 to 1.
 However since Jenson-Shannon calculates difference rather than similarity, a low value means more similarity, making our similarity function:
 $$sim(d_1, d_2) = 1 - JS(\theta_{d_1}, \theta_{d_2})$$
-\todo[inline]{indsæt JS funktion}
+
+The Jensen-Shannon distance function is defined as:
+$$ \frac{D(p || m) + D(q || m)}{2}$$
+where $p$ and $q$ are distributions and $m$ is the pointwise mean between $D$ is the Kullback-Leibler divergence.
+
+The goal of using \gls{pr} is to get the most important articles within a specific topic and use these to yield important information during search.  
