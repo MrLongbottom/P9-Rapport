@@ -8,10 +8,12 @@
 
 We use two techniques for generating the queries used for evaluating our search algorithm, namely document queries and topic queries.
 The idea behind these two methods is to evaluate the specificity and generality of the \gls{ir} methods, respectively.
-The construction of the queries is described in the following.
+For our experiment we will be generating 80 of each of the two query types queries of length 1 to 4, making a total of 320 document queries and 320 topic queries ($\sim$1$\%$ of the entire corpus).
+The construction of these queries is described in the following subsections:
 
 \subsubsection{Document query}\label{subsec:query_gen_doc}
 To generate a document query, we randomly select a document from the corpus and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
+Document queries are all based on different documents.
 From this selection, we apply \gls{tf-idf} on the selected document to find the most informative words.
 Our query is then the $ql$ highest ranked words within the given document.
 The goal is to check whether or not the \gls{ir} method is able to find the specific document based on a search query generated from that document.
@@ -19,6 +21,7 @@ The goal is to check whether or not the \gls{ir} method is able to find the spec
 \subsubsection{Topic query}\label{subsec:query_gen_top}
 The topic query is slightly different in comparison to document query in that it focuses on the topics rather than a specific document.
 To construct a topic query, firstly we select a random topic $t$ and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
+Topic queries can be based on the same topic but will have a high variance in the actual words used.
 We then sample $ql$ documents based on the document-topic distribution $\theta_t$ provided by the \gls{lda} model.
 Though $\theta$ is normally one topic distribution for each document, we create document distributions for each topic by column normalizing the matrix.
 \vejleder[inline]{uddyb row normalization} 
