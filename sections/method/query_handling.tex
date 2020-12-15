@@ -28,29 +28,6 @@ If an extracted word is in the query already, we skip it and add the next highes
 In that way, we ensure to get unique words in the query.
 The goal, of generating this query, is to check whether the \gls{ir} method can find similar documents based on a search query generated from a topic.
 
-\subsection{Query Expansion}\label{subsec:query_expansion}
-Query expansion is a method that adds more words to a given query in order to add more context to the search process.
-\citet{yang2009topic} describes a query expansion method, called window query expansion.
-Queries are expanded based on the neighboring words in the document set.
-Specifically, for each word in the query, we count the frequency of each word appearing before and after the given word in the corpus.
-We then add top $m$ most frequent words to the query.
-An example of this could be the query: 
-\begin{quote}
-	Query = "Football"
-\end{quote}
-As an example the most frequent words before and after "Football" in our document set could be:
-\begin{itemize}
-	\item Coach - 15
-	\item Match - 10
-	\item Ball - 5
-\end{itemize}
-A resulting expanded query with an $m$ = 2 would then be:
-\begin{quote}
-	Query = "Football Coach Match"
-\end{quote}
-
-
-
 %\subsection{Query Handling}
 %Searching for a given document in a whole data set of documents can be a challenge. 
 %In this setting, we propose to use the topic distributions of each document for searching.
