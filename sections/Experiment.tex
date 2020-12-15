@@ -9,14 +9,16 @@ To do this, we generate queries based on topics from our \gls{lda} model, as des
 
 We test combinations of the following \gls{ir} methods (these will be referred to as the baselines):
 \begin{itemize}
-	\item \acrlong{lda}-\acrlong{ir} (\acrshort{lda}-\acrshort{ir})
+	\item \Acrlong{lda}-\acrlong{ir} (\acrshort{lda}-\acrshort{ir})
 	\item \acrfull{lm}
 	\item \acrfull{bm25}
 	\item \acrfull{tf-idf}
 	\item \acrfull{pr}
 \end{itemize}
 
-\gls{lm} was described in \autoref{sec:lm} based on the implementation by \citeauthor{yang2009topic}\cite{yang2009topic}.
+\gls{lda} and \gls{lda}-\gls{ir} was described in \autoref{sec:lda}.
+We use the \gls{lda} implementation from Gensim\footnote{\url{https://radimrehurek.com/gensim/models/ldamodel.html}} which is based on online \gls{lda} from \citet{blei2010online}.
+\gls{lm} was described in \autoref{sec:lm} based on the implementation by \citet{yang2009topic}.
 \gls{pr} was described in \autoref{sec:pagerank}.
 
 \todo[inline]{describe bm25}
