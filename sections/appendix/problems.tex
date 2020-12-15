@@ -37,6 +37,7 @@ In \gls{lda}, words are generated for documents by choosing a topic from the top
 Our initial idea for query handling was to reverse engineer this process.
 For each word in a query, we would convert a word into a topic-distribution and then convert that topic-distribution into a document distribution.
 This would be done using the same tables that were used to create the words $\theta$ and $\varphi$, but by accessing columns rather than rows, which also meant that the array of numbers we received had to be converted into distributions, as only the rows of these matrices were guaranteed to sum to 1.
+\todo{'the words $\theta$ and $\varphi$' sounds bad and confusing}
 
 To test this initial query handling we generated some queries by taking the 4 highest-ranking words in the document using tf-idf. Using this query we would then see if our algorithm could find the document again only using the words in the query.
 
