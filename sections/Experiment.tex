@@ -33,13 +33,24 @@ This also means that while document queries always only have one ground truth po
 This makes it hard to compare these two results on a single baseline.
 However, it is still possible to compare these two results between multiple baselines.
 
-We use \gls{map} to evaluate all baselines. 
-We also use precision@10 and precision@100 for the topic queries. \todo{describe what it is and how it is calculated}
-However since document queries only contain one ground truth positive, $p @ n$ doesn't make much sense to calculate. 
+We use \gls{map} to evaluate all baselines.
+\Gls{map} is calculated as follows\footnote{Equations from \url{https://towardsdatascience.com/breaking-down-mean-average-precision-map-ae462f623a52} and \url{https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)\#Mean_average_precision}}:
+
+$$MAP = \frac{1}{Q}\sum_{q=1}^{Q} AveP(q)$$
+
+\noindent Where $Q$ is the number of queries.
+
+$$AveP(q) = \frac{\sum_{n = 1}^{D} (precision@n(n) \times rel(n))}{|relevant~documents|}$$
+
+\noindent Where $D$ is the number of documents, and $rel(n)$ is 1 if the document at rank $n$ is relevant to the query, otherwise it is 0.
+
+$$precision@n(n)) = \frac{TP(n)}{TP(n) + FP(n)}$$
+\noindent Where $TP(n)$ is the number of documents correctly labeled as relevant for the query, in the $n$ top ranked documents, and $FP(n)$ is the number of documents incorrectly labeled as relevant for the query, in the $n$ top ranked documents.
+
+We also use precision@10 and precision@100 for the topic queries.
+However since document queries only contain one ground truth positive, $p@n$ doesn't make much sense to calculate. 
 Instead, we show the average ranking of the relevant document for each document query.
-Each of these metrics are shown as the mean value for 80 queries of length 1 to 4, making a total of 320 queries ($\sim$$1\%$ of the entire corpus).
-Document queries are all based on different documents. 
-Topic queries can be based on the same topic but will have a high variance in the actual words used in the queries.
+Each of these metrics are shown as the mean value for all queries generated, described in \autoref{sec:query}.
 
 We hypothesize that \gls{lda} can improve the topic \gls{ir} when combined with other baselines and that \gls{pr} is also able to improve the \gls{ir} performance since the adjacency matrix, used by gls{pr}, is based on topic similarities.
 
