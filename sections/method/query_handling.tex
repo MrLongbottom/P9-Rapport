@@ -6,38 +6,30 @@
 %This is an important process, since we need to compare different models against how well they retrieve the articles.
 %The danger of this method is that a query only containing a couple of words, will likely have a very skewed topic distribution.
 
-We have identified three steps when working with a search query:
-\begin{itemize}
-	\item Generation
-	\item Expansion
-	\item Handling
-\end{itemize}
-We will describe each step in the following sections.
-\subsection{Query Generation}\label{subsec:query_gen}
 We use two techniques for generating the queries used for evaluating our search algorithm, namely document queries and topic queries.
-The idea behind these two methods is to evaluate the specificity and generality of the \gls{lda} model, respectively.
+The idea behind these two methods is to evaluate the specificity and generality of the \gls{ir} methods, respectively.
 The construction of the queries is described in the following.
 
 \subsubsection{Document query}\label{subsec:query_gen_doc}
-To construct a document query, we randomly select a document from the corpus and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
+To generate a document query, we randomly select a document from the corpus and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
 From this selection, we apply \gls{tf-idf} on the selected document to find the most informative words.
 Our query is then the $ql$ highest ranked words within the given document.
-The goal is to check whether or not the model is able to find a specific document based on a search query generated from that document.
+The goal is to check whether or not the \gls{ir} method is able to find the specific document based on a search query generated from that document.
 
 \subsubsection{Topic query}\label{subsec:query_gen_top}
 The topic query is slightly different in comparison to document query in that it focuses on the topics rather than a specific document.
 To construct a topic query, firstly we select a random topic $t$ and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
 We then sample $ql$ documents based on the document-topic distribution $\theta_t$ provided by the \gls{lda} model.
-Though $\theta$ is normally one topic distribution for each document, we create document distributions for each topic by row normalizing the matrix.
+Though $\theta$ is normally one topic distribution for each document, we create document distributions for each topic by column normalizing the matrix.
 \vejleder[inline]{uddyb row normalization} 
 When sampling these documents, we only sample within the document-topic distribution where the topic is set to $t$.
 From these sampled documents, we extract one word from each document, based on the \gls{tf-idf} score, and add these to the query.
 If an extracted word is in the query already, we skip it and add the next highest \gls{tf-idf} scored word to the query.
 In that way, we ensure to get unique words in the query.
-The goal, of generating this query, is to check whether the model can find similar documents based on a search query generated from a topic distribution.
+The goal, of generating this query, is to check whether the \gls{ir} method can find similar documents based on a search query generated from a topic.
 
 \subsection{Query Expansion}\label{subsec:query_expansion}
-Query expansion is a method which adds more words to a given query to add more context to the search process.
+Query expansion is a method that adds more words to a given query in order to add more context to the search process.
 \citet{yang2009topic} describes a query expansion method, called window query expansion.
 Queries are expanded based on the neighboring words in the document set.
 Specifically, for each word in the query, we count the frequency of each word appearing before and after the given word in the corpus.
@@ -59,15 +51,15 @@ A resulting expanded query with an $m$ = 2 would then be:
 
 
 
-\subsection{Query Handling}
-Searching for a given document in a whole data set of documents can be a challenge. 
-In this setting, we propose to use the topic distributions of each document for searching.
-The search process consists of multiple steps before we are able to use a query within the PageRank algorithm. 
-We start with a search query consisting of words which are stemmed.
-For each word in the query, we check whether our model knows the word.
-If it is known, we use the $\beta$ distribution given by the model for the given word. 
-If it is not known, we let the model predict the topic distribution for the given word.
-We take the average of these distributions and calculate the Jenson-Shannon distance between this distribution and all other document-topic distributions to figure out which articles are the most similar to the given query.
-The final vector has the length of the number of documents and has a value from zero to one in all cells, which describes how similar a query is to the given documents based on the topics.
-We then use the resulting vector as our personalization vector for a cluster-based random walk, when searching/ranking articles.
+%\subsection{Query Handling}
+%Searching for a given document in a whole data set of documents can be a challenge. 
+%In this setting, we propose to use the topic distributions of each document for searching.
+%The search process consists of multiple steps before we are able to use a query within the PageRank algorithm. 
+%We start with a search query consisting of words which are stemmed.
+%For each word in the query, we check whether our model knows the word.
+%If it is known, we use the $\beta$ distribution given by the model for the given word. 
+%If it is not known, we let the model predict the topic distribution for the given word.
+%We take the average of these distributions and calculate the Jenson-Shannon distance between this distribution and all other document-topic distributions to figure out which articles are the most similar to the given query.
+%The final vector has the length of the number of documents and has a value from zero to one in all cells, which describes how similar a query is to the given documents based on the topics.
+%We then use the resulting vector as our personalization vector for a cluster-based random walk, when searching/ranking articles.
  

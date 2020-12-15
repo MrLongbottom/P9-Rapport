@@ -3,17 +3,20 @@
 
 \subsubsection{Adjacency Matrix Construction}\label{app:adj_matrix}
 Our adjacency matrix is based on whether documents share some topics in their topic distributions. 
-This leads us to the problem of $D*D*T$ insertion operations into a sparse matrix with what was originally ~50.000 documents. We never tested how long this would end up taking, but it was definitely infeasible.
-We did a lot of preprocessing, which reduced this number eventually all the way down to ~30.000 documents, but it was too insignificant to solve anything. Calculation time was now estimated to be ~140 days.
-However our similarity function is symmetric, so we cut the time in half by only constructing half of the adjacency matrix. Calculation time was now estimated to be ~69 days.
-We then changed our algorithm to only consider documents that shared topics to the original documents, decreasing our time to $D*T_d*D_t$, where both of the new variables are reduced compared to the originals. This reduced the calculation time to be estimated as ~48 days.
-We also made the calculation multithreaded in order to reduce computation time. Estimated calculation time is reduced to ~2,4 days using 8 threads.
-Lastly, we changed to construct our matrix using the \emph{lil\_matrix} format, which has faster insertions. This last change made the construction much more manageable.
+This leads us to the problem of $D*D*T$ insertion operations into a sparse matrix with what was originally $\sim$50.000 documents.
+We never tested how long this would end up taking, but it was definitely infeasible.
+We did a lot of preprocessing, which reduced this number eventually all the way down to $\sim$30.000 documents, but it was too insignificant to solve anything.
+Calculation time was now estimated to be $\sim$140 days.
+However our similarity function is symmetric, so we cut the time in half by only constructing half of the adjacency matrix.
+Calculation time was now estimated to be $\sim$69 days.
+We then changed our algorithm to only consider documents that shared topics to the original documents, decreasing our time to $D*T_d*D_t$, where both of the new variables are reduced compared to the originals.
+This reduced the calculation time to be estimated as $\sim$48 days.
+We also made the calculation multithreaded in order to reduce computation time.
+Estimated calculation time is reduced to $\sim$2,4 days using 8 threads.
+Lastly, we changed to construct our matrix using the \emph{lil\_matrix} sparse matrix format, which has faster insertions.
+This last change made the construction much more manageable.
 
 
-\todo[inline]{Nedenstående problem skal uddybes, hvis det beholdes. Skal også have sit eget afsnit separat fra Adjacency Matrix Construction}
-The function get\_document\_topics might be needing the whole corpus since whenever we give it the query it returns the same two topics. 
-These two topics are probably the two most general topics within the model which might spell trouble since we don't know how to remove these from the model.
 
 \subsubsection{Dirichlet distributions only produce non-zero values}
 We use document-topic and topic-word distributions produced by the Dirichlet distributions to construct our adjacency matrix and to convert queries into topic distributions. 
@@ -31,6 +34,7 @@ In \gls{lda}, words are generated for documents by choosing a topic from the top
 Our initial idea for query handling was to reverse engineer this process.
 For each word in a query, we would convert a word into a topic-distribution and then convert that topic-distribution into a document distribution.
 This would be done using the same tables that were used to create the words $\theta$ and $\varphi$, but by accessing columns rather than rows, which also meant that the array of numbers we received had to be converted into distributions, as only the rows of these matrices were guaranteed to sum to 1.
+\todo{'the words $\theta$ and $\varphi$' sounds bad and confusing}
 
 To test this initial query handling we generated some queries by taking the 4 highest-ranking words in the document using tf-idf. Using this query we would then see if our algorithm could find the document again only using the words in the query.
 
@@ -61,6 +65,5 @@ This has shown to be a problem in several of our baselines (namely \gls{lm} and 
 One of the consequences of this problem is that the algorithms give the same value for all queries containing at least one 0-value word, even when the other words have different values. 
 Queries that contain one 0-value word are also evaluated the same as queries containing multiple 0-value words.
 
-To counteract this problem, we have implemented a minimum value when calculating this equation. 
-Each 0-value is replaced with $?$\todo{insert value}. 
-This value is so low that the query will always score lower than queries containing no 0-value words, but it makes it possible to sort queries containing one or more 0-value words.
+This problem was counteracted by removing thresholds.
+However, introducing a minimum value was also considered and would have been an alternative solution.

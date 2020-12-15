@@ -1,5 +1,5 @@
 \section{Conclusion}\label{sec:conclusion}
-We have explored the possibility of improving news article search using various model combinations.
+We have explored the possibility of improving news article search using various \gls{ir} method combinations.
 The focus has been on testing whether using the \gls{lda} topic model could improve the performance of the article retrieval.
 
 We now answer our questions from the introduction:
@@ -22,6 +22,7 @@ These are evaluated on \acrlong{map} and P@n, respectively, to favor both the sp
 The results from \autoref{tab:results} and \autoref{tab:results_precision_at_10} indicate that, when searching for documents in a topic, combinations using \gls{lda} can perform better than \gls{bm25} when longer queries are used.
 However, this does come at the cost of decreased performance in document query retrieval.
 
-For the second question, we explored the possibility of creating the adjacency matrix for \gls{pr} by using the similarity between \gls{lda} topics, generated for the articles.
+For the second question, we explored the possibility of creating the adjacency matrix for \gls{pr} by using the similarity between \gls{lda} topic distributions, generated for the articles.
 This is an alternative to explicit relations between documents, such as references between scientific articles.
-From the results in \autoref{tab:results}, \autoref{tab:results_precision_at_10}, and \autoref{tab:hit_results}, this would seem to have been highly effective, since most best performing models include \gls{pr}.
+The results in \autoref{tab:results}, \autoref{tab:results_precision_at_10}, and \autoref{tab:hit_results}, show this to have been highly effective, since most best performing models include \gls{pr}.
+In addition, most of the tested \gls{ir} methods improve their performance when \gls{pr} is added as part of a combination.

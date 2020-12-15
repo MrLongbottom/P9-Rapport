@@ -1,19 +1,21 @@
-\subsubsection{Query Expansion Results}
+\subsection{Query Expansion Results}
 
 Based on the results from \autoref{tab:results_precision_at_10}, we wanted to test whether \gls{lda} would have better performance if given more context.
-To test this, we generated extended document and topic queries, as described in \todo{ref expansion section}.
+To test this, we generated extended document queries and topic queries, as described in \todo{ref expansion section}.
 All queries have been extended to be 10 times larger. 
 So a topic query which originally had 1 word, will be extended to approximately 10 words.
+\todo{ref to parameters of the extension function instead of this}
 
 \autoref{tab:expansion_results} shows precision@10 and precision@100 for selected baselines using expanded queries.
 As with \autoref{tab:results_precision_at_10}, $\gls{bm25} * \gls{pr}$ has better results in the queries containing fewer words.
 With longer queries, combinations containing \gls{lda} become among the best, in \autoref{tab:expansion_results}, from T3-T4 for precision@10 and from T2-T4 for precision@100, compared to \autoref{tab:results_precision_at_10}, where \gls{lda} is only included in a best performing combination from T4.
+In other words, \gls{lda} has achieved better performance improvement than the other \gls{ir} methods when provided with more context.
 
 Better performance for \gls{lda} gives more viability to combinations using \gls{lda} as a means to get better topic query retrieval results.
 However, it should be noted that the results from \autoref{tab:results_precision_at_10} suggested that \gls{lda} would become among the best baselines for all queries containing more than 4 words, which is not the case.
 This is likely due to expanded queries bringing more context to the query words already present in the query, rather than bringing new context as would happen with generating longer queries.
 
-\autoref{tab:expansion_map} compared to \autoref{tab:results} also shows that while \gls{lda} is still the worst model for document query retrieval, it does improve significantly given more context, going from worse by a factor of 60 down to a factor of 8.
+\autoref{tab:expansion_map} compared to \autoref{tab:results} also shows that while \gls{lda} is still the worst model for document query retrieval, it does improve significantly given more context, going from being worse than the best result by a factor of 60 down to a factor of 8.
 This makes it more worthwhile to use \gls{lda} as part of combinations, to improve topic query retrieval results, as the document retrieval performance is hurt less significantly.  
 
 \begin{table*}[h]
