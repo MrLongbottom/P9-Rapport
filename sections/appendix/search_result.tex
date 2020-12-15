@@ -1,0 +1,42 @@
+\subsection{Search Example}
+In this section, the best model configuration for document queries, \texttt{\gls{bm25}} * \texttt{\gls{pr}} is tested against a query to see what our search engine.
+
+
+\subsection{Document query}
+The query we test is:
+\begin{quotation}
+	\textit{eriksen landshold hareide holdkammerat}
+\end{quotation}
+This query is generally about football and should therefore return similar articles regarding the same topic.
+\textit{Eriksen} is referring to a Danish football player(Christian Eriksen) and \textit{Hareide} is referring to the Danish national football team's coach.
+
+
+\noindent Headline of the top 5 article is shown below.
+\begin{enumerate}
+	\item Danmarks største stjerne er i storform
+	\item Profils formkurve er opadgående
+	\item Åge Hareide modtager pris
+	\item Fodboldlandshold rykker frem
+	\item Grå irere er vant til playoff
+\end{enumerate}
+These articles are generally concerned with the topic of football or giving awards to players/coaches which indicates good retrieval performance.
+
+
+\subsection{Topic query}
+The query we test is:
+\begin{quotation}
+	\textit{dilemma plejehjem nordthy betjene}
+\end{quotation}
+The query is about a dilemma at a nursing home in nordthy where some police officer were involved. 
+This might not make sense, since the words are possibly taken from different articles, which might introduce more noise.
+
+\noindent Headline of the top 5 article is shown below.
+\begin{enumerate}
+	\item Nordthy pløjer sig gennem puljen
+	\item Nordthy skarpest
+	\item Nordthy vandt knebent
+	\item Brændte chancer kostede
+	\item Ikke skarpe nok
+\end{enumerate}
+All of the articles, which are found in top 5 from the query are about either football or handball where Nordthy is mentioned.
+This indicates that the \gls{bm25} has too much influence on which articles are selected based on the query.
