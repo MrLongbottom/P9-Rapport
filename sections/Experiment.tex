@@ -112,7 +112,7 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 	\centering
 	\caption{\acrlong{map} results for the four sets of document queries and topic queries.}
 	\begin{tabular}{l|c|c|c|c|c|c|c|c}
-		& \multicolumn{4}{c|}{Document Query Set} & \multicolumn{4}{c}{Topic Query Set} \\
+		& \multicolumn{4}{c|}{Document Query Length} & \multicolumn{4}{c}{Topic Query Length} \\
 		Model / \gls{map} & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 \\
 		\midrule
 		\gls{lda}-\gls{ir} & 0.00457 & 0.00527 & 0.0429 & 0.0538 & 0.155 & 0.186 & 0.168 & 0.178 \\
@@ -143,7 +143,7 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 	\centering
 	\caption{Precision results for the four sets of topic queries for P@10 and P@100.}
 	\begin{tabular}{l|c|c|c|c||c|c|c|c}
-		& \multicolumn{4}{c||}{Topic Query Set (P@10)} & \multicolumn{4}{c}{Topic Query Set (P@100)} \\
+		& \multicolumn{4}{c||}{Topic Query Length (P@10)} & \multicolumn{4}{c}{Topic Query Length (P@100)} \\
 		Model & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4\\
 		\midrule
 		\gls{lda}-\gls{ir} & 0.02 & 0.103 & 0.13 & 0.203 & 0.062 & 0.131 & 0.164 & 0.191 \\
@@ -174,7 +174,7 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 	\centering
 	\caption{Average rank of the relevant document for each document query.}
 	\begin{tabular}{l|c|c|c|c}
-		& \multicolumn{4}{c}{Document Query Set} \\
+		& \multicolumn{4}{c}{Document Query Length} \\
 		Model / Avg. Rank & 1 & 2 & 3 & 4 \\
 		\midrule
 		\gls{lda}-\gls{ir} & 2287.93 & 1599.95 & 1241.18 & 1926.78 \\
