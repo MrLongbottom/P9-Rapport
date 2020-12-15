@@ -2,27 +2,23 @@
 We have explored the possibility of improving news article search using various \gls{ir} method combinations.
 The focus has been on testing whether using the \gls{lda} topic model could improve the performance of the article retrieval.
 
-We now answer our questions from the introduction:
+Based on the findings of this paper, we will now answer the questions posed in \autoref{sec:intro}:
 \begin{quote}
-	\emph{How can information retrieval techniques be evaluated based on search queries?}
 	\begin{itemize}
-		\item \emph{How can queries be generated for a dataset?}
-		\item \emph{How can evaluation be done in a way that favors abstraction, rather than word frequency?}
+		\item \emph{How can we generate queries for a dataset to use for \gls{ir}?}
+		\item \emph{How can we evaluate \gls{ir} methods in a way that favors abstraction, rather than word frequency?}
+		\item \emph{Can \gls{pr} be used on a document dataset with no explicit connections to improve \gls{ir} methods?}
 	\end{itemize}
 \end{quote}
-\vspace{0.1 cm}
 
-\begin{quote}
-	\emph{How can PageRank be used on a document dataset with no connections between documents?}
-\end{quote}
-
-For the first question, queries can be generated in different ways depending on what the purpose of the evaluation is.
+For the first two questions, queries can be generated in different ways depending on what the purpose of the evaluation is.
 We generate two types of queries based on either important words from a specific document or a specific topic.
-These are evaluated on \acrlong{map} and P@n, respectively, to favor both the specificity of finding a specific document and the more abstract idea of finding documents related to a topic.
+We differentiate between these two query types to favor both the specificity of finding a specific document and the more abstract idea of finding documents related to a topic.
+We have evaluated various \gls{ir} methods' \gls{ir} performance using these queries, measuring \acrlong{map}, P@n, and mean rank.
 The results from \autoref{tab:results} and \autoref{tab:results_precision_at_10} indicate that, when searching for documents in a topic, combinations using \gls{lda} can perform better than \gls{bm25} when longer queries are used.
 However, this does come at the cost of decreased performance in document query retrieval.
 
-For the second question, we explored the possibility of creating the adjacency matrix for \gls{pr} by using the similarity between \gls{lda} topic distributions, generated for the articles.
-This is an alternative to explicit relations between documents, such as references between scientific articles.
+For the third question, we explored the possibility of creating the adjacency matrix for \gls{pr} by using the similarity between \gls{lda} topic distributions, generated for the articles.
+This was as an alternative to explicit relations between documents, such as references between scientific articles.
 The results in \autoref{tab:results}, \autoref{tab:results_precision_at_10}, and \autoref{tab:hit_results}, show this to have been highly effective, since most best performing models include \gls{pr}.
 In addition, most of the tested \gls{ir} methods improve their performance when \gls{pr} is added as part of a combination.
