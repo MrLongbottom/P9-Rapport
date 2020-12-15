@@ -15,9 +15,9 @@ We run the \gls{pr} algorithm for 20 iterations.
 This allows us to use \gls{pr} on the graph to search for similar documents.
 To construct the adjacency matrix for the graph, we apply a similarity function on each pair of document-topic distributions $\theta_{d_i}, \theta_{d_j}$, from our topic model.
 
-We use Jenson-Shannon distance as our similarity function, which is a measure of the distance between probability distributions\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
-It is calculated using the square root of the Jenson-Shannon divergence between two probability distributions and gives a score from 0 to 1.
-However since Jenson-Shannon calculates difference rather than similarity, a low value means more similarity, making our similarity function:
+We use Jensen-Shannon distance as our similarity function, which is a measure of the distance between probability distributions\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
+It is calculated using the square root of the Jensen-Shannon divergence between two probability distributions and gives a score from 0 to 1.
+However since Jensen-Shannon calculates difference rather than similarity, a low value means more similarity, making our similarity function:
 $$sim(d_1, d_2) = 1 - JS(\theta_{d_1}, \theta_{d_2})$$
 
 The Jensen-Shannon distance function is defined as:
