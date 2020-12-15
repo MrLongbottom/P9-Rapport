@@ -1,8 +1,8 @@
 \subsection{Search Example}
-In this section, the best model configuration for document queries, \texttt{\gls{bm25}} * \texttt{\gls{pr}} is tested against a query to see what our search engine.
+In this section, the best model configuration for document queries, \texttt{\gls{bm25}} * \texttt{\gls{pr}} is tested against a query to see what our search engine retrieves.
 
 
-\subsection{Document query}
+\subsection{Document Query}
 The query we test is:
 \begin{quotation}
 	\textit{eriksen landshold hareide holdkammerat}
@@ -11,7 +11,7 @@ This query is generally about football and should therefore return similar artic
 \textit{Eriksen} is referring to a Danish football player(Christian Eriksen) and \textit{Hareide} is referring to the Danish national football team's coach.
 
 
-\noindent Headline of the top 5 article is shown below.
+\noindent Headlines of the top 5 articles are shown below.
 \begin{enumerate}
 	\item \textbf{Danmarks største stjerne er i storform}
 	\item Profils formkurve er opadgående
@@ -19,19 +19,19 @@ This query is generally about football and should therefore return similar artic
 	\item Fodboldlandshold rykker frem
 	\item Grå irere er vant til playoff
 \end{enumerate}
-The headline in bold is the articles that we were searching for with the given query. 
+The headline in bold is the article that we were searching for with the given query. 
 These articles are generally concerned with the topic of football or giving awards to players/coaches which indicates good retrieval performance.
 
 
-\subsection{Topic query}
+\subsection{Topic Query}
 The query we test is:
 \begin{quotation}
 	\textit{dilemma plejehjem nordthy betjene}
 \end{quotation}
-The query is about a dilemma at a nursing home in nordthy where some police officer were involved. 
+The query would seem to be about a dilemma at a nursing home in Nordthy where some police officers were involved. 
 This might not make sense, since the words are possibly taken from different articles, which might introduce more noise.
 
-\noindent Headline of the top 5 article is shown below.
+\noindent Headlines of the top 5 articles are shown below.
 \begin{enumerate}
 	\item Nordthy pløjer sig gennem puljen
 	\item Nordthy skarpest
@@ -39,5 +39,5 @@ This might not make sense, since the words are possibly taken from different art
 	\item Brændte chancer kostede
 	\item Ikke skarpe nok
 \end{enumerate}
-All of the articles, which are found in top 5 from the query are about either football or handball where Nordthy is mentioned.
-This indicates that the \gls{bm25} has too much influence on which articles are selected based on the query.
+All of the articles, which are found in top 5 from the query, are about either football or handball where Nordthy is mentioned.
+This indicates that the \gls{bm25} method has too much influence on which articles are selected based on the query.
