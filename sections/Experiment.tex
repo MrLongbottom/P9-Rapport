@@ -29,7 +29,7 @@ When multiple baselines are combined, their document-value vectors are normalize
 
 For each baseline, we evaluate the quality of its \gls{ir} for both queries generated based on documents (document queries) and queries generated based on topics (topic queries).
 For topic queries, all documents with values higher than the mean of the topic's vector in the document-topic matrix $\theta_t$ are considered ground truth positives.
-This also means that while document queries always only have one ground truth positive, topic queries can have several thousand (~1.000-7.000).
+This also means that while document queries always only have one ground truth positive, topic queries can have several thousand ($\sim$1.000-7.000).
 This makes it hard to compare these two results on a single baseline.
 However, it is still possible to compare these two results between multiple baselines.
 
