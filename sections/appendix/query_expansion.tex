@@ -1,10 +1,27 @@
-\subsection{Query Expansion Results}
+\subsection{Query Expansion}\label{subsec:query_expansion}
+Query expansion is a method that adds more words to a given query in order to add more context to the search process.
+\citet{yang2009topic} describes a query expansion method, called window query expansion.
+Queries are expanded based on the neighboring words in the document set.
+Specifically, for each word in the query, we count the frequency of each word appearing before and after the given word in the corpus.
+We then add top $m$ most frequent words to the query.
+An example of this could be the query: 
+\begin{quote}
+	Query = "Football"
+\end{quote}
+As an example the most frequent words before and after "Football" in our document set could be:
+\begin{itemize}
+	\item Coach - 15
+	\item Match - 10
+	\item Ball - 5
+\end{itemize}
+A resulting expanded query with an $m$ = 2 would then be:
+\begin{quote}
+	Query = "Football Coach Match"
+\end{quote}
+
 
 Based on the results from \autoref{tab:results_precision_at_10}, we wanted to test whether \gls{lda} would have better performance if given more context.
-To test this, we generated extended document queries and topic queries, as described in \todo{ref expansion section}.
-All queries have been extended to be 10 times larger. 
-So a topic query which originally had 1 word, will be extended to approximately 10 words.
-\todo{ref to parameters of the extension function instead of this}
+To test this, we generated extended document queries and topic queries, using $m$ = 10.
 
 \autoref{tab:expansion_results} shows precision@10 and precision@100 for selected baselines using expanded queries.
 As with \autoref{tab:results_precision_at_10}, $\gls{bm25} * \gls{pr}$ has better results in the queries containing fewer words.
