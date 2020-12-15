@@ -49,12 +49,12 @@ Before setting up our experiment, we run a grid search to find acceptable hyperp
 % runtime parameters
 First, we adjusted parameters that had to do with how the algorithms run to ensure that the model converged, without spending unnecessary resources.
 
-\texttt{passes} adjusts how many times the model passes over the whole corpus, and can be seen as an 'epoch'. 
+\texttt{Passes} adjusts how many times the model passes over the whole corpus, and can be seen as an 'epoch'. 
 This is necessary for smaller datasets to ensure convergence before the algorithm finishes, but for large enough datasets this parameter can have a value of 1, as is the case for \citeauthor{blei2010online}\cite{blei2010online} where their corpus includes 3.3M documents, whereas our dataset is $\sim32000$ documents.
 
-\texttt{iterations} adjusts the maximum number of iterations of the E-step (from \citeauthor{blei2010online}\cite{blei2010online}, Algorithm 2) that are allowed without all documents having converged. 
+\texttt{Iterations} adjusts the maximum number of iterations of the E-step (from \citeauthor{blei2010online}\cite{blei2010online}, Algorithm 2) that are allowed without all documents having converged. 
 Setting this to a high value ensures convergence, but also increases training time. 
-In practice, iterations should be set to the lowest possible values where nearly all (> 99\%) documents have converged by the end of the training.
+In practice, \texttt{iterations} should be set to the lowest possible values where nearly all (> 99\%) documents have converged by the end of the training.
 From testing we found 20 \texttt{passes} and 100 \texttt{iterations} was enough to converge 27678 out of 27919 documents (99.14\%).
 
 % model parameters
