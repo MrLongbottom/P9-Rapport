@@ -102,7 +102,7 @@ A new model is generated using these values and this model will be used for the 
 \subsection{Results}\label{subsec:results}
 
 Results are shown on \autoref{tab:results} showing the \acrlong{map} of each model, \autoref{tab:results_precision_at_10} showing the precision@10 and precision@100 of each model for topic queries, and \autoref{tab:hit_results} showing the average rank of each model for document queries.
-
+The number for the query sets represent the length of the queries.
 
 \autoref{tab:results} and \autoref{tab:hit_results} show that \gls{bm25} is clearly the best model for document query retrieval, with all the best results using \gls{bm25}, sometimes combined with \gls{pr} and/or \gls{lda}-\gls{ir}. 
 However \gls{bm25} does not fare well with topic query retrieval, as shown in \autoref{tab:results} and \autoref{tab:results_precision_at_10}.
@@ -112,9 +112,10 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 
 \begin{table*}[h]
 	\centering
-	\caption{Results table}
+	\caption{\acrlong{map} results for the four sets of document queries and topic queries.}
 	\begin{tabular}{l|c|c|c|c|c|c|c|c}
-		Model / \gls{map} & D1 & D2 & D3 & D4 & T1 & T2 & T3 & T4 \\
+		& \multicolumn{4}{c|}{Document Query Length} & \multicolumn{4}{c}{Topic Query Length} \\
+		Model / \gls{map} & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 \\
 		\midrule
 		\gls{lda}-\gls{ir} & 0.00457 & 0.00527 & 0.0429 & 0.0538 & 0.155 & 0.186 & 0.168 & 0.178 \\
 		\gls{lm} & 0.198 & 0.152 & 0.291 & 0.260 & 0.126 & 0.130 & 0.128 & 0.129 \\
@@ -142,9 +143,10 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 
 \begin{table*}[h]
 	\centering
-	\caption{Results table}
+	\caption{Precision results for the four sets of topic queries for P@10 and P@100.}
 	\begin{tabular}{l|c|c|c|c||c|c|c|c}
-		Model / P@10 || P@100 & T1 & T2 & T3 & T4 & T1 & T2 & T3 & T4\\
+		& \multicolumn{4}{c||}{Topic Query Length (P@10)} & \multicolumn{4}{c}{Topic Query Length (P@100)} \\
+		Model & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4\\
 		\midrule
 		\gls{lda}-\gls{ir} & 0.02 & 0.103 & 0.13 & 0.203 & 0.062 & 0.131 & 0.164 & 0.191 \\
 		\gls{lm} & 0.126 & 0.118 & 0.116 & 0.069 & 0.090 & 0.092 & 0.087 & 0.093\\
@@ -172,9 +174,10 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 
 \begin{table}[h]
 	\centering
-	\caption{Average rank of relevant document for document-queries.}
+	\caption{Average rank of the relevant document for each document query.}
 	\begin{tabular}{l|c|c|c|c}
-		Model / Avg. rank & D1 & D2 & D3 & D4 \\
+		& \multicolumn{4}{c}{Document Query Length} \\
+		Model / Avg. Rank & 1 & 2 & 3 & 4 \\
 		\midrule
 		\gls{lda}-\gls{ir} & 2287.93 & 1599.95 & 1241.18 & 1926.78 \\
 		\gls{lm} & 7120.04 & 9082.9 & 6501.85 & 7782.65 \\
