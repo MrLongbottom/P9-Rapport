@@ -73,7 +73,7 @@ Lower values will lead to more uneven distributions, favoring fewer topics per d
 To find the optimal hyperparameter values, we run a hierarchical grid-search consisting of two sequential grid-searches using the hyperparameter values shown in \autoref{tab:params}.
 The first grid-search used the values for $K_1$, while the second used the $K_2$ values.
 In both grid-searches the same $\alpha$ and $\eta$ values are used.
-To evaluate the \gls{lda} models, we measured perplexity which describes how well a model can predict new test samples based on sentences. 
+To evaluate the \gls{lda} models, we measured perplexity which describes how well a model can predict new test samples. 
 During the first grid-search, we found that $10$ and $50$ were clearly the best values for K.
 However, $\alpha$ and $\eta$ values showed no clear favorite.
 For the second grid-search we choose more specific K values, to narrow the search, while keeping the $\alpha$ and $\eta$ values the same.
