@@ -29,7 +29,13 @@ This also has the added consequence that a high $\alpha$ will make documents app
 Using $\theta$ and $\beta$, we can sample concrete topics $Z$ from documents, and concrete words $W$ from topics.
 \autoref{fig:lda} gives an overview of the generative process.
 
-\todo[inline]{mention the limitations of lda.}
+\Gls{lda} has some underlying assumptions, which also explain its limitations\cite{blei2012topicmodels}:
+\begin{itemize}
+	\gls{lda} assumes ordering of words does not matter (Bag of Words).
+	\gls{lda} assumes ordering of documents does not matter.
+	\gls{lda} assumes that the number of topics is fixed and known.
+\end{itemize}
+However, many of these assumptions can be addressed through various extensions of the \gls{lda} model\cite{blei2012topicmodels}.
 
 \subsection{\gls{lda}-\gls{ir}}
 \citeauthor{yang2009topic}\cite{yang2009topic} defines \autoref{eq:lda-ir} for using \gls{lda} as an \gls{ir} method. 
