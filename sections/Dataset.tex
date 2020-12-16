@@ -1,21 +1,19 @@
 \section{Dataset}\label{sec:dataset}
 Nordjyske is a media group maintaining many local newspapers, radios, and websites in the North Jutland region of Denmark.
 All articles produced by Nordjyske are saved in a nonpublic database.
-Each article is represented with a \texttt{pdf} file and an \texttt{xml} file, as well as one \texttt{png} file for each image in the article.
-The dataset we are using is only a subset of all articles contained in the database.
-We choose to use all articles published in 2017, due to the file structures being more consistent after 2016.
-The 2017 dataset consists of a total of $\sim 63.000$ articles, represented by \texttt{.xml} files.
-
-We extract only the ID, body text, and headline from the \texttt{xml} files, though they do contain more information, such as authors, references to images, article type, date and time of publishing, etc.
+The dataset, which we use, consists of $\sim\! 63.000$ articles from 2017.
+These documents consist of many attributes where we extract the ID, headline, and body of the article.
+They do contain more information, such as authors, references to images, article type, date and time of publishing, etc.
 This information could become relevant with the use of various \gls{lda} modifications, however this is beyond the scope of this paper.
+Some entries within the dataset are advertisements or scoreboards, which we try to filter away in the preprocessing phase, explained in \autoref{sec:prepro}.
 
-An example of an extracted article can be seen in \autoref{prepro:example1}.
+An example article can be seen in \autoref{prepro:example1}.
 
 \begin{figure}[h]
 	\begin{framed}
 		\begin{quote}
-			headline: \textit{'Tricktyve fik fingre i dankort HOBRO:'}
-			body: \textit{'Frække tricktyve har atter slået til i en af Hobros dagligvareforretninger. Denne gang gik det ud over en 87-årig mand, som under indkøbsturen i Superbrugsen i Adelgade blev frastjålet sit Visa-Dankort med tilhørende pin-kode.'}
+			\textbf{headline:} \textit{'Tricktyve fik fingre i dankort HOBRO:'}\\
+			\textbf{body:} \textit{'Frække tricktyve har atter slået til i en af Hobros dagligvareforretninger. Denne gang gik det ud over en 87-årig mand, som under indkøbsturen i Superbrugsen i Adelgade blev frastjålet sit Visa-Dankort med tilhørende pin-kode.'}
 		\end{quote}
 	\end{framed}
 		\caption{Snippet of extracted information of an article in our dataset.}
