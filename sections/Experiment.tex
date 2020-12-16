@@ -36,7 +36,7 @@ The formula for \gls{bm25} can be seen in \autoref{eq:bm25}\cite{bm25}.
 \begin{equation}\label{eq:bm25}
 \text{bm25}(d, q) = \sum_{i=1}^{n}\text{idf}(q_i) \cdot \frac{\text{tf}(q_i, d) \cdot (k_1 + 1)}{\text{tf}(q_i, d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{avgdl})}
 \end{equation}
-where tf$(q_i)$ is the number of times $q_i$ appears in $d$.
+where tf$(q_i)$ is the number of times the term $q_i$ appears in $d$.
 $|d|$ is the number of words in d. 
 $avgdl$ is the average document length from the corpus.
 $b$ and $k_1$ are both hyperparameters, which are set to $0.75$ and $1.5$, respectively.
