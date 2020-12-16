@@ -7,9 +7,9 @@
     %\draw[step=1cm,gray,very thin] (-8,-8) grid (8,8);
 	\node (Dataset) [process] {Nordjyske Dataset};
 	\node (Cleaning)[process, below of=Dataset] {Preprocessing Phase};
-	\node (Training) [process, below of=Cleaning] {Train LDA};
+	\node (Training) [process, below of=Cleaning] {Train IR Methods};
 	\node (Cluster PR) [process, below of=Training] {Evaluate Models};
-	\node (Query) at (-4.5, -6) [process] {Query Processing};
+	\node (Query) at (-4.5, -6) [process] {Query Generation};
 	\node (Result) [process, below of=Cluster PR] {Results};
 	\draw [->, very thick] (Dataset) edge (Cleaning); 
 	\draw [->, very thick] (Cleaning) edge (Training);
