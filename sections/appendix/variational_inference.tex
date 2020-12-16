@@ -17,14 +17,14 @@ In every iteration, we try to minimize the $q$ function in \autoref{eq:q_func}
 \end{equation}
 We still cannot compute $p(z|\textbf{x})$, nor the Kullback-Leibler Divergence, but we can rearrange the $K\!L$ function to make it possible to estimate the $K\!L$.
 \begin{align}
-	K\!L(q_\theta || p(z|\textbf{x}) &= \mathop{\mathbb{E}}_{q}[\log\frac{q(\textbf{z})}{p(\textbf{z}|\textbf{x})}]\\
+	K\!L(q_\theta || p(z|\textbf{x})) &= \mathop{\mathbb{E}}_{q}[\log\frac{q(\textbf{z})}{p(\textbf{z}|\textbf{x})}]\\
 	\downdownarrows \\
-	K\!L(q_\theta || p(z|\textbf{x}) &= \log p(\textbf{x}) - (-\mathop{\mathbb{E}}_{q}[\log\frac{q(\textbf{z})}{p(\textbf{z},\textbf{x})}]) \\
+	K\!L(q_\theta || p(z|\textbf{x})) &= \log p(\textbf{x}) - (-\mathop{\mathbb{E}}_{q}[\log\frac{q(\textbf{z})}{p(\textbf{z},\textbf{x})}]) \\
 	\downdownarrows \\
-	K\!L(q_\theta || p(z|\textbf{x}) &= \log p(\textbf{x}) - \mathcal{L}(q)
+	K\!L(q_\theta || p(z|\textbf{x})) &= \log p(\textbf{x}) - \mathcal{L}(q)
 \end{align}
 where $\mathcal{L}(q)$ is known as the ELBO.
-Since $p(\textbf{x})$ is a constant, when we maximize the ELBO, the $K\!L(q_\theta, p(z|\textbf{x})$ which brings us closer to the true posterior.
+Since $p(\textbf{x})$ is a constant, when we maximize the ELBO, the $K\!L(q_\theta, p(z|\textbf{x}))$ decreases which brings us closer to the true posterior.
 
 \begin{figure}
 	\centering
@@ -40,4 +40,3 @@ They do this by using stochastic \gls{vi}, which also outperforms batch learning
 In learning the \gls{lda}, we first sample a batch of documents from the whole corpus, where we learn the structure of this sample and use it to update the topics within the model.
 To do this, we need some form of verification of whether we are getting closer to the the true posterior distribution $p(z|\textbf{x})$.
 In \gls{lda}, we use perplexity as a score to check whether we are moving towards $p(z|\textbf{x})$
-
