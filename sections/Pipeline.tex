@@ -10,7 +10,7 @@ Details of this phase are given in \autoref{sec:prepro}.
 After finishing this phase, we are left with $\sim$32.000 documents and $\sim$10.000 words to form the corpus, which will be used in future steps.
 
 \subsection*{Step 2: \Gls{ir} Methods}
-In this step we train \gls{lda}, \gls{pr}, \gls{lm}-\gls{ir}, \gls{bm25}, and \gls{tf-idf} on the corpus.
+In this step we train \gls{lda}-\gls{ir}, \gls{pr}, \gls{lm}, \gls{bm25}, and \gls{tf-idf} on the corpus.
 \gls{lda}-\gls{ir}, \gls{lm}, and \gls{pr} are described further in \autoref{sec:lda}, \autoref{sec:lm}, and \autoref{sec:pagerank}, respectively.
 A short description of \gls{bm25} and \gls{tf-idf} is provided in \autoref{sec:experiment}.
 
@@ -22,14 +22,14 @@ Two types of queries are generated based on the corpus and the topic model.
 	\item Document query - based on a specific document.
 	\item Topic query - based on a specific topic.
 \end{itemize}
-These are made to \gls{ir} methods ability to retrieve a document and to understand the underlying topics expressed in a query.
+These are made to analyze \gls{ir} methods' ability to retrieve a document and to understand the underlying topics expressed in a query.
 How these queries are generated is detailed in \autoref{sec:query}.
-These queries are then used in the the next step to evaluate \gls{ir} methods.
+These queries are then used in the the next step to evaluate the \gls{ir} methods.
 
-\subsection*{Step 4: Evaluation of models}
+\subsection*{Step 4: Evaluation of Models}
 In this step, we setup an experiment to evaluate \gls{ir} models using \gls{map}, p@n, and average rank as evaluation metrics.
 The evaluation is done by testing different combinations of \gls{ir} methods' performance in ranking documents based on the generated queries. 
-The experiment and results are presented in \autoref{sec:experiment} and are analyzed and discussed in  \autoref{sec:discussion}.
+The experiment and results are presented in \autoref{sec:experiment} and are analyzed and discussed in \autoref{sec:discussion}.
 
 
 \input{figures/pipeline_figure.tex}
