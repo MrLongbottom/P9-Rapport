@@ -18,9 +18,9 @@ In every iteration, we try to minimize the $q$ function in \autoref{eq:q_func}
 We still cannot compute $p(z|\textbf{x})$, nor the Kullback-Leibler Divergence, but we can rearrange the $K\!L$ function to make it possible to estimate the $K\!L$.
 \begin{align}
 	K\!L(q_\theta || p(z|\textbf{x})) &= \mathop{\mathbb{E}}_{q}[\log\frac{q(\textbf{z})}{p(\textbf{z}|\textbf{x})}]\\
-	\downdownarrows \\
+	\downdownarrows \nonumber \\
 	K\!L(q_\theta || p(z|\textbf{x})) &= \log p(\textbf{x}) - (-\mathop{\mathbb{E}}_{q}[\log\frac{q(\textbf{z})}{p(\textbf{z},\textbf{x})}]) \\
-	\downdownarrows \\
+	\downdownarrows \nonumber \\
 	K\!L(q_\theta || p(z|\textbf{x})) &= \log p(\textbf{x}) - \mathcal{L}(q)
 \end{align}
 where $\mathcal{L}(q)$ is known as the ELBO.
