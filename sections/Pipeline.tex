@@ -1,34 +1,35 @@
 \section{Overview}\label{sec:method}
 This section describes the steps of our method on an abstract level.
-\todo{ref pipelinefigure} visualizes these steps as a flowchart.
-Each step of the method is described later in more detail. 
-
+\autoref{fig:process_figure} visualizes these steps as a flowchart.
+The method takes a corpus as an input and produces evaluation results as output.
+Each intermediate step of the method is described later in more detail.
 
 \subsection*{Step 1: Preprocessing Phase}
-This phase applies different \gls{NLP} methods, such as lemmatization and removing stop words, to simplify the dataset and remove redundant information.
+In this step we apply different \gls{NLP} methods, such as lemmatization and removing stop words, to simplify the dataset to remove redundant information.
 Details of this phase are given in \autoref{sec:prepro}.
-After finishing this phase, we are left with $\sim$32.000 documents, which will be used in future steps.
+After finishing this phase, we are left with $\sim$32.000 documents and $\sim$10.000 words to form the corpus, which will be used in future steps.
 
-\subsection*{Step 2: LDA}
-\todo[inline]{change to be about all the IR methods}
-We train a \acrfull{lda} model on the dataset to generate topics based on the content of articles within the dataset. 
-We describe the investigation and selection of hyperparameters in \autoref{subsec:hyperparameters}. 
-After the model has been trained, we have a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\beta$ which are used in later steps.
+\subsection*{Step 2: \Gls{ir} Methods}
+In this step we train \gls{lda}-\gls{ir}, \gls{pr}, \gls{lm}, \gls{bm25}, and \gls{tf-idf} on the corpus.
+\gls{lda}-\gls{ir}, \gls{lm}, and \gls{pr} are described further in \autoref{sec:lda}, \autoref{sec:lm}, and \autoref{sec:pagerank}, respectively.
+A short description of \gls{bm25} and \gls{tf-idf} is provided in \autoref{sec:experiment}.
+
+After the \gls{lda} model has been trained, it produces a document-topic distribution matrix $\theta$ and a topic-word distribution matrix $\beta$ which are used in the next step.
 
 \subsection*{Step 3: Query Generation}
-\todo[inline]{re-write. remember to ref section.}
-A search query, consisting of words, is stemmed and turned into a list of words.
-For each word, we generate a topic distribution based on topic-word distribution $\beta$ if the model knows the words within the query.
-Otherwise, we let the model predict which topics the unknown words belong to.
-We use the final distribution, as a personalization vector for our PageRank combination models.
-\todo[inline]{Check that the description of how the personalization vector is made, is correct}
-The output of this step is a list of search queries.
+Two types of queries are generated based on the corpus and the topic model.
+\begin{itemize}
+	\item Document query - based on a specific document.
+	\item Topic query - based on a specific topic.
+\end{itemize}
+These are made to analyze \gls{ir} methods' ability to retrieve a document and to understand the underlying topics expressed in a query.
+How these queries are generated is detailed in \autoref{sec:query}.
+These queries are then used in the the next step to evaluate the \gls{ir} methods.
 
-
-\subsection*{Step 4: Evaluation of models}
-In this phase, we evaluate different combinations of models using the evaluation metrics described in \todo{ref evaluation metric section}.
-The evaluation is done by testing the search queries against the different models. 
-The combinations and results can be seen in section \todo{ref combination section } and \todo{ref result section }, respectively.
+\subsection*{Step 4: Evaluation of Models}
+In this step, we setup an experiment to evaluate \gls{ir} models using \gls{map}, P@n, and average rank as evaluation metrics.
+The evaluation is done by testing different combinations of \gls{ir} methods' performance in ranking documents based on the generated queries. 
+The experiment and results are presented in \autoref{sec:experiment} and are analyzed and discussed in \autoref{sec:discussion}.
 
 
 \input{figures/pipeline_figure.tex}
