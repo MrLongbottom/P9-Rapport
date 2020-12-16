@@ -21,10 +21,26 @@ We use the \gls{lda} implementation from Gensim\footnote{\url{https://radimrehur
 \gls{lm} was described in \autoref{sec:lm} based on the implementation by \citet{yang2009topic}.
 \gls{pr} was described in \autoref{sec:pagerank}.
 
-\todo[inline]{describe bm25}
 
-\todo[inline]{describe tf-idf}
+\subsection{\gls{tf-idf}}
+\gls{tf-idf} is well known \gls{ir} method which is used to find the most important words within text.
+The formula for \gls{tf-idf} can be seen in \autoref{eq:tfidf}
+\begin{equation}\label{eq:tfidf}
+	\text{tf-idf}(t, d, D) = \text{tf}(t,d) \cdot \text{IDF}(t, D)
+\end{equation}
+where tf$(t, d)$ is the number of times term $t$ is in document $d$ and IDF$(t,D)$ is the inverse document frequency of $t$ in $D$.
 
+\subsection{\gls{bm25}}
+\gls{bm25} is a bag of words retrieval function, which is similar to \gls{tf-idf}, since it used the inverse document frequency.
+The formula for \gls{bm25} can be seen in \autoref{eq:bm25}
+\begin{equation}\label{eq:bm25}
+\text{bm25}(d, q) = \sum_{i=1}^{n}\text{IDF}(q_i) \cdot \frac{\text{tf}(q_i, d) \cdot (k_1 + 1)}{\text{tf}(q_i, d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{avgdl})}
+\end{equation}
+where tf$(q_i)$ is the number of times $q_i$ appears in $d$.
+$|d|$ is the number of words in d. 
+$avgdl$ is the average document length from the corpus.
+$b$ and $k_1$ are both hyperparameters, which is set to $0.75$ and $1.5$, respectively.
+ 
 Each baseline will be given a query and produce a document-value vector with one value for each document indicating the relevance of that document compared to the query.
 Our results are based on the ranking order of these values.
 When multiple baselines are combined, their document-value vectors are normalized and then added or multiplied together element-wise.
