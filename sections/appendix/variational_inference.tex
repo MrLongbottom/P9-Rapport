@@ -11,6 +11,20 @@ We do the approximation by fitting variational parameters $\nu$, to minimize the
 In \autoref{fig:vi}, we can see a visualization of this where we want to optimize the variational parameters to minimize the distance to the true posterior distribution.
 In \autoref{fig:vi}, $q(z; \nu)$ is a family of variational distributions over the latent variables which are different instances of the hidden variables $z$.
 Our goal is to fit the variational parameters $\nu$ to estimate the hidden variables that are closest to $p(z|\textbf{x})$
+In every iteration, we try to minimize the $q$ function in \autoref{eq:q_func} 
+\begin{equation}\label{eq:q_func}
+	\hat{q}(z) = arg \min_{\theta} K\!L(q_\theta, p(z|\textbf{x}))
+\end{equation}
+We still cannot compute $p(z|\textbf{x})$, nor the Kullback-Leibler Divergence, but we can rearrange the $K\!L$ function to make it possible to estimate the $K\!L$.
+\begin{align}
+	K\!L(q_\theta || p(z|\textbf{x})) &= \mathop{\mathbb{E}}_{q}[\log\frac{q(\textbf{z})}{p(\textbf{z}|\textbf{x})}]\\
+	\downdownarrows \nonumber \\
+	K\!L(q_\theta || p(z|\textbf{x})) &= \log p(\textbf{x}) - (-\mathop{\mathbb{E}}_{q}[\log\frac{q(\textbf{z})}{p(\textbf{z},\textbf{x})}]) \\
+	\downdownarrows \nonumber \\
+	K\!L(q_\theta || p(z|\textbf{x})) &= \log p(\textbf{x}) - \mathcal{L}(q)
+\end{align}
+where $\mathcal{L}(q)$ is known as the ELBO.
+Since $p(\textbf{x})$ is a constant, when we maximize the ELBO, the $K\!L(q_\theta, p(z|\textbf{x}))$ decreases which brings us closer to the true posterior.
 
 \begin{figure}
 	\centering
@@ -26,4 +40,3 @@ They do this by using stochastic \gls{vi}, which also outperforms batch learning
 In learning the \gls{lda}, we first sample a batch of documents from the whole corpus, where we learn the structure of this sample and use it to update the topics within the model.
 To do this, we need some form of verification of whether we are getting closer to the the true posterior distribution $p(z|\textbf{x})$.
 In \gls{lda}, we use perplexity as a score to check whether we are moving towards $p(z|\textbf{x})$
-\todo{write a little section about how we change the elbo, and use that to try and approximate the true postiore}
