@@ -22,10 +22,12 @@ The goal is to check whether or not the \gls{ir} method is able to find the spec
 The topic query is slightly different in comparison to document query in that it focuses on the topics rather than a specific document.
 To construct a topic query, firstly we select a random topic $t$ and a query length $ql$ between $ql_{min}$ and $ql_{max}$.
 Topic queries can be based on the same topic but will have a high variance in the actual words used.
-We then sample $ql$ documents based on the document-topic distribution $\theta_t$ provided by the \gls{lda} model.
-Though $\theta$ is normally one topic distribution for each document, we create document distributions for each topic by column normalizing the matrix.
-\vejleder[inline]{uddyb row normalization} 
-When sampling these documents, we only sample within the document-topic distribution where the topic is set to $t$.
+We then sample $ql$ documents based on the document-topic distributions $\theta$ provided by the \gls{lda} model.
+Though $\theta$ is normally one topic distribution for each document, we create a document distribution for each topic by column normalizing the matrix.
+This is necessary, because when observing a specific topic column in the document-topic distribution matrix $\theta$, the values do not work as probabilities, since they do not add up to 1.
+This column normalization will make each topic become a distribution of all documents' topic distribution values for the specific topic.
+This is essentially a topic-document distribution matrix.
+When sampling the documents, we only sample within the topic-document distribution where the topic is set to $t$.
 From these sampled documents, we extract one word from each document, based on the \gls{tf-idf} score, and add these to the query.
 If an extracted word is in the query already, we skip it and add the next highest \gls{tf-idf} scored word to the query.
 In that way, we ensure to get unique words in the query.
