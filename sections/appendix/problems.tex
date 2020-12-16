@@ -23,9 +23,11 @@ We use document-topic and topic-word distributions produced by the Dirichlet dis
 However as part of how \gls{lda} is designed it has no zeros in its $\theta$ and $\beta$ values, only extremely low numbers.
 This is not optimal for constructing an adjacency matrix, as it would result in a fully connected graph.
 Adjusting $\alpha$ and $\eta$ will make the low values lower, and the high values higher, but this does not make the problem disappear.
-We have therefore introduced thresholds.
-These thresholds reduce all values lower than the threshold to zero in the document-topic matrix and topic-word matrix.
+We therefore tried to introduced thresholds.
+These thresholds reduced all values lower than the threshold to zero in the document-topic matrix and topic-word matrix.
 The new problem introduced by introducing thresholds is that the exact values of the thresholds are now added as extra hyper-parameters for our solution.
+We also had problems when we had to combine the baselines for our \gls{ir}, because the zeros gave bad retrieval results, especially in the multiplication combinations.
+Instead of using thresholds, we ended up optimizing the calculation of these combinations.
 
 \subsubsection{Unable to reverse engineer the \gls{lda} generative process}
 In the generative process of \gls{lda}, a document $d$ is assumed to have a certain underlying topic-distribution $\theta_d$ and a topic $k$ is assumed to have a certain underlying word-distribution $\beta_k$.
