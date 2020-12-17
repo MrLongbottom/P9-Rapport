@@ -1,22 +1,43 @@
 \tikzstyle{process} = [rectangle, rounded corners, minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=gray!50]
-\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{decision} = [diamond, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=green!30]
 
-\begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}[node distance=2cm]
-    %\draw[step=1cm,gray,very thin] (-8,-8) grid (8,8);
-	\node (Dataset) [process] {Nordjyske Dataset};
-	\node (Cleaning)[process, below of=Dataset] {Preprocessing Phase};
-	\node (Training) [process, below of=Cleaning] {Train IR Methods};
-	\node (Cluster PR) [process, below of=Training] {Evaluate Models};
-	\node (Query) at (-4.5, -6) [process] {Query Generation};
-	\node (Result) [process, below of=Cluster PR] {Results};
+% one line
+%\begin{figure}[ht]
+%    \centering
+%    \begin{tikzpicture}[node distance=2cm]
+%    %\draw[step=1cm,gray,very thin] (-8,-8) grid (8,8);
+%	\node (Dataset) [process] {(Input) Nordjyske Dataset};
+%	\node (Cleaning)[process, below of=Dataset] {(1) Preprocessing Phase};
+%	\node (Training) [process, below of=Cleaning] {(2)Train IR Methods};
+%	\node (Query) [process, below of=Training] {(3) Query Generation};
+%	\node (Evaluate) [process, below of=Query] {(4) Evaluate Models};
+%	\node (Result) [process, below of=Evaluate] {(Output) Results};
+%	\draw [->, very thick] (Dataset) edge (Cleaning); 
+%	\draw [->, very thick] (Cleaning) edge (Training);
+%	\draw [->, very thick] (Training) edge (Query);
+%	\draw [->, very thick] (Query) edge (Evaluate);
+%	\draw [->, very thick] (Evaluate) edge (Result);
+%\end{tikzpicture}
+%	\caption{The method visualized as a flowchart, where a dataset consisting of articles is processed into a list of ranked results.}
+%    \label{fig:process_figure}
+%\end{figure}
+
+\begin{figure*}[ht]
+	\centering
+	\begin{tikzpicture}[node distance=5cm]
+	%\draw[step=1cm,gray,very thin] (-8,-8) grid (8,8);
+	\node (Dataset) [process, label=Input] {Nordjyske Dataset};
+	\node (Cleaning)[process, right of=Dataset, label=Step 1] {Preprocessing};
+	\node (Training) [process, right of=Cleaning, label=Step 2] {Train IR Methods};
+	\node (Query) [process, below of=Dataset, label=Step 3, yshift=2.5cm] {Query Generation};
+	\node (Evaluate) [process, right of=Query, label=Step 4] {Evaluate Models};
+	\node (Result) [process, right of=Evaluate, label=Output] {Results};
 	\draw [->, very thick] (Dataset) edge (Cleaning); 
 	\draw [->, very thick] (Cleaning) edge (Training);
-	\draw [->, very thick] (Training) edge (Cluster PR);
-	\draw [->, very thick] (Cluster PR) edge (Result);
-	\draw [->, very thick] (Query) edge (Cluster PR);
-\end{tikzpicture}
+	\draw[->, very thick] (Training) edge (Query);
+	\draw [->, very thick] (Query) edge (Evaluate);
+	\draw [->, very thick] (Evaluate) edge (Result);
+	\end{tikzpicture}
 	\caption{The method visualized as a flowchart, where a dataset consisting of articles is processed into a list of ranked results.}
-    \label{fig:process_figure}
-\end{figure}
+	\label{fig:process_figure}
+\end{figure*}
