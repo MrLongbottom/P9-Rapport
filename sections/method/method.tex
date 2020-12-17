@@ -23,7 +23,8 @@ To find the probability of $d$ generating a given query $q$, we take the product
 As the name suggests, this method aims to balance the two measures: term frequency and inverse document frequency.
 In our case, terms are the words left in the documents after the preprocessing phase.
 For each term in the query $t \in q$, a \gls{tf-idf} score will be calculated for each document in the corpus $d \in D$.
-Thus each document will have one score for each term in he query.
+Thus each document will have one score for each term in the query.
+These scores are combined into one score each document using \ref{eq:query_prob}.
 
 
 Term frequency describes how often a word is used within a specific document.
