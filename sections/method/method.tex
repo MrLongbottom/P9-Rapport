@@ -19,15 +19,16 @@ To find the probability of $d$ generating a given query $q$, we take the product
 \input{sections/method/PageRank.tex}
 
 \subsection{\acrlong{tf-idf}}
-\Gls{tf-idf} is a well known \gls{ir} method which is used to find the most important words within text.
-As the name suggests, this methods aims to balance the two measures: term frequency and inverse document frequency.
-For our case, terms are the words left in the documents after the preprocessing phase.
-For each term in the query $t \in q$, a tf-idf score will be calculated for each document in the corpus $d \in D$.
+\Gls{tf-idf} is a well known \gls{ir} method that is used to find the most important words within texts.
+As the name suggests, this method aims to balance the two measures: term frequency and inverse document frequency.
+In our case, terms are the words left in the documents after the preprocessing phase.
+For each term in the query $t \in q$, a \gls{tf-idf} score will be calculated for each document in the corpus $d \in D$.
 Thus each document will have one score for each term in he query.
 
 
-Term frequency describes how often a word is used in the specific document that is being evaluated.
-Inverse Document Frequency describes how many documents in the corpus includes the given term, with a higher percentage of documents producing a lower value.
+Term frequency describes how often a word is used within a specific document.
+Inverse document frequency describes how many documents in the corpus includes the given term.
+The IDF value decreases the more widely used the given term is.
 The overall goal of \gls{tf-idf}, is giving a measure of how often used and unique a term is for a given document. Words that are often used in the given document, but rarely used in the corpus will have the highest \gls{tf-idf} scores.
 
 The formula for \gls{tf-idf} can be seen in \autoref{eq:tfidf}
@@ -55,8 +56,8 @@ $avgdl$ is the average document length from the corpus.
 $b$ and $k_1$ are both hyperparameters, which are set to $0.75$ and $1.5$, respectively.
 
 \subsection{Combining \gls{ir} Methods}
-Each of the \gls{ir} methods described in this section has their own strengths and weaknesses.
-We combine multiple of these methods, to see if they are able to draw upon each others strengths and cover each others weaknesses.
+Each of the \gls{ir} methods, described in this section, has its own strengths and weaknesses.
+We combine multiple of these methods, to see if they can draw upon each other's strengths and cover each other's weaknesses.
 We do with the hope of a combination of methods being able to produce better results than each of the methods separately.
 
 As with \citet{yang2009topic}, we combine multiple \gls{ir} methods together, by normalizing their document-score vectors and then either summing or multiplying them together element-wise.
@@ -64,6 +65,6 @@ This process is visualized in \ref{fig:combine}.
 
 \input{figures/overview_figure.tex}
 
-Both of these two options are viable, and have their own benefits and drawbacks.
+Both of these options are viable and have their own benefits and drawbacks.
 Summation allows documents to be ranked fairly high even if one of the combined methods produce a low score.
-With multiplication a document with average scores for each method can have a better rank than one with mostly good scores but a really low score from one of the combined \gls{ir} methods.
+With multiplication, a document with average scores for each method can have a better rank than one with mostly good scores but a really low score from one of the combined \gls{ir} methods.
