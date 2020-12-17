@@ -3,8 +3,8 @@
 It is based on the random surfer model, where several surfers would take $s$ amount of steps across a graph.
 The number of surfers standing on a given node would be the resulting score for that node.
 The \gls{pr} algorithm is defined as follows (expressed in matrix form) \cite{ClusterPageRank}.
-$$ \overrightarrow{\lambda} = \mu \widetilde{M}^T \overrightarrow{\lambda} + \frac{(1-\mu)}{|D|} \overrightarrow{e} $$  
-where $\overrightarrow{\lambda}$ is a vector consisting of scores for each document. 
+$$ \overrightarrow{s} = \mu \widetilde{M}^T \overrightarrow{s} + \frac{(1-\mu)}{|D|} \overrightarrow{e} $$  
+where $\overrightarrow{s}$ is a vector consisting of scores for each document. 
 $\mu$ is the dampening factor which is set to $0.85$.
 $\widetilde{M}^T$ is the adjacency matrix transposed.
 $|D|$ is the number of documents.
@@ -21,7 +21,7 @@ However since Jensen-Shannon calculates difference rather than similarity, a low
 $$sim(d_1, d_2) = 1 - JS(\theta_{d_1}, \theta_{d_2})$$
 
 The Jensen-Shannon distance function is defined as:
-$$ \frac{D(p || m) + D(q || m)}{2}$$
+$$ JS = \frac{D(p || m) + D(q || m)}{2}$$
 where $p$ and $q$ are distributions and $m$ is the pointwise mean between $p$ and $q$. 
 $D$ is the Kullback-Leibler divergence function.
 
