@@ -31,10 +31,16 @@ Inverse Document Frequency describes how many documents in the corpus includes t
 The overall goal of \gls{tf-idf}, can be summarized as a measure of how often used and unique a term is for a given document. Words that are often used in the given document, but rarely used in the corpus will have the highest \gls{tf-idf} scores.
 
 The formula for \gls{tf-idf} can be seen in \autoref{eq:tfidf}
+
 \begin{equation}\label{eq:tfidf}
-	\text{tf-idf}(w, d, D) = \text{tf}(w, d) \cdot \text{idf}(w, D)
+	\text{tf-idf}(t, d, D) = \text{tf}(t, d) \cdot \text{idf}(t, D)
 \end{equation}
-where tf$(t, d)$ is the number of times term $t$ is in document $d$ and idf$(t, D)$ is the inverse document frequency of $t$ in $D$.
+
+\begin{equation}\label{eq:idf}
+	\text{idf}(t,D) = log \frac{|\{d \in D\}|}{|\{d \in D : t \in d\}|}
+\end{equation}
+	
+Where tf$(t, d)$ is the number of times a term $t$ appears in a document $d$ from the corpus $D$.
 
 \subsection{\acrlong{bm25}}
 \todo[inline]{describe goal / purpose / idea}
