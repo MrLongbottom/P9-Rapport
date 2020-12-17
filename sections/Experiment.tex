@@ -54,15 +54,21 @@ However, it is still possible to compare these two results between multiple base
 We use \gls{map} to evaluate all baselines\cite{other_map}.
 \Gls{map} is calculated as follows\footnote{Equations from \url{https://towardsdatascience.com/breaking-down-mean-average-precision-map-ae462f623a52} and \url{https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)}}:
 
-$$MAP = \frac{1}{Q}\sum_{q=1}^{Q} AveP(q)$$
+\begin{equation}
+	MAP = \frac{1}{Q}\sum_{q=1}^{Q} AveP(q)
+\end{equation}
 
 \noindent Where $Q$ is the number of queries.
 
-$$AveP(q) = \frac{\sum_{n = 1}^{D} (precision@n(n) \times rel(n))}{|relevant~documents|}$$
+\begin{equation}
+	AveP(q) = \frac{\sum_{n = 1}^{D} (precision@n(n) \times rel(n))}{|relevant~documents|}
+\end{equation}
 
 \noindent Where $D$ is the number of documents, and $rel(n)$ is 1 if the document at rank $n$ is relevant to the query, otherwise it is 0.
 
-$$precision@n(n)) = \frac{TP(n)}{TP(n) + FP(n)}$$
+\begin{equation}
+	precision@n(n)) = \frac{TP(n)}{TP(n) + FP(n)}
+\end{equation}
 \noindent Where $TP(n)$ is the number of documents correctly labeled as relevant for the query, in the top $n$ ranked documents, and $FP(n)$ is the number of documents incorrectly labeled as relevant for the query, in the top $n$ ranked documents.
 
 We also use precision@10 and precision@100 for the topic queries.

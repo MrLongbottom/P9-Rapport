@@ -3,7 +3,9 @@
 It is based on the random surfer model, where several surfers would take $s$ amount of steps across a graph.
 The number of surfers standing on a given node would be the resulting score for that node.
 The \gls{pr} algorithm is defined as follows (expressed in matrix form) \cite{ClusterPageRank}.
-$$ \overrightarrow{s} = \mu \widetilde{M}^T \overrightarrow{s} + \frac{(1-\mu)}{|D|} \overrightarrow{e} $$  
+\begin{equation}
+	\overrightarrow{s} = \mu \widetilde{M}^T \overrightarrow{s} + \frac{(1-\mu)}{|D|} \overrightarrow{e}
+\end{equation}
 where $\overrightarrow{s}$ is a vector consisting of scores for each document. 
 $\mu$ is the dampening factor which is set to $0.85$.
 $\widetilde{M}^T$ is the adjacency matrix transposed.
@@ -18,10 +20,14 @@ To construct the adjacency matrix for the graph, we apply a similarity function 
 We use Jensen-Shannon distance as our similarity function, which is a measure of the distance between probability distributions\cite{jensen-shannon2003}\cite{jensen-shannondis2003}.
 It is calculated using the square root of the Jensen-Shannon divergence between two probability distributions and gives a score from 0 to 1.
 However since Jensen-Shannon calculates difference rather than similarity, a low value means more similarity, making our similarity function:
-$$sim(d_1, d_2) = 1 - JS(\theta_{d_1}, \theta_{d_2})$$
+\begin{equation}
+	sim(d_1, d_2) = 1 - JS(\theta_{d_1}, \theta_{d_2})
+\end{equation}
 
 The Jensen-Shannon distance function is defined as:
-$$ JS = \frac{D(p || m) + D(q || m)}{2}$$
+\begin{equation}
+	JS = \frac{D(p || m) + D(q || m)}{2}
+\end{equation}
 where $p$ and $q$ are distributions and $m$ is the pointwise mean between $p$ and $q$. 
 $D$ is the Kullback-Leibler divergence function.
 
