@@ -1,4 +1,5 @@
-\section{Language model}\label{sec:lm}
+\subsection{Language model}\label{sec:lm}
+\todo[inline]{describe goal / purpose / idea}
 \todo[inline]{try to reference LDA less in this section}
 The \gls{lda} model gets poor document retrieval performance when not used in combination with another model\cite{yang2009topic}.
 In \cite{yang2009topic}, \citeauthor{yang2009topic} describe various combinations of \gls{lda} and other models. 
@@ -13,11 +14,5 @@ $ \frac{N_d}{N_d + \lambda} $ describes a relative term which is weighted based 
 $ \frac{tf(w,d)}{N_d} $ and $\frac{tf(w,D)}{N_D}$ are the maximum likelihood estimates of $w$ appearing in a document $d$ or the corpus $D$, respectively.
 \todo{fix the sentence above, maybe cut it into two?}
 \autoref{eq:word_prob} calculates the relative maximum likelihood for the word being in $ d $ and $ D $, and weighs these terms based on the document length $N_d$ compared to $\lambda$, with smaller documents weighing the corpus likelihood higher, and bigger documents weighing the document likelihood higher.
-
-To calculate this for a given query, we take the product of the word likelihoods to get the probability of $q$.
-
-\begin{equation}\label{eq:query_prob}
-	P(q|d) = \prod_{w \in q} P(w|d)
-\end{equation}
 
 \cite{yang2009topic} combine the \gls{lda} model and the \gls{lm} to get information about the topic and word correlation between $q$ and $d$.
