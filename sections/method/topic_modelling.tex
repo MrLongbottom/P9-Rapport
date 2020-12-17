@@ -20,7 +20,9 @@ The generative process has two Dirichlet distributions $Dir(\alpha)$ for the doc
 	\caption{Plate notation for \gls{lda}. Boxes symbolize repeated processes, shaded elements are observed information. Image is from \citet{blei2012topicmodels}.}
 	\label{fig:lda}
 \end{figure}
-From these Dirichlet distributions, we can sample two multinomial distributions: document-topic distribution $\theta$ and topic-word distribution $\beta$.
+
+From these Dirichlet distributions, we can sample two multinomial distributions: a document-topic distribution $\theta_d$ for each document $d$, and a topic-word distribution $\beta_k$ for each topic $k$.
+$\theta$ and $\beta$ are stored as matrices.
 These Dirichlet distributions are tuned with the hyperparameters $\alpha$ and $\eta$, which adjust the entropy of the sampled distributions.
 An $\alpha$ value near 1 causes each document to be distributed over almost all topics, while an $\alpha$ value near 0 causes each document to be distributed over only a few topics.
 Similarly $\eta$ will adjust how many words each topic contains.

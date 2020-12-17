@@ -15,7 +15,7 @@ For the first two questions, queries can be generated in different ways dependin
 We generate two types of queries based on either important words from a specific document or a specific topic.
 We differentiate between these two query types to favor both the specificity of finding a specific document and the more abstract idea of finding documents related to a topic.
 We have evaluated various \gls{ir} methods' \gls{ir} performance using these queries, measuring \acrlong{map}, P@n, and mean rank.
-The results from \autoref{tab:results} and \autoref{tab:results_precision_at_10} indicate that, when searching for documents in a topic, combinations using \gls{lda} can perform better than \gls{bm25} when longer queries are used.
+The results from \autoref{tab:results} and \autoref{tab:results_precision_at_10} indicate that, when searching for documents in a topic, combinations using \gls{lda}-\gls{ir} can perform better than \gls{bm25} when longer queries are used.
 However, this does come at the cost of decreased performance in document query retrieval.
 
 For the third question, we explored the possibility of creating the adjacency matrix for \gls{pr} by using the similarity between \gls{lda} topic distributions, generated for the articles.

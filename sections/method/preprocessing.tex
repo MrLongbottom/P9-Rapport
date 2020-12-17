@@ -22,9 +22,11 @@ The preprocessing steps are:
 		Word Database Filtering & 32.201 & 14.537 \\
 		Lemmatization & 32.201 & 9.934\\
 	\end{tabular}
+	\caption{Number of documents and unique words remaining after each preprocessing step.}
 	\label{tab:prepro_doc_word}
-	\caption{Amount of documents and unique words remaining after each preprocessing step.}
 \end{table}
+
+The number of documents and unique words remaining after each preprocessing step can be seen in \autoref{tab:prepro_doc_word}.
 
 \paragraph{Article Extraction}
 As described in \autoref{sec:dataset}, documents are loaded as \texttt{xml} files from the database, and their ID, title, and body contents are extracted and converted into \texttt{json} format.

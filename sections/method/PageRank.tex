@@ -4,13 +4,13 @@ It is based on the random surfer model, where several surfers would take $s$ amo
 The number of surfers standing on a given node would be the resulting score for that node.
 The \gls{pr} algorithm is defined as follows (expressed in matrix form) \cite{ClusterPageRank}.
 \begin{equation}
-	\overrightarrow{\lambda} = \mu \widetilde{M}^T \overrightarrow{\lambda} + \frac{(1-\mu)}{|D|} \overrightarrow{e}
+	\overrightarrow{s} = \mu \widetilde{M}^T \overrightarrow{s} + \frac{(1-\mu)}{|D|} \overrightarrow{e}
 \end{equation}
-where $\overrightarrow{\lambda}$ is a vector consisting of scores for each document. 
+where $\overrightarrow{s}$ is a vector consisting of scores for each document. 
 $\mu$ is the dampening factor which is set to $0.85$.
 $\widetilde{M}^T$ is the adjacency matrix transposed.
 $|D|$ is the number of documents.
-$\overrightarrow{e}$ is a column vector with all elements equalling 1.
+$\overrightarrow{e}$ is a column vector where all elements are equal to 1.
 
 We construct a graph over our documents, where edges between documents $d_i$ and $d_j$ are based on the similarity between them $sim(d_i, d_j)$.
 We run the \gls{pr} algorithm for 20 iterations.
@@ -26,9 +26,9 @@ However since Jensen-Shannon calculates difference rather than similarity, a low
 
 The Jensen-Shannon distance function is defined as:
 \begin{equation}
-	\frac{D(p || m) + D(q || m)}{2}
+	JS = \frac{D(p || m) + D(q || m)}{2}
 \end{equation}
 where $p$ and $q$ are distributions and $m$ is the pointwise mean between $p$ and $q$. 
 $D$ is the Kullback-Leibler divergence function.
 
-The goal of using \gls{pr} is to get the most important articles within a specific topic and use these to yield important information during search.  
+The goal of using \gls{pr} is to get the most important documents within a specific topic and use these to yield important information during search.  
