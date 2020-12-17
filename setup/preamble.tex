@@ -62,7 +62,17 @@
 \usepackage{booktabs} % for professional tables
 \usepackage{tikz}
 \usetikzlibrary{positioning}
+\usepackage{longtable}
 \usepackage{makecell}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{matrix,positioning,arrows.meta,arrows}
+
+\tikzset{my arrow/.style={-latex},
+	set@com@col/.style={},set@com@col@aryarg/.style={column #1/.style={set@com@col}},
+	set@com@row/.style={},set@com@row@aryarg/.style={row #1/.style={set@com@row}},
+	set common column/.style 2 args={set@com@col/.style={#2}, set@com@col@aryarg/.list={#1}},
+	set common row/.style 2 args={set@com@row/.style={#2}, set@com@row@aryarg/.list={#1}},
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %Defines

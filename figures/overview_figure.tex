@@ -1,0 +1,21 @@
+\tikzstyle{process} = [circle, rounded corners, minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=gray!50]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+
+\begin{figure*}[ht]
+    \centering
+
+\begin{tikzpicture}
+\matrix [matrix of nodes,row sep=0mm, set common column={2,3,4,5,7}{nodes={rectangle,draw,minimum width=3em}}, set common row={1,3} {nodes={draw=none}}, ] (O)
+{
+    & $D_0$ & $D_1$ & $D_2$ & $D_3$ &  & $D_n$ \\
+    BM25 (b) & $S^{b}_{D_0}$ & $S^{b}_{D_1}$ & $S^{b}_{D_2}$ & $S^{b}_{D_3}$ & \dots & $S^{b}_{D_n}$  \\
+    & + & + & + & + &  & +\\
+    PR (p) & $S^{p}_{D_0}$ & $S^{p}_{D_1}$ & $S^{p}_{D_2}$ & $S^{p}_{D_3}$ & \dots & $S^{p}_{D_n}$\\[8mm]
+    BM25+PR & $S^{b}_{D_0} + S^{p}_{D_0} $ & $S^{b}_{D_1} + S^{p}_{D_1} $ & $S^{b}_{D_2} + S^{p}_{D_2} $ & $S^{b}_{D_3} + S^{p}_{D_3} $ &  \dots & $S^{b}_{D_n} + S^{p}_{D_n} $\\
+};
+
+\foreach\x in{2,3,4,5,7}{\draw[my arrow] (O-4-\x) to (O-5-\x);}
+\end{tikzpicture}
+    \label{fig:combine}
+    \caption{Process of combining two \gls{ir} methods. Here \gls{bm25} and \gls{pr} are summed together by summing their document-score vectors element-wise.}
+\end{figure*}
