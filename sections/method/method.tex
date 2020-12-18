@@ -42,19 +42,39 @@ The formula for \gls{tf-idf} can be seen in \autoref{eq:tfidf}
 	\text{idf}(t,D) = log \frac{|\{d \in D\}|}{|\{d \in D : t \in d\}|}
 \end{equation}
 	
-Where tf$(t, d)$ is the number of times a term $t$ appears in a document $d$ from the corpus $D$.
+\noindent where tf$(t, d)$ is the number of times a term $t$ appears in a document $d$ from the corpus $D$.
+
 
 \subsection{\acrlong{bm25}}
-\todo[inline]{describe goal / purpose / idea}
-\gls{bm25} is a bag of words retrieval function, which is similar to \gls{tf-idf}, since it uses the inverse document frequency.
-The formula for \gls{bm25} can be seen in \autoref{eq:bm25}\cite{bm25}.
+\gls{bm25} is a bag of words retrieval function, based on \gls{tf-idf}.
+However, \gls{bm25} introduces two new concepts that it accounts for: document length and term saturation.
+
+The idea of adjusting term frequency based on document length is not new. 
+It comes from the idea that long documents will naturally have higher term frequencies and are therefore unfairly scored higher.
+The intuition is to multiply the term frequency by the document length relative to the average document length in the corpus $tf * \frac{dl}{adl}$.
+However, not all document sets are necessarily equally affected by document length.
+So, \gls{bm25} introduces a hyperparameter $b$ that adjust how sensitive a corpus should be to varying document length.
+
+Term saturation comes from a relaxation of an assumption made by \gls{tf-idf}.
+In \gls{tf-idf} having a term frequency of 2000 is considered two times as relevant as a term frequency of 1000.
+The intuition is that the more a term is used in a document, the more likely the document is to be about that term.
+However, in practice, once a term has been used enough, we are pretty sure that the document is about that term, and using it further doesn't make the document linearly more relevant.
+\gls{bm25} introduces a second hyperparameter $k_1$ that adjusts how quickly a term is saturated.
+
+The weaknesses of \gls{bm25} come from it introducing more hyperparameters that will have to be adjusted based on the corpus.
+If these hyperparameters are not tuned properly it could achieve bad performance.
+However, with good tuning of the parameters \gls{bm25} usually outperforms \gls{tf-idf}.
+
+The full formula for \gls{bm25} can be seen in \autoref{eq:bm25}\cite{bm25}.
 \begin{equation}\label{eq:bm25}
 	\text{bm25}(d, q) = \sum_{i=1}^{n}\text{idf}(q_i) \cdot \frac{\text{tf}(q_i, d) \cdot (k_1 + 1)}{\text{tf}(q_i, d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{avgdl})}
 \end{equation}
 where tf$(q_i)$ is the number of times the term $q_i$ appears in $d$.
 $|d|$ is the number of words in d. 
 $avgdl$ is the average document length from the corpus.
-$b$ and $k_1$ are both hyperparameters, which are set to $0.75$ and $1.5$, respectively.
+$b$ and $k_1$ are both hyperparameters, which for our implementation are set to $0.75$ and $1.5$, respectively.
+We used the python package \texttt{rank-bm25}\footnote{\url{https://pypi.org/project/rank-bm25/}} for the implementation of \gls{bm25}.
+
 
 \subsection{Combining \gls{ir} Methods}
 Each of the \gls{ir} methods, described in this section, has its own strengths and weaknesses.

@@ -8,7 +8,7 @@ The objective of topic modeling is to infer topics (collections of words) in a d
 
 The result consists of a topic-word distribution matrix $\beta$, which for each topic gives a distribution of words belonging to said topic, and a document-topic distribution matrix $\theta$ which for each document gives a distribution of topics to which the document belongs to.
 
-\citeauthor{lda} \cite{lda} introduced \gls{lda}, which has since become a staple within topic modeling.
+\citet{lda} introduced \gls{lda}, which has since become a staple within topic modeling.
 \gls{lda} works under the assumption that documents are generated from a specific generative process, and tries to reverse engineer this process.
 This generative process assumes that documents are random mixtures of latent topics and that each topic is a distribution over all the words in the corpus.
 
@@ -46,7 +46,7 @@ And as such, it usually gives subpar performance when applied to \gls{ir} tasks.
 This is due to topic modeling working on the more abstract level of topics, rather than word frequencies as many of the other \gls{ir} methods.
 However, this also gives \gls{lda} the ability to understand topics expressed in queries and do \gls{ir} based on that knowledge.
 
-\citeauthor{yang2009topic}\cite{yang2009topic} defines \autoref{eq:lda-ir} for using \gls{lda} as an \gls{ir} method.
+\citet{yang2009topic} defines \autoref{eq:lda-ir} for using \gls{lda} as an \gls{ir} method.
 They do this based on a previous application of \gls{lda} for \gls{ir}\cite{lda-ir}.
 
 \begin{equation}\label{eq:lda-ir}

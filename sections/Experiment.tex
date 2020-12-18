@@ -32,18 +32,18 @@ We use \gls{map} to evaluate all baselines\cite{other_map}.
 	MAP = \frac{1}{Q}\sum_{q=1}^{Q} AveP(q)
 \end{equation}
 
-\noindent Where $Q$ is the number of queries.
+\noindent where $Q$ is the number of queries.
 
 \begin{equation}
 	AveP(q) = \frac{\sum_{n = 1}^{D} (precision@n(n) \times rel(n))}{|relevant~documents|}
 \end{equation}
 
-\noindent Where $D$ is the number of documents, and $rel(n)$ is 1 if the document at rank $n$ is relevant to the query, otherwise it is 0.
+\noindent where $D$ is the number of documents, and $rel(n)$ is 1 if the document at rank $n$ is relevant to the query, otherwise it is 0.
 
 \begin{equation}
 	precision@n(n)) = \frac{TP(n)}{TP(n) + FP(n)}
 \end{equation}
-\noindent Where $TP(n)$ is the number of documents correctly labeled as relevant for the query, in the top $n$ ranked documents, and $FP(n)$ is the number of documents incorrectly labeled as relevant for the query, in the top $n$ ranked documents.
+\noindent where $TP(n)$ is the number of documents correctly labeled as relevant for the query, in the top $n$ ranked documents, and $FP(n)$ is the number of documents incorrectly labeled as relevant for the query, in the top $n$ ranked documents.
 
 We also use precision@10 and precision@100 for the topic queries.
 However since document queries only contain one ground truth positive, $p@n$ doesn't make much sense to calculate. 
@@ -123,7 +123,7 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 	\caption{\acrlong{map} results for the four sets of document queries and topic queries.}
 	\begin{tabular}{l|c|c|c|c|c|c|c|c}
 		& \multicolumn{4}{c|}{Document Query Length} & \multicolumn{4}{c}{Topic Query Length} \\
-		Model / \gls{map} & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 \\
+		\gls{ir} methods / \gls{map} & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 \\
 		\midrule
 		\gls{lda}-\gls{ir} & 0.00457 & 0.00527 & 0.0429 & 0.0538 & 0.155 & 0.186 & 0.168 & 0.178 \\
 		\gls{lm} & 0.198 & 0.152 & 0.291 & 0.260 & 0.126 & 0.130 & 0.128 & 0.129 \\
@@ -154,7 +154,7 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 	\caption{Precision results for the four sets of topic queries for P@10 and P@100.}
 	\begin{tabular}{l|c|c|c|c||c|c|c|c}
 		& \multicolumn{4}{c||}{Topic Query Length (P@10)} & \multicolumn{4}{c}{Topic Query Length (P@100)} \\
-		Model & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4\\
+		\gls{ir} methods & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4\\
 		\midrule
 		\gls{lda}-\gls{ir} & 0.02 & 0.103 & 0.13 & 0.203 & 0.062 & 0.131 & 0.164 & 0.191 \\
 		\gls{lm} & 0.126 & 0.118 & 0.116 & 0.069 & 0.090 & 0.092 & 0.087 & 0.093\\
@@ -182,10 +182,10 @@ Combinations of \gls{tf-idf} are omitted from the results as the initial results
 
 \begin{table}[h]
 	\centering
-	\caption{Average rank of the relevant document for each document query.}
+	\caption{Average rank for the four sets of document queries.}
 	\begin{tabular}{l|c|c|c|c}
 		& \multicolumn{4}{c}{Document Query Length} \\
-		Model / Avg. Rank & 1 & 2 & 3 & 4 \\
+		\gls{ir} methods / Avg. Rank & 1 & 2 & 3 & 4 \\
 		\midrule
 		\gls{lda}-\gls{ir} & 2287.93 & 1599.95 & 1241.18 & 1926.78 \\
 		\gls{lm} & 7120.04 & 9082.9 & 6501.85 & 7782.65 \\
