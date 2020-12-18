@@ -1,5 +1,71 @@
-\input{sections/method/preprocessing}
+\section{\acrlong{ir} Methods}\label{sec:ir_methods}
+
+In this section, we introduce the \gls{ir} methods that we will be testing.
+We have chosen these methods to evaluate different ways of performing an \acrfull{ir} task.
+
+The goal of each method is to produce a document-score vector with one score for each document in the corpus, indicating the relevance of the document compared to the query.
+These scores can then be sorted in descending order to produce a ranking of the documents.
+
+Some of the methods calculate scores for a single word at a time rather than a whole query.
+In that case, we treat their score as an estimate of the probability that a document $d$ generates a specific word $w$.
+To find the probability of $d$ generating a given query $q$, we take the product of the word probabilities for each word in the query $w \in q$, as the document would have to generate each word, as shown in \autoref{eq:query_prob}.
+
+\begin{equation}\label{eq:query_prob}
+	P(q|d) = \prod_{w \in q} P(w|d)
+\end{equation}
+
 \input{sections/method/topic_modelling}
 \input{sections/language_model}
 \input{sections/method/PageRank.tex}
-\input{sections/method/query_handling.tex}
+
+\subsection{\acrlong{tf-idf}}
+\acrfull{tf-idf} is a well known \gls{ir} method that is used to find the most important words within texts.
+As the name suggests, this method aims to balance the two measures: term frequency and inverse document frequency.
+In our case, terms are the words left in the documents after the preprocessing phase.
+For each term in the query $t \in q$, a \gls{tf-idf} score will be calculated for each document in the corpus $d \in D$.
+Thus each document will have one score for each term in the query.
+These scores are combined into one score for each document using \autoref{eq:query_prob}.
+
+
+Term frequency describes how often a word is used within a specific document.
+Inverse document frequency describes how many documents in the corpus includes the given term.
+The IDF value decreases the more widely used the given term is.
+The overall goal of \gls{tf-idf}, is giving a measure of how often used and unique a term is for a given document. Words that are often used in the given document, but rarely used in the corpus will have the highest \gls{tf-idf} scores.
+
+The formula for \gls{tf-idf} can be seen in \autoref{eq:tfidf}
+
+\begin{equation}\label{eq:tfidf}
+	\text{tf-idf}(t, d, D) = \text{tf}(t, d) \cdot \text{idf}(t, D)
+\end{equation}
+
+\begin{equation}\label{eq:idf}
+	\text{idf}(t,D) = log \frac{|\{d \in D\}|}{|\{d \in D : t \in d\}|}
+\end{equation}
+	
+Where tf$(t, d)$ is the number of times a term $t$ appears in a document $d$ from the corpus $D$.
+
+\subsection{\acrlong{bm25}}
+\todo[inline]{describe goal / purpose / idea}
+\gls{bm25} is a bag of words retrieval function, which is similar to \gls{tf-idf}, since it uses the inverse document frequency.
+The formula for \gls{bm25} can be seen in \autoref{eq:bm25}\cite{bm25}.
+\begin{equation}\label{eq:bm25}
+	\text{bm25}(d, q) = \sum_{i=1}^{n}\text{idf}(q_i) \cdot \frac{\text{tf}(q_i, d) \cdot (k_1 + 1)}{\text{tf}(q_i, d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{avgdl})}
+\end{equation}
+where tf$(q_i)$ is the number of times the term $q_i$ appears in $d$.
+$|d|$ is the number of words in d. 
+$avgdl$ is the average document length from the corpus.
+$b$ and $k_1$ are both hyperparameters, which are set to $0.75$ and $1.5$, respectively.
+
+\subsection{Combining \gls{ir} Methods}
+Each of the \gls{ir} methods, described in this section, has its own strengths and weaknesses.
+We combine multiple of these methods, to see if they can draw upon each other's strengths and cover each other's weaknesses.
+We hypothesize that combinations will be able to produce better results than each of the methods separately.
+
+As with \citet{yang2009topic}, we combine multiple \gls{ir} methods by normalizing their document-score vectors and then either summing or multiplying them together element-wise.
+This process is visualized in \autoref{fig:combine}.
+
+\input{figures/overview_figure.tex}
+
+Both of these options are viable and have their own benefits and drawbacks.
+Summation allows documents to be ranked fairly high even if one of the combined methods produce a low score.
+With multiplication, a document with average scores for each method can have a better rank than one with mostly good scores but a really low score from one of the combined \gls{ir} methods.

@@ -7,7 +7,7 @@ To do this, we generate 320 document queries based on documents in the corpus, a
 We also test the \gls{ir} methods' ability understand the queries on a more abstract level and find documents are within the same topic as the query.
 To do this, we generate 320 topic queries based on topics from our \gls{lda} model, as described in \autoref{subsec:query_gen_top}, and test the \gls{ir} methods' ability to find all documents that are relevant to the original topic that the query was based upon.
 
-We test combinations of the following \gls{ir} methods (these will be referred to as the baselines):
+We test combinations of the following \gls{ir} methods, each of which was described in \autoref{sec:ir_methods} (these will be referred to as the baselines):
 \begin{itemize}
 	\item \Acrlong{lda}-\acrlong{ir} (\acrshort{lda}-\acrshort{ir})
 	\item \acrfull{lm}
@@ -16,34 +16,8 @@ We test combinations of the following \gls{ir} methods (these will be referred t
 	\item \acrfull{pr}
 \end{itemize}
 
-\gls{lda} and \gls{lda}-\gls{ir} was described in \autoref{sec:lda}.
 We use the \gls{lda} implementation from Gensim\footnote{\url{https://radimrehurek.com/gensim/models/ldamodel.html}} which is based on online \gls{lda} from \citet{blei2010online}.
-\gls{lm} was described in \autoref{sec:lm} based on the implementation by \citet{yang2009topic}.
-\gls{pr} was described in \autoref{sec:pagerank}.
-
-
-\subsection{\acrlong{tf-idf}}
-\Gls{tf-idf} is a well known \gls{ir} method which is used to find the most important words within text.
-The formula for \gls{tf-idf} can be seen in \autoref{eq:tfidf}
-\begin{equation}\label{eq:tfidf}
-	\text{tf-idf}(t, d, D) = \text{tf}(t, d) \cdot \text{idf}(t, D)
-\end{equation}
-where tf$(t, d)$ is the number of times term $t$ is in document $d$ and idf$(t, D)$ is the inverse document frequency of $t$ in $D$.
-
-\subsection{\acrlong{bm25}}
-\gls{bm25} is a bag of words retrieval function, which is similar to \gls{tf-idf}, since it uses the inverse document frequency.
-The formula for \gls{bm25} can be seen in \autoref{eq:bm25}\cite{bm25}.
-\begin{equation}\label{eq:bm25}
-\text{bm25}(d, q) = \sum_{i=1}^{n}\text{idf}(q_i) \cdot \frac{\text{tf}(q_i, d) \cdot (k_1 + 1)}{\text{tf}(q_i, d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{avgdl})}
-\end{equation}
-where tf$(q_i)$ is the number of times the term $q_i$ appears in $d$.
-$|d|$ is the number of words in d. 
-$avgdl$ is the average document length from the corpus.
-$b$ and $k_1$ are both hyperparameters, which are set to $0.75$ and $1.5$, respectively.
- 
-Each baseline will be given a query and produce a document-value vector with one value for each document indicating the relevance of that document compared to the query.
-Our results are based on the ranking order of these values.
-When multiple baselines are combined, their document-value vectors are normalized and then added or multiplied together element-wise.
+\todo[inline]{reference implementation of the other baselines? did we want an implementation section? if not should this stay in experiment or be moved to lda?}
 
 For each baseline, we evaluate the quality of its \gls{ir} for both queries generated based on documents (document queries) and queries generated based on topics (topic queries).
 For topic queries, all documents with values higher than the mean of the topic's vector in the document-topic matrix $\theta_t$ are considered ground truth positives.
