@@ -32,18 +32,18 @@ We use \gls{map} to evaluate all baselines\cite{other_map}.
 	MAP = \frac{1}{Q}\sum_{q=1}^{Q} AveP(q)
 \end{equation}
 
-\noindent Where $Q$ is the number of queries.
+\noindent where $Q$ is the number of queries.
 
 \begin{equation}
 	AveP(q) = \frac{\sum_{n = 1}^{D} (precision@n(n) \times rel(n))}{|relevant~documents|}
 \end{equation}
 
-\noindent Where $D$ is the number of documents, and $rel(n)$ is 1 if the document at rank $n$ is relevant to the query, otherwise it is 0.
+\noindent where $D$ is the number of documents, and $rel(n)$ is 1 if the document at rank $n$ is relevant to the query, otherwise it is 0.
 
 \begin{equation}
 	precision@n(n)) = \frac{TP(n)}{TP(n) + FP(n)}
 \end{equation}
-\noindent Where $TP(n)$ is the number of documents correctly labeled as relevant for the query, in the top $n$ ranked documents, and $FP(n)$ is the number of documents incorrectly labeled as relevant for the query, in the top $n$ ranked documents.
+\noindent where $TP(n)$ is the number of documents correctly labeled as relevant for the query, in the top $n$ ranked documents, and $FP(n)$ is the number of documents incorrectly labeled as relevant for the query, in the top $n$ ranked documents.
 
 We also use precision@10 and precision@100 for the topic queries.
 However since document queries only contain one ground truth positive, $p@n$ doesn't make much sense to calculate. 

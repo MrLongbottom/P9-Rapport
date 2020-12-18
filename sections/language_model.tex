@@ -6,7 +6,7 @@ To calculate this probability, they find the likelihood for each word in the que
 	P(w|d) = \frac{N_d}{N_d + \lambda} \cdot \frac{tf(w,d)}{N_d} + (1 - \frac{N_d}{N_d + \lambda}) \cdot \frac{tf(w,D)}{N_D}
 \end{equation}
 
-where $N_d$ is the number of word tokens in document $d$ and $tf(w,d)$ is the word frequency of word $w$ in document $d$.
+\noindent where $N_d$ is the number of word tokens in document $d$ and $tf(w,d)$ is the word frequency of word $w$ in document $d$.
 Likewise, $N_D$ is the total number of word tokens in the corpus $D$, and $tf(w,D)$ is the word frequency of word $w$ in the whole corpus $D$.
 $\lambda$ is a Dirichlet smoothing factor and is set to the average document length.
 $ \frac{N_d}{N_d + \lambda} $ describes a relative term which is weighted based on $ \lambda $. If $N_d > \lambda$ the value is closer to 1 and if $ N_d < \lambda $ the value is closer to 0.
