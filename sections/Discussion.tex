@@ -1,7 +1,7 @@
 \section{Discussion}\label{sec:discussion}
 In this section, we analyze and describe the results, we get from running our experiment.
 
-\gls{pr} using our adjacency-matrix successfully improved upon the results of other models in many cases.
+\gls{pr} using our adjacency-matrix successfully improved upon the results of other \gls{ir} method in many cases.
 This is worth noting as our adjacency matrix was constructed based on similarity of the documents' topic-distributions, rather than any relation embedded in the documents themselves, such as scientific articles referencing each other as with \citeauthor{yang2009topic}\cite{yang2009topic}.
 This suggests that other \gls{ir} methods benefit from the similarity context provided by our \gls{pr}, regardless of the validity of the underlying edges.
 This means that our initial idea of using the topic distributions as a similarity measure in the \gls{pr} algorithm, was a success.
@@ -10,9 +10,9 @@ This means that our initial idea of using the topic distributions as a similarit
 This comes at the cost of bad document query retrieval results.
 Though \gls{lda}-\gls{ir} has good \gls{map} results, \autoref{tab:results_precision_at_10} shows that \gls{lda}-\gls{ir} only gets the best precision@10 and precision@100 with queries of 4 words.
 This means that while it is well suited for ranking a large number of documents fairly well (as with \gls{map}), it is not good at finding a relatively small number of relevant documents
-It also points towards \gls{lda}-\gls{ir} being more reliant on a larger amount of context than many of the other models, and could therefore likely benefit greatly from query expansion methods.
-However, for this experiment \gls{lda}-\gls{ir}'s purpose is mostly to improve the topic retrieval performance of other models it is combined with, at the cost of reducing their document retrieval performance.
+It also points towards \gls{lda}-\gls{ir} being more reliant on a larger amount of context than many of the other \gls{ir} methods, and could therefore likely benefit greatly from query expansion methods.
+However, for this experiment \gls{lda}-\gls{ir}'s purpose is mostly to improve the topic retrieval performance of other \gls{ir} methods it is combined with, at the cost of reducing their document retrieval performance.
 
 Overall, the most successful combinations of baselines for combining document query retrieval and topic query retrieval seem to be $\gls{bm25}+\gls{pr}$ and $\gls{bm25}*\gls{pr}$.
-These combinations get good results in both categories, even managing to outperform the other models in topic query retrieval as measured by precision@10 in \autoref{tab:results_precision_at_10}.
+These combinations get good results in both categories, even managing to outperform the other \gls{ir} methods in topic query retrieval as measured by precision@10 in \autoref{tab:results_precision_at_10}.
 If dealing with larger queries, the combination $\gls{bm25}+\gls{lda}-\gls{ir}+\gls{pr}$ can also be considered as it improves further upon the topic query retrieval; however, this comes at the cost of decreasing the document query retrieval performance further.

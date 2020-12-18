@@ -109,10 +109,10 @@ A new model is generated using these values and this model will be used for the 
 
 \subsection{Results}\label{subsec:results}
 
-Results are shown on \autoref{tab:results} showing the \acrlong{map} of each model, \autoref{tab:results_precision_at_10} showing the precision@10 and precision@100 of each model for topic queries, and \autoref{tab:hit_results} showing the average rank of each model for document queries.
+Results are shown on \autoref{tab:results} showing the \acrlong{map} of each \gls{ir} method, \autoref{tab:results_precision_at_10} showing the precision@10 and precision@100 of each \gls{ir} method for topic queries, and \autoref{tab:hit_results} showing the average rank of each \gls{ir} method for document queries.
 The number for the query sets represent the length of the queries.
 
-\autoref{tab:results} and \autoref{tab:hit_results} show that \gls{bm25} is clearly the best model for document query retrieval, with all the best results using \gls{bm25}, sometimes combined with \gls{pr} and/or \gls{lda}-\gls{ir}. 
+\autoref{tab:results} and \autoref{tab:hit_results} show that \gls{bm25} is clearly the best \gls{ir} method for document query retrieval, with all the best results using \gls{bm25}, sometimes combined with \gls{pr} and/or \gls{lda}-\gls{ir}. 
 However \gls{bm25} does not fare well with topic query retrieval, as shown in \autoref{tab:results} and \autoref{tab:results_precision_at_10}.
 
 Combinations of \gls{tf-idf} are omitted from the results as the initial results of \gls{tf-idf} were worse than \gls{bm25} and the two algorithms serve the same purpose for our experiment.
