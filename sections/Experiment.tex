@@ -16,9 +16,6 @@ We test combinations of the following \gls{ir} methods, each of which was descri
 	\item \acrfull{pr}
 \end{itemize}
 
-We use the \gls{lda} implementation from Gensim\footnote{\url{https://radimrehurek.com/gensim/models/ldamodel.html}} which is based on online \gls{lda} from \citet{blei2010online}.
-\todo[inline]{reference implementation of the other baselines? did we want an implementation section? if not should this stay in experiment or be moved to lda?}
-
 For each baseline, we evaluate the quality of its \gls{ir} for both queries generated based on documents (document queries) and queries generated based on topics (topic queries).
 For topic queries, all documents with values higher than the mean of the topic's vector in the document-topic matrix $\theta_t$ are considered ground truth positives.
 This also means that while document queries always only have one ground truth positive, topic queries can have several thousand ($\sim$1.000-7.000).

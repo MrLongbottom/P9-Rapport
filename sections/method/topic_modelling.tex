@@ -40,6 +40,8 @@ Using $\theta$ and $\beta$, we can sample concrete topics $Z$ from documents, an
 \end{itemize}
 However, many of these assumptions can be addressed through various extensions of the \gls{lda} model\cite{blei2012topicmodels}.
 
+We use the \gls{lda} implementation from Gensim\footnote{\url{https://radimrehurek.com/gensim/models/ldamodel.html}} which is based on online \gls{lda} from \citet{blei2010online}.
+
 \subsubsection{\gls{lda}-\gls{ir}}\label{subsec:lda_ir}
 \gls{lda} is not designed as an \acrlong{ir} method.
 And as such, it usually gives subpar performance when applied to \gls{ir} tasks.
