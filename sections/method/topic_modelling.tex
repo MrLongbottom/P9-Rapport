@@ -42,8 +42,8 @@ However, many of these assumptions can be addressed through various extensions o
 
 \subsubsection{\gls{lda}-\gls{ir}}\label{subsec:lda_ir}
 \gls{lda} is not designed as a \acrlong{ir} method.
-And as such it usually gives subpar performance when applied to \gls{ir} tasks.
-This is due to topic modelling working on the more abstract level of topics, rather than word frequency as many of the other \gls{ir} methods.
+And as such, it usually gives subpar performance when applied to \gls{ir} tasks.
+This is due to topic modeling working on a more abstract level of topics, rather than word frequency as many of the other \gls{ir} methods.
 However, this also gives \gls{lda} the ability to understand topics expressed in queries and do \gls{ir} based on that knowledge.
 
 \citeauthor{yang2009topic}\cite{yang2009topic} defines \autoref{eq:lda-ir} for using \gls{lda} as an \gls{ir} method.
@@ -57,5 +57,5 @@ The idea behind this equation is to reverse-engineer the generative process \gls
 So for each topic $z$, the probability of the word $w$ using $\beta_z$ is multiplied with the probability of that topic appearing in the document using $\theta_d$.
 
 This is similar to the process \gls{lda} uses to generate topics, but instead of constructing topic-word distributions and document-topic distributions based on observed words, we now use these distributions and the observed words to find the probability of a word appearing in a document based on its topic distribution.
-
+In practice, we multiply the $\theta$ and $\beta$ together and get a $document \cdot word$ matrix, where each cell represents the probability of a given word appearing in a specific document wrt. the topic they share.
 We use the term \gls{lda}-\gls{ir}, to refer to information retrieval made using \autoref{eq:lda-ir}.
