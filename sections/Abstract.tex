@@ -1,7 +1,7 @@
 Topic models are used to discover topics within a set of documents.
 In this paper, we investigate whether using a topic model can improve existing \acrlong{ir} methods.
 We employ the probabilistic topic model, \acrlong{lda}, to automatically extract topics from Danish news articles.
-We use \acrlong{lda}'s topic distributions to construct an adjacency matrix.
+To run \acrlong{pr}, we construct an adjacency matrix based on topic similarity between documents.
 We generate two types of queries to test a range of \acrlong{ir} methods' ability to find documents.
 We evaluate \acrlong{ir} performance of combinations of \acrlong{lda}, \acrlong{tf-idf}, \acrlong{bm25}, \acrlong{lm}, and \acrlong{pr}.
 Our results show that using \acrlong{pr} on this adjacency matrix can improve performance of most \acrlong{ir} methods.
