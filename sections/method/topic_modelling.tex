@@ -41,9 +41,9 @@ Using $\theta$ and $\beta$, we can sample concrete topics $Z$ from documents, an
 However, many of these assumptions can be addressed through various extensions of the \gls{lda} model\cite{blei2012topicmodels}.
 
 \subsubsection{\gls{lda}-\gls{ir}}\label{subsec:lda_ir}
-\gls{lda} is not designed as a \acrlong{ir} method.
+\gls{lda} is not designed as an \acrlong{ir} method.
 And as such, it usually gives subpar performance when applied to \gls{ir} tasks.
-This is due to topic modeling working on a more abstract level of topics, rather than word frequency as many of the other \gls{ir} methods.
+This is due to topic modeling working on the more abstract level of topics, rather than word frequencies as many of the other \gls{ir} methods.
 However, this also gives \gls{lda} the ability to understand topics expressed in queries and do \gls{ir} based on that knowledge.
 
 \citeauthor{yang2009topic}\cite{yang2009topic} defines \autoref{eq:lda-ir} for using \gls{lda} as an \gls{ir} method.
@@ -54,8 +54,8 @@ They do this based on a previous application of \gls{lda} for \gls{ir}\cite{lda-
 \end{equation}
 
 The idea behind this equation is to reverse-engineer the generative process \gls{lda} uses to create the topic model, to predict the probability of a word appearing in a document given the document-topic distribution matrix $\theta$ and the topic-word distribution matrix $\beta$.
-So for each topic $z$, the probability of the word $w$ using $\beta_z$ is multiplied with the probability of that topic appearing in the document using $\theta_d$.
+So, for each topic $z$, the probability of the word $w$ using $\beta_z$ is multiplied with the probability of that topic appearing in the document using $\theta_d$.
 
 This is similar to the process \gls{lda} uses to generate topics, but instead of constructing topic-word distributions and document-topic distributions based on observed words, we now use these distributions and the observed words to find the probability of a word appearing in a document based on its topic distribution.
-In practice, we multiply the $\theta$ and $\beta$ together and get a $document \cdot word$ matrix, where each cell represents the probability of a given word appearing in a specific document wrt. the topic they share.
+In practice, we multiply the $\theta$ and $\beta$ matrices together and get a $document \cdot word$ matrix, where each cell represents the probability of a given word appearing in a specific document w.r.t. the topic they share.
 We use the term \gls{lda}-\gls{ir}, to refer to information retrieval made using \autoref{eq:lda-ir}.
