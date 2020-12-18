@@ -56,7 +56,7 @@ So, \gls{bm25} introduces a hyperparameter $b$ that adjust how sensitive a corpu
 Term saturation comes from a relaxation of an assumption made by \gls{tf-idf}.
 In \gls{tf-idf} having a term frequency of 2000 is considered two times as relevant as a term frequency of 1000.
 The intuition is that the more a term is used in a document, the more likely the document is to be about that term.
-However in practice, once a term has been used enough, we are pretty sure that the document is about that term, and using it further doesn't make the document linearly more relevant.
+However, in practice, once a term has been used enough, we are pretty sure that the document is about that term, and using it further doesn't make the document linearly more relevant.
 \gls{bm25} introduces a second hyperparameter $k_1$ that adjusts how quickly a term is saturated.
 
 The weaknesses of \gls{bm25} come from it introducing more hyperparameters that will have to be adjusted based on the corpus.
