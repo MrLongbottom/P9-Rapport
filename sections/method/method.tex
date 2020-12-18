@@ -47,18 +47,19 @@ Where tf$(t, d)$ is the number of times a term $t$ appears in a document $d$ fro
 \gls{bm25} is a bag of words retrieval function, based on \gls{tf-idf}.
 However, \gls{bm25} introduces two new concepts that it accounts for: document length and term saturation.
 
-The idea of adjusting term frequency based on document length is not new. It comes from the idea that long documents will naturally have higher term frequencies and are therefore unfairly scored higher.
+The idea of adjusting term frequency based on document length is not new. 
+It comes from the idea that long documents will naturally have higher term frequencies and are therefore unfairly scored higher.
 The intuition is to multiply the term frequency by the document length relative to the average document length in the corpus $tf * \frac{dl}{adl}$.
-However, not all document sets are necessarily equally effected by document length.
+However, not all document sets are necessarily equally affected by document length.
 So \gls{bm25} introduces a hyperparameter $b$ that adjust how sensitive a corpus should be to varying document length.
 
 Term saturation comes from a relaxation of an assumption made by \gls{tf-idf}.
-In \gls{tf-idf} having a term frequency of 2000 is considered double as relevant as a term frequency of 1000.
-This comes from the intuition that the more a term is used in a document, the more likely the document is to be about that term.
+In \gls{tf-idf} having a term frequency of 2000 is considered two times as relevant as a term frequency of 1000.
+The intuition is that the more a term is used in a document, the more likely the document is to be about that term.
 However in practice, once a term has been used enough, we are pretty sure that the document is about that term, and using it further doesn't make the document linearly more relevant.
 \gls{bm25} introduces a second hyperparameter $k$ that adjusts how quickly a term is saturated based on the form $\frac{tf}{tf+k}$.
 
-The weaknesses of \gls{bm25} comes from it introducing more hyperparameters that will have to be adjusted based on the corpus.
+The weaknesses of \gls{bm25} come from it introducing more hyperparameters that will have to be adjusted based on the corpus.
 If these hyperparameters are not tuned properly it could achieve bad performance.
 However, with good tuning of the parameters \gls{bm25} usually outperforms \gls{tf-idf}.
 
