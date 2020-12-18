@@ -30,7 +30,7 @@
 	\node (Cleaning)[process, right of=Dataset, label=Step 1] {Preprocessing};
 	\node (Training) [process, right of=Cleaning, label=Step 2] {Train IR Methods};
 	\node (Query) [process, below of=Dataset, label=Step 3, yshift=2.5cm] {Query Generation};
-	\node (Evaluate) [process, right of=Query, label=Step 4] {Evaluate Models};
+	\node (Evaluate) [process, right of=Query, label=Step 4] {Evaluate IR Methods};
 	\node (Result) [process, right of=Evaluate, label=Output] {Results};
 	\draw [->, very thick] (Dataset) edge (Cleaning); 
 	\draw [->, very thick] (Cleaning) edge (Training);
