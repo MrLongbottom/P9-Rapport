@@ -39,7 +39,8 @@ This makes it more worthwhile to use \gls{lda}-\gls{ir} as part of combinations,
 	\centering
 	\caption{P@10 and P@100 results for 4 sets of expanded topic queries.}
 	\begin{tabular}{l|c|c|c|c||c|c|c|c}
-		Model / P@10 || P@100 & T1 & T2 & T3 & T4 & T1 & T2 & T3 & T4\\
+		& \multicolumn{4}{c||}{Topic Query Length (P@10)} & \multicolumn{4}{c}{Topic Query Length (P@100)} \\
+		\gls{ir} methods & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4\\
 		\midrule
 		\gls{lda}-\gls{ir} & 0.134 & 0.165 & 0.219 & 0.183 & 0.160 & 0.167 & 0.220 & 0.177 \\
 		\gls{bm25} & 0.153 & 0.183 & 0.196 & 0.183 & 0.168 & 0.156 & 0.183 & 0.175 \\ 
@@ -59,7 +60,8 @@ This makes it more worthwhile to use \gls{lda}-\gls{ir} as part of combinations,
 	\centering
 	\caption{\gls{map} results for 4 sets of expanded document queries and topic queries.}
 	\begin{tabular}{l|c|c|c|c|c|c|c|c}
-		Model / \gls{map} & D1 & D2 & D3 & D4 & T1 & T2 & T3 & T4 \\
+		& \multicolumn{4}{c|}{Document Query Length} & \multicolumn{4}{c}{Topic Query Length} \\
+		\gls{ir} methods / \gls{map} & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 \\
 		\midrule
 		\gls{lda} & 0.011 & 0.034 & 0.007 & 0.015 & 0.183 & 0.178 & 0.195 & 0.188 \\
 		\gls{bm25} & 0.067 & 0.211 & 0.432 & 0.644 & 0.174 & 0.162 & 0.178 & 0.182 \\
