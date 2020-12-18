@@ -51,7 +51,7 @@ The idea of adjusting term frequency based on document length is not new.
 It comes from the idea that long documents will naturally have higher term frequencies and are therefore unfairly scored higher.
 The intuition is to multiply the term frequency by the document length relative to the average document length in the corpus $tf * \frac{dl}{adl}$.
 However, not all document sets are necessarily equally affected by document length.
-So \gls{bm25} introduces a hyperparameter $b$ that adjust how sensitive a corpus should be to varying document length.
+So, \gls{bm25} introduces a hyperparameter $b$ that adjust how sensitive a corpus should be to varying document length.
 
 Term saturation comes from a relaxation of an assumption made by \gls{tf-idf}.
 In \gls{tf-idf} having a term frequency of 2000 is considered two times as relevant as a term frequency of 1000.
