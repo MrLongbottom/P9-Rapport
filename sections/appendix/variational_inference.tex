@@ -1,4 +1,13 @@
 \subsection{\acrlong{vi}}
+
+\begin{figure}[b]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/vi_illustration.png}
+	\caption[Caption for LOF]{Illustration of \acrlong{vi}\footnotemark. The goal is to optimize the parameters to minimize the distance between $\nu^{init}$ and $\nu^*$.}
+	\label{fig:vi}
+\end{figure}
+\footnotetext{\url{http://www.cs.columbia.edu/~blei/talks/Blei\_VI\_tutorial.pdf}}
+
 When using topic models and other Bayesian models, it is computationally infeasible to compute the posterior, which means approximation is necessary. 
 Approaches today use two types of inference algorithms to estimate this; sampling or optimization.
 
@@ -26,13 +35,6 @@ We still cannot compute $p(z|\textbf{x})$, nor the Kullback-Leibler Divergence, 
 where $\mathcal{L}(q)$ is known as the ELBO.
 Since $p(\textbf{x})$ is a constant, when we maximize the ELBO, the $K\!L(q_\theta, p(z|\textbf{x}))$ decreases which brings us closer to the true posterior.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/vi_illustration.png}
-	\caption[Caption for LOF]{Illustration of \acrlong{vi}\footnotemark. The goal is to optimize the parameters to minimize the distance between $\nu^{init}$ and $\nu^*$.}
-	\label{fig:vi}
-\end{figure}
-\footnotetext{\url{http://www.cs.columbia.edu/~blei/talks/Blei\_VI\_tutorial.pdf}}
 
 \subsubsection*{LDA learning}
 We use an implementation of the \gls{lda} which is based on \cite{blei2010online}, where \citeauthor{blei2010online} present a way of training the \gls{lda} using \gls{vi}.
