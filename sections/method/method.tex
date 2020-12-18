@@ -1,13 +1,13 @@
-\section{\gls{ir} Methods}\label{sec:ir_methods}
+\section{\acrlong{ir} Methods}\label{sec:ir_methods}
 
 In this section, we introduce the \gls{ir} methods that we will be testing.
-We have chosen these methods to evaluate different ways of performing a \acrfull{ir} task.
+We have chosen these methods to evaluate different ways of performing an \acrfull{ir} task.
 
 The goal of each method is to produce a document-score vector with one score for each document in the corpus, indicating the relevance of the document compared to the query.
 These scores can then be sorted in descending order to produce a ranking of the documents.
 
 Some of the methods calculate scores for a single word at a time rather than a whole query.
-In that case, we treat their score is an estimate of the probability a document $d$ generating a specific word $w$.
+In that case, we treat their score as an estimate of the probability that a document $d$ generates a specific word $w$.
 To find the probability of $d$ generating a given query $q$, we take the product of the word probabilities for each word in the query $w \in q$, as the document would have to generate each word, as shown in \autoref{eq:query_prob}.
 
 \begin{equation}\label{eq:query_prob}
@@ -19,12 +19,12 @@ To find the probability of $d$ generating a given query $q$, we take the product
 \input{sections/method/PageRank.tex}
 
 \subsection{\acrlong{tf-idf}}
-\Gls{tf-idf} is a well known \gls{ir} method that is used to find the most important words within texts.
+\acrfull{tf-idf} is a well known \gls{ir} method that is used to find the most important words within texts.
 As the name suggests, this method aims to balance the two measures: term frequency and inverse document frequency.
 In our case, terms are the words left in the documents after the preprocessing phase.
 For each term in the query $t \in q$, a \gls{tf-idf} score will be calculated for each document in the corpus $d \in D$.
 Thus each document will have one score for each term in the query.
-These scores are combined into one score each document using \ref{eq:query_prob}.
+These scores are combined into one score for each document using \autoref{eq:query_prob}.
 
 
 Term frequency describes how often a word is used within a specific document.
@@ -61,8 +61,8 @@ Each of the \gls{ir} methods, described in this section, has its own strengths a
 We combine multiple of these methods, to see if they can draw upon each other's strengths and cover each other's weaknesses.
 We hypothesize that combinations will be able to produce better results than each of the methods separately.
 
-As with \citet{yang2009topic}, we combine multiple \gls{ir} methods, by normalizing their document-score vectors and then either summing or multiplying them together element-wise.
-This process is visualized in \ref{fig:combine}.
+As with \citet{yang2009topic}, we combine multiple \gls{ir} methods by normalizing their document-score vectors and then either summing or multiplying them together element-wise.
+This process is visualized in \autoref{fig:combine}.
 
 \input{figures/overview_figure.tex}
 
